@@ -5,24 +5,24 @@ import tailwindcss from '@tailwindcss/vite'
 import { viteStaticCopy } from 'vite-plugin-static-copy'
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss(),
-    viteStaticCopy({
-			targets: [
-				{
-					src: '../blueprints/*',
-					dest: 'blueprints' // raíz de dist (public root)
-				},
-				{
-					src: '../meta.json',
-					dest: '' // raíz de dist
-				}
-			]
-		})
+	plugins: [react(), tailwindcss(),
+	viteStaticCopy({
+		targets: [
+			{
+				src: path.resolve(__dirname, '../blueprints/*').replace(/\\/g, '/'),
+				dest: 'blueprints'
+			},
+			{
+				src: path.resolve(__dirname, '../meta.json').replace(/\\/g, '/'),
+				dest: ''
+			}
+		]
+	})
 
-  ],
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src'),
-    },
-  },
+	],
+	resolve: {
+		alias: {
+			'@': path.resolve(__dirname, './src'),
+		},
+	},
 })
