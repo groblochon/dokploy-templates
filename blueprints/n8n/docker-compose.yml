@@ -10,7 +10,7 @@ services:
       N8N_PROTOCOL: https
       NODE_ENV: production
       WEBHOOK_URL: "https://${N8N_HOST}/"
-      GENERIC_TIMEZONE: ${TIMEZONE:-Europe/Paris}
+      GENERIC_TIMEZONE: "${TIMEZONE:-Europe/Paris}"
       N8N_SECURE_COOKIE: "false"
       # Database Configuration
       DB_TYPE: postgresdb
