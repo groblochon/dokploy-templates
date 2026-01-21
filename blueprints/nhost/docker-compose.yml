@@ -6,16 +6,16 @@ services:
     restart: unless-stopped
     environment:
       # Firebase Configuration (using project variables)
-      FIREBASE_PROJECT_ID: "${{project.FIREBASE_PROJECT_ID}}"
-      FIREBASE_PRIVATE_KEY: "${{project.FIREBASE_PRIVATE_KEY}}"
-      FIREBASE_DATABASE_URL: "${{project.FIREBASE_DATABASE_URL}}"
-      FIREBASE_STORAGE_BUCKET: "${{project.FIREBASE_STORAGE_BUCKET}}"
+      FIREBASE_PROJECT_ID: "${FIREBASE_PROJECT_ID}}"
+      FIREBASE_PRIVATE_KEY: "${FIREBASE_PRIVATE_KEY}}"
+      FIREBASE_DATABASE_URL: "${FIREBASE_DATABASE_URL}}"
+      FIREBASE_STORAGE_BUCKET: "${FIREBASE_STORAGE_BUCKET}}"
       # S3 Fallback (using project variables)
-      AWS_ACCESS_KEY_ID: "${{project.S3_ACCESS_KEY_ID}}"
-      AWS_SECRET_ACCESS_KEY: "${{project.S3_SECRET_ACCESS_KEY}}"
-      AWS_REGION: "${{project.S3_REGION}}"
-      AWS_BUCKET: "${{project.S3_BUCKET}}"
-      AWS_S3_ENDPOINT_URL: "${{project.S3_ENDPOINT}}"
+      AWS_ACCESS_KEY_ID: "${S3_ACCESS_KEY_ID}}"
+      AWS_SECRET_ACCESS_KEY: "${S3_SECRET_ACCESS_KEY}}"
+      AWS_REGION: "${S3_REGION}}"
+      AWS_BUCKET: "${S3_BUCKET}}"
+      AWS_S3_ENDPOINT_URL: "${S3_ENDPOINT}}"
       # Application Configuration
       HASURA_GRAPHQL_ENDPOINT: "https://graphql.nhost.run/v1"
       HASURA_ADMIN_SECRET: "${password:32}"

@@ -4,25 +4,25 @@ services:
     restart: unless-stopped
     environment:
       # Database Configuration (connect to external Supabase)
-      HOST: "${{project.POSTGRES_HOST}}"
+      HOST: "${POSTGRES_HOST}}"
       USER: "postgres"
-      PASSWORD: "${{project.POSTGRES_PASSWORD}}"
+      PASSWORD: "${POSTGRES_PASSWORD}}"
       # OpenAI Configuration (using project variables)
-      OPENAI_API_KEY: "${{project.OPENAI_API_KEY}}"
-      OPENAI_API_BASE: "${{project.OPENAI_API_BASE}}"
+      OPENAI_API_KEY: "${OPENAI_API_KEY}}"
+      OPENAI_API_BASE: "${OPENAI_API_BASE}}"
       # S3 Configuration (using project variables)
-      AWS_ACCESS_KEY_ID: "${{project.S3_ACCESS_KEY_ID}}"
-      AWS_SECRET_ACCESS_KEY: "${{project.S3_SECRET_ACCESS_KEY}}"
-      AWS_STORAGE_BUCKET_NAME: "${{project.S3_BUCKET}}"
-      AWS_S3_ENDPOINT_URL: "${{project.S3_ENDPOINT}}"
-      AWS_S3_REGION_NAME: "${{project.S3_REGION}}"
+      AWS_ACCESS_KEY_ID: "${S3_ACCESS_KEY_ID}}"
+      AWS_SECRET_ACCESS_KEY: "${S3_SECRET_ACCESS_KEY}}"
+      AWS_STORAGE_BUCKET_NAME: "${S3_BUCKET}}"
+      AWS_S3_ENDPOINT_URL: "${S3_ENDPOINT}}"
+      AWS_S3_REGION_NAME: "${S3_REGION}}"
       # Application Configuration
       ODOO_RC: "/etc/odoo/odoo.conf"
       ODOO_ADMIN_PASS: "${password:32}"
-      ODOO_DB_HOST: "${{project.POSTGRES_HOST}}"
+      ODOO_DB_HOST: "${POSTGRES_HOST}}"
       ODOO_DB_PORT: "5432"
       ODOO_DB_USER: "postgres"
-      ODOO_DB_PASSWORD: "${{project.POSTGRES_PASSWORD}}"
+      ODOO_DB_PASSWORD: "${POSTGRES_PASSWORD}}"
       ODOO_DB_NAME: "odoo"
       ODOO_DB_MAXCONN: "64"
       ODOO_DB_TEMPLATE: "template0"

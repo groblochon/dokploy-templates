@@ -15,8 +15,10 @@ BLINKO_SECRET = "${blinko_secret}"
 # Host Configuration
 BLINKO_HOST = "blinko.${main_domain}"
 
-# Database Configuration (connect to external PostgreSQL - automatically constructed)
-# DATABASE_URL = "postgresql://postgres:${{project.POSTGRES_PASSWORD}}@${{project.POSTGRES_HOST}}:5432/${{project.POSTGRES_DB}}"
+# Database Configuration (connect to external PostgreSQL)
+POSTGRES_PASSWORD = "${{project.POSTGRES_PASSWORD}}"
+POSTGRES_HOST = "${{project.POSTGRES_HOST}}"
+POSTGRES_DB = "${{project.POSTGRES_DB}}"
 
 # OpenAI Configuration (optional)
 OPENAI_API_BASE = "${{project.OPENAI_API_BASE}}"
