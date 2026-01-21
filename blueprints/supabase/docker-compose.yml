@@ -11,16 +11,16 @@ services:
       - supabase-analytics
     environment:
       STUDIO_PG_META_URL: http://supabase-meta:8080
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      DEFAULT_ORGANIZATION_NAME: ${STUDIO_DEFAULT_ORGANIZATION:-IA Stack}
-      DEFAULT_PROJECT_NAME: ${STUDIO_DEFAULT_PROJECT:-ia-stack}
-      OPENAI_API_KEY: ${OPENAI_API_KEY}
-      SUPABASE_URL: ${SUPABASE_PUBLIC_URL}
-      SUPABASE_PUBLIC_URL: ${SUPABASE_PUBLIC_URL}
-      SUPABASE_ANON_KEY: ${ANON_KEY}
-      SUPABASE_SERVICE_KEY: ${SERVICE_ROLE_KEY}
-      AUTH_JWT_SECRET: ${JWT_SECRET}
-      LOGFLARE_API_KEY: ${LOGFLARE_API_KEY}
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+      DEFAULT_ORGANIZATION_NAME: "${STUDIO_DEFAULT_ORGANIZATION:-IA Stack}"
+      DEFAULT_PROJECT_NAME: "${STUDIO_DEFAULT_PROJECT:-ia-stack}"
+      OPENAI_API_KEY: "${OPENAI_API_KEY}"
+      SUPABASE_URL: "${SUPABASE_PUBLIC_URL}"
+      SUPABASE_PUBLIC_URL: "${SUPABASE_PUBLIC_URL}"
+      SUPABASE_ANON_KEY: "${ANON_KEY}"
+      SUPABASE_SERVICE_KEY: "${SERVICE_ROLE_KEY}"
+      AUTH_JWT_SECRET: "${JWT_SECRET}"
+      LOGFLARE_API_KEY: "${LOGFLARE_API_KEY}"
       LOGFLARE_URL: http://supabase-analytics:4000
       NEXT_PUBLIC_ENABLE_LOGS: "true"
       NEXT_ANALYTICS_BACKEND_PROVIDER: postgres
@@ -42,10 +42,10 @@ services:
       KONG_PLUGINS: request-transformer,cors,key-auth,acl,basic-auth
       KONG_NGINX_PROXY_PROXY_BUFFER_SIZE: 160k
       KONG_NGINX_PROXY_PROXY_BUFFERS: 64 160k
-      SUPABASE_ANON_KEY: ${ANON_KEY}
-      SUPABASE_SERVICE_KEY: ${SERVICE_ROLE_KEY}
-      DASHBOARD_USERNAME: ${DASHBOARD_USERNAME}
-      DASHBOARD_PASSWORD: ${DASHBOARD_PASSWORD}
+      SUPABASE_ANON_KEY: "${ANON_KEY}"
+      SUPABASE_SERVICE_KEY: "${SERVICE_ROLE_KEY}"
+      DASHBOARD_USERNAME: "${DASHBOARD_USERNAME}"
+      DASHBOARD_PASSWORD: "${DASHBOARD_PASSWORD}"
     volumes:
       - ./files/kong.yml:/home/kong/kong.yml:ro
 
@@ -63,20 +63,20 @@ services:
     environment:
       GOTRUE_API_HOST: 0.0.0.0
       GOTRUE_API_PORT: 9999
-      API_EXTERNAL_URL: ${API_EXTERNAL_URL}
+      API_EXTERNAL_URL: "${API_EXTERNAL_URL}"
       GOTRUE_DB_DRIVER: postgres
-      GOTRUE_DB_DATABASE_URL: postgres://supabase_auth_admin:${POSTGRES_PASSWORD}@supabase-db:5432/${POSTGRES_DB}
-      GOTRUE_SITE_URL: ${SITE_URL}
-      GOTRUE_URI_ALLOW_LIST: ${ADDITIONAL_REDIRECT_URLS:-}
-      GOTRUE_DISABLE_SIGNUP: ${DISABLE_SIGNUP:-false}
+      GOTRUE_DB_DATABASE_URL: "postgres://supabase_auth_admin:${POSTGRES_PASSWORD}@supabase-db:5432/${POSTGRES_DB}"
+      GOTRUE_SITE_URL: "${SITE_URL}"
+      GOTRUE_URI_ALLOW_LIST: "${ADDITIONAL_REDIRECT_URLS:-}"
+      GOTRUE_DISABLE_SIGNUP: "${DISABLE_SIGNUP:-false}"
       GOTRUE_JWT_ADMIN_ROLES: service_role
       GOTRUE_JWT_AUD: authenticated
       GOTRUE_JWT_DEFAULT_GROUP_NAME: authenticated
-      GOTRUE_JWT_EXP: ${JWT_EXPIRY:-3600}
-      GOTRUE_JWT_SECRET: ${JWT_SECRET}
-      GOTRUE_EXTERNAL_EMAIL_ENABLED: ${ENABLE_EMAIL_SIGNUP:-true}
-      GOTRUE_EXTERNAL_ANONYMOUS_USERS_ENABLED: ${ENABLE_ANONYMOUS_USERS:-false}
-      GOTRUE_MAILER_AUTOCONFIRM: ${ENABLE_EMAIL_AUTOCONFIRM:-false}
+      GOTRUE_JWT_EXP: "${JWT_EXPIRY:-3600}"
+      GOTRUE_JWT_SECRET: "${JWT_SECRET}"
+      GOTRUE_EXTERNAL_EMAIL_ENABLED: "${ENABLE_EMAIL_SIGNUP:-true}"
+      GOTRUE_EXTERNAL_ANONYMOUS_USERS_ENABLED: "${ENABLE_ANONYMOUS_USERS:-false}"
+      GOTRUE_MAILER_AUTOCONFIRM: "${ENABLE_EMAIL_AUTOCONFIRM:-false}"
 
   supabase-rest:
     image: postgrest/postgrest:v12.2.11
@@ -84,13 +84,13 @@ services:
     depends_on:
       - supabase-db
     environment:
-      PGRST_DB_URI: postgres://authenticator:${POSTGRES_PASSWORD}@supabase-db:5432/${POSTGRES_DB}
-      PGRST_DB_SCHEMAS: ${PGRST_DB_SCHEMAS:-public,storage,graphql_public}
+      PGRST_DB_URI: "postgres://authenticator:${POSTGRES_PASSWORD}@supabase-db:5432/${POSTGRES_DB}"
+      PGRST_DB_SCHEMAS: "${PGRST_DB_SCHEMAS:-public,storage,graphql_public}"
       PGRST_DB_ANON_ROLE: anon
-      PGRST_JWT_SECRET: ${JWT_SECRET}
+      PGRST_JWT_SECRET: "${JWT_SECRET}"
       PGRST_DB_USE_LEGACY_GUCS: "false"
-      PGRST_APP_SETTINGS_JWT_SECRET: ${JWT_SECRET}
-      PGRST_APP_SETTINGS_JWT_EXP: ${JWT_EXPIRY:-3600}
+      PGRST_APP_SETTINGS_JWT_SECRET: "${JWT_SECRET}"
+      PGRST_APP_SETTINGS_JWT_EXP: "${JWT_EXPIRY:-3600}"
 
   supabase-realtime:
     image: supabase/realtime:v2.34.47
@@ -107,12 +107,12 @@ services:
       DB_HOST: supabase-db
       DB_PORT: 5432
       DB_USER: supabase_admin
-      DB_PASSWORD: ${POSTGRES_PASSWORD}
-      DB_NAME: ${POSTGRES_DB}
+      DB_PASSWORD: "${POSTGRES_PASSWORD}"
+      DB_NAME: "${POSTGRES_DB}"
       DB_AFTER_CONNECT_QUERY: 'SET search_path TO _realtime'
       DB_ENC_KEY: supabaserealtime
-      API_JWT_SECRET: ${JWT_SECRET}
-      SECRET_KEY_BASE: ${SECRET_KEY_BASE}
+      API_JWT_SECRET: "${JWT_SECRET}"
+      SECRET_KEY_BASE: "${SECRET_KEY_BASE}"
       ERL_AFLAGS: -proto_dist inet_tcp
       DNS_NODES: "''"
       RLIMIT_NOFILE: "10000"
@@ -134,16 +134,16 @@ services:
       - supabase-rest
       - supabase-imgproxy
     environment:
-      ANON_KEY: ${ANON_KEY}
-      SERVICE_KEY: ${SERVICE_ROLE_KEY}
+      ANON_KEY: "${ANON_KEY}"
+      SERVICE_KEY: "${SERVICE_ROLE_KEY}"
       POSTGREST_URL: http://supabase-rest:3000
-      PGRST_JWT_SECRET: ${JWT_SECRET}
-      DATABASE_URL: postgres://supabase_storage_admin:${POSTGRES_PASSWORD}@supabase-db:5432/${POSTGRES_DB}
+      PGRST_JWT_SECRET: "${JWT_SECRET}"
+      DATABASE_URL: "postgres://supabase_storage_admin:${POSTGRES_PASSWORD}@supabase-db:5432/${POSTGRES_DB}"
       FILE_SIZE_LIMIT: 52428800
-      STORAGE_BACKEND: ${STORAGE_BACKEND:-file}
+      STORAGE_BACKEND: "${STORAGE_BACKEND:-file}"
       TENANT_ID: stub
       REGION: stub
-      GLOBAL_S3_BUCKET: ${S3_BUCKET:-}
+      GLOBAL_S3_BUCKET: "${S3_BUCKET:-}"
       ENABLE_IMAGE_TRANSFORMATION: "true"
       IMGPROXY_URL: http://supabase-imgproxy:5001
 
@@ -172,9 +172,9 @@ services:
       PG_META_PORT: 8080
       PG_META_DB_HOST: supabase-db
       PG_META_DB_PORT: 5432
-      PG_META_DB_NAME: ${POSTGRES_DB}
+      PG_META_DB_NAME: "${POSTGRES_DB}"
       PG_META_DB_USER: supabase_admin
-      PG_META_DB_PASSWORD: ${POSTGRES_PASSWORD}
+      PG_META_DB_PASSWORD: "${POSTGRES_PASSWORD}"
 
   supabase-functions:
     image: supabase/edge-runtime:v1.67.4
@@ -184,11 +184,11 @@ services:
     depends_on:
       - supabase-analytics
     environment:
-      JWT_SECRET: ${JWT_SECRET}
+      JWT_SECRET: "${JWT_SECRET}"
       SUPABASE_URL: http://supabase-kong:8000
-      SUPABASE_ANON_KEY: ${ANON_KEY}
-      SUPABASE_SERVICE_ROLE_KEY: ${SERVICE_ROLE_KEY}
-      SUPABASE_DB_URL: postgresql://postgres:${POSTGRES_PASSWORD}@supabase-db:5432/${POSTGRES_DB}
+      SUPABASE_ANON_KEY: "${ANON_KEY}"
+      SUPABASE_SERVICE_ROLE_KEY: "${SERVICE_ROLE_KEY}"
+      SUPABASE_DB_URL: "${POSTGRES_DB}"
       VERIFY_JWT: "true"
     command: [ "start", "--main-service", "/home/deno/functions/main" ]
 
@@ -210,13 +210,13 @@ services:
       DB_DATABASE: _supabase
       DB_HOSTNAME: supabase-db
       DB_PORT: 5432
-      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_PASSWORD: "${POSTGRES_PASSWORD}"
       DB_SCHEMA: _analytics
-      LOGFLARE_API_KEY: ${LOGFLARE_API_KEY}
+      LOGFLARE_API_KEY: "${LOGFLARE_API_KEY}"
       LOGFLARE_SINGLE_TENANT: "true"
       LOGFLARE_SUPABASE_MODE: "true"
       LOGFLARE_MIN_CLUSTER_SIZE: 1
-      POSTGRES_BACKEND_URL: postgresql://supabase_admin:${POSTGRES_PASSWORD}@supabase-db:5432/_supabase
+      POSTGRES_BACKEND_URL: "postgresql://supabase_admin:${POSTGRES_PASSWORD}@supabase-db:5432/_supabase"
       POSTGRES_BACKEND_SCHEMA: _analytics
       LOGFLARE_FEATURE_FLAG_OVERRIDE: multibackend=true
 
@@ -237,12 +237,12 @@ services:
       POSTGRES_HOST: /var/run/postgresql
       PGPORT: 5432
       POSTGRES_PORT: 5432
-      PGPASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      PGDATABASE: ${POSTGRES_DB}
-      POSTGRES_DB: ${POSTGRES_DB}
-      JWT_SECRET: ${JWT_SECRET}
-      JWT_EXP: ${JWT_EXPIRY:-3600}
+      PGPASSWORD: "${POSTGRES_PASSWORD}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+      PGDATABASE: "${POSTGRES_DB}"
+      POSTGRES_DB: "${POSTGRES_DB}"
+      JWT_SECRET: "${JWT_SECRET}"
+      JWT_EXP: "${JWT_EXPIRY:-3600}"
     command: [ "postgres", "-c", "config_file=/etc/postgresql/postgresql.conf", "-c", "log_min_messages=fatal" ]
 
 volumes:

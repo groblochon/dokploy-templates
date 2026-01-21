@@ -11,4 +11,4 @@ services:
       - whisper-models:/root/.cache/whisper
 
 volumes:
-  whisper-models:
+  whisper-models: {}

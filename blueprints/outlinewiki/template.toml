@@ -12,6 +12,7 @@ host = "outline.${main_domain}"
 POSTGRES_HOST = "${{project.POSTGRES_HOST}}"
 POSTGRES_DB = "${{project.POSTGRES_DB}}"
 POSTGRES_PASSWORD = "${{project.POSTGRES_PASSWORD}}"
+PORT = "3000"
 
 # OpenAI Configuration
 OPENAI_API_BASE = "${{project.OPENAI_API_BASE}}"

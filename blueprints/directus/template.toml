@@ -8,6 +8,9 @@ port = 8055
 host = "directus.${main_domain}"
 
 [config.env]
+# Host Configuration
+main_domain = "${{project.main_domain}}"
+
 # Database Configuration (connect to external Supabase)
 DB_CLIENT = "pg"
 DB_HOST = "${{project.POSTGRES_HOST}}"

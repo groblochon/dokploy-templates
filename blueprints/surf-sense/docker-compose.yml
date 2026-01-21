@@ -9,42 +9,42 @@ services:
       - surf-sense-data:/data
     environment:
       # Authentication (auto-generated if not set)
-      SECRET_KEY: ${SURF_SECRET_KEY:-}
+      SECRET_KEY: "${SURF_SECRET_KEY:-}"
 
       # Auth Configuration
-      AUTH_TYPE: ${AUTH_TYPE:-LOCAL}
-      GOOGLE_OAUTH_CLIENT_ID: ${GOOGLE_OAUTH_CLIENT_ID:-}
-      GOOGLE_OAUTH_CLIENT_SECRET: ${GOOGLE_OAUTH_CLIENT_SECRET:-}
+      AUTH_TYPE: "${AUTH_TYPE:-LOCAL}"
+      GOOGLE_OAUTH_CLIENT_ID: "${GOOGLE_OAUTH_CLIENT_ID:-}"
+      GOOGLE_OAUTH_CLIENT_SECRET: "${GOOGLE_OAUTH_CLIENT_SECRET:-}"
 
       # AI/ML Configuration
-      EMBEDDING_MODEL: ${EMBEDDING_MODEL:-sentence-transformers/all-MiniLM-L6-v2}
-      RERANKERS_ENABLED: ${RERANKERS_ENABLED:-false}
-      RERANKERS_MODEL_NAME: ${RERANKERS_MODEL_NAME:-}
-      RERANKERS_MODEL_TYPE: ${RERANKERS_MODEL_TYPE:-}
+      EMBEDDING_MODEL: "${EMBEDDING_MODEL:-sentence-transformers/all-MiniLM-L6-v2}"
+      RERANKERS_ENABLED: "${RERANKERS_ENABLED:-false}"
+      RERANKERS_MODEL_NAME: "${RERANKERS_MODEL_NAME:-}"
+      RERANKERS_MODEL_TYPE: "${RERANKERS_MODEL_TYPE:-}"
 
       # Document Processing
-      ETL_SERVICE: ${ETL_SERVICE:-DOCLING}
-      UNSTRUCTURED_API_KEY: ${UNSTRUCTURED_API_KEY:-}
-      LLAMA_CLOUD_API_KEY: ${LLAMA_CLOUD_API_KEY:-}
+      ETL_SERVICE: "${ETL_SERVICE:-DOCLING}"
+      UNSTRUCTURED_API_KEY: "${UNSTRUCTURED_API_KEY:-}"
+      LLAMA_CLOUD_API_KEY: "${LLAMA_CLOUD_API_KEY:-}"
 
       # Audio Services
-      TTS_SERVICE: ${TTS_SERVICE:-local/kokoro}
-      TTS_SERVICE_API_KEY: ${TTS_SERVICE_API_KEY:-}
-      STT_SERVICE: ${STT_SERVICE:-local/base}
-      STT_SERVICE_API_KEY: ${STT_SERVICE_API_KEY:-}
+      TTS_SERVICE: "${TTS_SERVICE:-local/kokoro}"
+      TTS_SERVICE_API_KEY: "${TTS_SERVICE_API_KEY:-}"
+      STT_SERVICE: "${STT_SERVICE:-local/base}"
+      STT_SERVICE_API_KEY: "${STT_SERVICE_API_KEY:-}"
 
       # Web Crawling
-      FIRECRAWL_API_KEY: ${FIRECRAWL_API_KEY:-}
+      FIRECRAWL_API_KEY: "${FIRECRAWL_API_KEY:-}"
 
       # Optional Features
-      REGISTRATION_ENABLED: ${REGISTRATION_ENABLED:-true}
-      SCHEDULE_CHECKER_INTERVAL: ${SCHEDULE_CHECKER_INTERVAL:-1m}
+      REGISTRATION_ENABLED: "${REGISTRATION_ENABLED:-true}"
+      SCHEDULE_CHECKER_INTERVAL: "${SCHEDULE_CHECKER_INTERVAL:-1m}"
 
       # LangSmith Observability (optional)
-      LANGSMITH_TRACING: ${LANGSMITH_TRACING:-false}
-      LANGSMITH_ENDPOINT: ${LANGSMITH_ENDPOINT:-}
-      LANGSMITH_API_KEY: ${LANGSMITH_API_KEY:-}
-      LANGSMITH_PROJECT: ${LANGSMITH_PROJECT:-}
+      LANGSMITH_TRACING: "${LANGSMITH_TRACING:-false}"
+      LANGSMITH_ENDPOINT: "${LANGSMITH_ENDPOINT:-}"
+      LANGSMITH_API_KEY: "${LANGSMITH_API_KEY:-}"
+      LANGSMITH_PROJECT: "${LANGSMITH_PROJECT:-}"
     restart: unless-stopped
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://surf-sense:3000", "&&", "curl", "-f", "http://surf-sense:8000/docs" ]
@@ -54,5 +54,4 @@ services:
       start_period: 120s
 
 volumes:
-  surf-sense-data:
-    name: surf-sense-data
+  surf-sense-data: {}

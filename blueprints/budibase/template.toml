@@ -9,6 +9,7 @@ host = "budibase.${main_domain}"
 
 [config.env]
 # Database Configuration (connect to external PostgreSQL)
+POSTGRES_URL = "postgresql://postgres:${{project.POSTGRES_PASSWORD}}@${{project.POSTGRES_HOST}}:5432/${{project.POSTGRES_DB}}"
 DATABASE_URL = "postgresql://postgres:${{project.POSTGRES_PASSWORD}}@${{project.POSTGRES_HOST}}:5432/${{project.POSTGRES_DB}}"
 
 # External Redis for caching and sessions

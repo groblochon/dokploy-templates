@@ -5,9 +5,9 @@ services:
     ports:
       - "${HTTP_PORT:-8000}:8000"
       - "${WS_PORT:-8001}:8001"
-    command: start --user root --pass ${SURREALDB_PASSWORD}
+    command: "start --user root --pass ${SURREALDB_PASSWORD}"
     environment:
-      SURREALDB_PASSWORD: ${SURREALDB_PASSWORD}
+      SURREALDB_PASSWORD: "${SURREALDB_PASSWORD}"
       SURREALDB_USER: root
     volumes:
       - surrealdb-data:/data
@@ -19,4 +19,4 @@ services:
       retries: 3
 
 volumes:
-  surrealdb-data:
+  surrealdb-data: {}

@@ -5,16 +5,16 @@ services:
     expose:
       - 8502
     environment:
-      SURREAL_URL: ${SURREAL_URL}}
-      SURREAL_USER: root
-      SURREAL_PASSWORD: ${SURREAL_PASSWORD}}
+      SURREAL_URL: "${SURREAL_URL}"
+      SURREAL_USER: "${SURREAL_USER}"
+      SURREAL_PASSWORD: "${SURREAL_PASSWORD}"
       SURREAL_NAMESPACE: open_notebook
       SURREAL_DATABASE: staging
       # OpenAI Configuration
-      OPENAI_API_KEY: ${OPENAI_API_KEY}}
-      OPENAI_API_BASE: ${OPENAI_API_BASE}}
+      OPENAI_API_KEY: "${OPENAI_API_KEY}"
+      OPENAI_API_BASE: "${OPENAI_API_BASE}"
     volumes:
       - open-notebook-data:/app/data
 
 volumes:
-  open-notebook-data:
+  open-notebook-data: {}

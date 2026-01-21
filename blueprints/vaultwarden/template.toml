@@ -14,8 +14,8 @@ POSTGRES_DB = "${{project.POSTGRES_DB}}"
 POSTGRES_PASSWORD = "${{project.POSTGRES_PASSWORD}}"
 
 # Configuration
-DOMAIN = "https://vaultwarden.${main_domain}"
-SIGNUPS_ALLOWED = "true"
+DOMAIN = "${{project.DOMAIN}}"
+SIGNUPS_ALLOWED = "${{project.SIGNUPS_ALLOWED}}"
 
 [[config.mounts]]
 volumeName = "vaultwarden-data"

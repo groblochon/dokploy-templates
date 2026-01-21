@@ -5,12 +5,12 @@ services:
     expose:
       - 80
     environment:
-      DOMAIN: https://${DOMAIN}
-      SIGNUPS_ALLOWED: ${SIGNUPS_ALLOWED:-true}
+      DOMAIN: "https://${DOMAIN}"
+      SIGNUPS_ALLOWED: "${SIGNUPS_ALLOWED:-true}"
       # Database Configuration
-      DATABASE_URL: postgresql://postgres:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:5432/${POSTGRES_DB}
+      DATABASE_URL: "${POSTGRES_URL}"
     volumes:
       - vaultwarden-data:/data
 
 volumes:
-  vaultwarden-data:
+  vaultwarden-data: {}

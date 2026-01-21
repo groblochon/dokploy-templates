@@ -14,8 +14,8 @@ POSTGRES_DB = "${{project.POSTGRES_DB}}"
 POSTGRES_PASSWORD = "${{project.POSTGRES_PASSWORD}}"
 
 # Grafana Configuration
-GRAFANA_ADMIN_USER = "${{project.ADMIN_USER}}"
-GRAFANA_ADMIN_PASSWORD = "${{project.ADMIN_PASSWORD}}"
+GRAFANA_ADMIN_USER = "${{project.GRAFANA_ADMIN_USER}}"
+GRAFANA_ADMIN_PASSWORD = "${{project.GRAFANA_ADMIN_PASSWORD}}"
 
 [[config.mounts]]
 volumeName = "grafana-data"

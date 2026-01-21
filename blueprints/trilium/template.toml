@@ -18,6 +18,10 @@ POSTGRES_HOST = "${{project.POSTGRES_HOST}}"
 POSTGRES_DB = "${{project.POSTGRES_DB}}"
 POSTGRES_PASSWORD = "${{project.POSTGRES_PASSWORD}}"
 
+# Port Configuration
+HTTP_PORT = "${{project.HTTP_PORT}}"
+REALTIME_PORT = "${{project.REALTIME_PORT}}"
+
 # S3 Configuration
 S3_ENDPOINT = "${{project.S3_ENDPOINT}}"
 S3_REGION = "${{project.S3_REGION}}"

@@ -8,4 +8,4 @@ services:
       - uptime-kuma-data:/app/data
 
 volumes:
-  uptime-kuma-data:
+  uptime-kuma-data: {}

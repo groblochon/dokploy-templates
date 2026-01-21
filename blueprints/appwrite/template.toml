@@ -17,6 +17,7 @@ host = "appwrite-api.${main_domain}"
 POSTGRES_HOST = "${{project.POSTGRES_HOST}}"
 POSTGRES_DB = "${{project.POSTGRES_DB}}"
 POSTGRES_PASSWORD = "${{project.POSTGRES_PASSWORD}}"
+POSTGRES_URL = "postgresql://postgres:${{project.POSTGRES_PASSWORD}}@${{project.POSTGRES_HOST}}:5432/${{project.POSTGRES_DB}}"
 
 # OpenAI Configuration
 OPENAI_API_BASE = "${{project.OPENAI_API_BASE}}"
