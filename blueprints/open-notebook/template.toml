@@ -1,6 +1,5 @@
 [variables]
 main_domain = "${domain}"
-surreal_password = "${password:16}"
 
 [config]
 [[config.domains]]
@@ -9,8 +8,9 @@ port = 8502
 host = "notebook.${main_domain}"
 
 [config.env]
-# SurrealDB Configuration
-SURREAL_PASSWORD = "${surreal_password}"
+# SurrealDB Configuration (connect to external service)
+SURREAL_URL = "${{project.SURREAL_URL}}"
+SURREAL_PASSWORD = "${{project.SURREAL_PASSWORD}}"
 
 # OpenAI Configuration
 OPENAI_API_BASE = "${{project.OPENAI_API_BASE}}"
@@ -19,7 +19,3 @@ OPENAI_API_KEY = "${{project.OPENAI_API_KEY}}"
 [[config.mounts]]
 volumeName = "open-notebook-data"
 mountPath = "/app/data"
-
-[[config.mounts]]
-volumeName = "surrealdb-data"
-mountPath = "/mydata"

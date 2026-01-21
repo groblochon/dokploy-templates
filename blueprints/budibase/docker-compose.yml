@@ -7,8 +7,8 @@ services:
     environment:
       # Database Configuration (connect to external Supabase)
       DATABASE_URL: postgresql://postgres:${{project.POSTGRES_PASSWORD}}@${{project.POSTGRES_HOST}}:5432/${{project.POSTGRES_DB}}
-      # Internal Redis for caching
-      REDIS_URL: redis://redis:6379
+      # External Redis for caching
+      REDIS_URL: ${{project.REDIS_URL}}
       # App Configuration
       JWT_SECRET: "${password:32}"
       # S3 Configuration (using project variables)
@@ -29,17 +29,8 @@ services:
       SMTP_SECURE: "true"
     expose:
       - 3000
-    depends_on:
-      - redis
     volumes:
       - budibase-data:/data
 
-  redis:
-    image: redis:7-alpine
-    restart: unless-stopped
-    volumes:
-      - budibase-redis:/data
-
 volumes:
   budibase-data:
-  budibase-redis:

@@ -1,0 +1,29 @@
+[variables]
+main_domain = "${domain}"
+webui_secret_key = "${password:32}"
+default_models = "llama3:8b"
+
+[config]
+[[config.domains]]
+serviceName = "openwebui"
+port = 8080
+host = "openwebui.${main_domain}"
+
+[config.env]
+WEBUI_SECRET_KEY = "${webui_secret_key}"
+DEFAULT_MODELS = "${default_models}"
+OLLAMA_BASE_URL = "${{project.OLLAMA_BASE_URL}}"
+OPENAI_API_KEY = "${{project.OPENAI_API_KEY}}"
+OPENAI_API_BASE = "${{project.OPENAI_API_BASE}}"
+
+[[config.mounts]]
+volumeName = "openwebui-data"
+mountPath = "/app/backend/data"
+
+[[config.mounts]]
+volumeName = "chromadb-data"
+mountPath = "/chroma/chroma"
+
+[[config.mounts]]
+volumeName = "pipelines-data"
+mountPath = "/app/pipelines/data"

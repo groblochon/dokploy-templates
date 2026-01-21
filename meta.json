@@ -258,6 +258,25 @@
     ]
   },
   {
+    "id": "docker-registry",
+    "name": "Docker Registry",
+    "version": "latest",
+    "description": "Hosted Docker Registry 2 with a specialized UI for managing images and tags.",
+    "logo": "docker-registry.png",
+    "links": {
+      "github": "https://github.com/distribution/distribution",
+      "website": "https://distribution.github.io/distribution/",
+      "docs": "https://distribution.github.io/distribution/"
+    },
+    "tags": [
+      "docker",
+      "registry",
+      "devops",
+      "images",
+      "self-hosted"
+    ]
+  },
+  {
     "id": "excalidraw",
     "name": "Excalidraw",
     "version": "latest",
@@ -911,25 +930,6 @@
       "transcription",
       "ai",
       "audio"
-    ]
-  },
-  {
-    "id": "docker-registry",
-    "name": "Docker Registry",
-    "version": "latest",
-    "description": "Hosted Docker Registry 2 with a specialized UI for managing images and tags.",
-    "logo": "docker-registry.png",
-    "links": {
-      "github": "https://github.com/distribution/distribution",
-      "website": "https://distribution.github.io/distribution/",
-      "docs": "https://distribution.github.io/distribution/"
-    },
-    "tags": [
-      "docker",
-      "registry",
-      "devops",
-      "images",
-      "self-hosted"
     ]
   }
 ]

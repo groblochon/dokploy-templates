@@ -1,7 +1,6 @@
 [variables]
 main_domain = "${domain}"
 nextauth_secret = "${base64:64}"
-meili_master_key = "${password:32}"
 
 [config]
 [[config.domains]]
@@ -12,7 +11,10 @@ host = "karakeep.${main_domain}"
 [config.env]
 # Secrets
 NEXTAUTH_SECRET = "${nextauth_secret}"
-MEILI_MASTER_KEY = "${meili_master_key}"
+
+# External Meilisearch Configuration
+MEILI_ADDR = "${{project.MEILI_ADDR}}"
+MEILI_MASTER_KEY = "${{project.MEILI_MASTER_KEY}}"
 
 # Configuration
 KARAKEEP_HOST = "karakeep.${main_domain}"
@@ -31,7 +33,3 @@ S3_SECRET_ACCESS_KEY = "${{project.S3_SECRET_ACCESS_KEY}}"
 [[config.mounts]]
 volumeName = "karakeep-data"
 mountPath = "/data"
-
-[[config.mounts]]
-volumeName = "meilisearch-data"
-mountPath = "/meili_data"

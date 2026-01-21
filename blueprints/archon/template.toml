@@ -16,3 +16,6 @@ SUPABASE_SERVICE_KEY = "${{project.SUPABASE_SERVICE_KEY}}"
 # OpenAI Configuration
 OPENAI_API_BASE = "${{project.OPENAI_API_BASE}}"
 OPENAI_API_KEY = "${{project.OPENAI_API_KEY}}"
+
+# Crawl4AI Configuration (connect to external service)
+CRAWL4AI_URL = "${{project.CRAWL4AI_URL}}"

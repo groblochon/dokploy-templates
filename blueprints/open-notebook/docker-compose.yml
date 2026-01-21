@@ -5,29 +5,16 @@ services:
     expose:
       - 8502
     environment:
-      SURREAL_URL: ws://surrealdb:8000/rpc
+      SURREAL_URL: ${{project.SURREAL_URL}}
       SURREAL_USER: root
-      SURREAL_PASSWORD: ${SURREAL_PASSWORD}
+      SURREAL_PASSWORD: ${{project.SURREAL_PASSWORD}}
       SURREAL_NAMESPACE: open_notebook
       SURREAL_DATABASE: staging
       # OpenAI Configuration
-      OPENAI_API_KEY: ${OPENAI_API_KEY}
-      OPENAI_API_BASE: ${OPENAI_API_BASE}
+      OPENAI_API_KEY: ${{project.OPENAI_API_KEY}}
+      OPENAI_API_BASE: ${{project.OPENAI_API_BASE}}
     volumes:
       - open-notebook-data:/app/data
-    depends_on:
-      - surrealdb
-
-  surrealdb:
-    image: surrealdb/surrealdb:v2
-    restart: unless-stopped
-    expose:
-      - 8000
-    command: start --user root --pass ${SURREAL_PASSWORD} rocksdb:/mydata/mydatabase.db
-    volumes:
-      - surrealdb-data:/mydata
-    user: root
 
 volumes:
   open-notebook-data:
-  surrealdb-data:

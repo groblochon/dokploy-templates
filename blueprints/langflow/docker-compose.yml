@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  langflow:
+    image: langflow/langflow:latest
+    restart: unless-stopped
+    expose:
+      - 7860
+    environment:
+      - LANGFLOW_DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/langflow
+      - LANGFLOW_SECRET_KEY=${LANGFLOW_SECRET_KEY}
+      - LANGFLOW_SUPERUSER=${LANGFLOW_SUPERUSER}
+      - LANGFLOW_SUPERUSER_PASSWORD=${LANGFLOW_SUPERUSER_PASSWORD}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_API_BASE=${OPENAI_API_BASE}
+    volumes:
+      - langflow-data:/app/langflow
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    expose:
+      - 5432
+    environment:
+      - POSTGRES_DB=langflow
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  langflow-data:
+  postgres-data:

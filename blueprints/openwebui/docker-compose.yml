@@ -1,0 +1,55 @@
+version: "3.8"
+
+services:
+  openwebui:
+    image: ghcr.io/open-webui/open-webui:main
+    restart: unless-stopped
+    expose:
+      - 8080
+    environment:
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_API_BASE=${OPENAI_API_BASE}
+      - WEBUI_SECRET_KEY=${WEBUI_SECRET_KEY}
+      - DEFAULT_MODELS=${DEFAULT_MODELS}
+      - DEFAULT_USER_ROLE=admin
+      - ENABLE_SIGNUP=false
+      - ENABLE_RAG_WEB_SEARCH=true
+      - RAG_WEB_SEARCH_ENGINE=duckduckgo
+      - RAG_WEB_SEARCH_RESULT_COUNT=8
+      - CHROMADB_URL=http://chromadb:8000
+      - CHROMADB_HOST=chromadb
+      - CHROMADB_PORT=8000
+      - PIPELINES_URL=http://pipelines:9099
+    volumes:
+      - openwebui-data:/app/backend/data
+    depends_on:
+      - chromadb
+      - pipelines
+
+  chromadb:
+    image: chromadb/chroma:latest
+    restart: unless-stopped
+    expose:
+      - 8000
+    environment:
+      - CHROMA_SERVER_HOST=0.0.0.0
+      - CHROMA_SERVER_HTTP_PORT=8000
+      - CHROMA_LOG_LEVEL=INFO
+    volumes:
+      - chromadb-data:/chroma/chroma
+
+  pipelines:
+    image: ghcr.io/open-webui/pipelines:main
+    restart: unless-stopped
+    expose:
+      - 9099
+    environment:
+      - PIPELINES_URL=http://pipelines:9099
+    volumes:
+      - pipelines-data:/app/pipelines/data
+
+volumes:
+  openwebui-data:
+  chromadb-data:
+  pipelines-data:

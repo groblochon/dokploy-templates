@@ -1,0 +1,28 @@
+[variables]
+main_domain = "${domain}"
+langflow_secret_key = "${password:32}"
+langflow_superuser = "admin"
+langflow_superuser_password = "${password:16}"
+postgres_password = "${password:16}"
+
+[config]
+[[config.domains]]
+serviceName = "langflow"
+port = 7860
+host = "langflow.${main_domain}"
+
+[config.env]
+LANGFLOW_SECRET_KEY = "${langflow_secret_key}"
+LANGFLOW_SUPERUSER = "${langflow_superuser}"
+LANGFLOW_SUPERUSER_PASSWORD = "${langflow_superuser_password}"
+POSTGRES_PASSWORD = "${postgres_password}"
+OPENAI_API_KEY = "${{project.OPENAI_API_KEY}}"
+OPENAI_API_BASE = "${{project.OPENAI_API_BASE}}"
+
+[[config.mounts]]
+volumeName = "langflow-data"
+mountPath = "/app/langflow"
+
+[[config.mounts]]
+volumeName = "postgres-data"
+mountPath = "/var/lib/postgresql/data"

@@ -13,3 +13,5 @@ services:
       # OpenAI Configuration
       OPENAI_API_KEY: ${{project.OPENAI_API_KEY}}
       OPENAI_API_BASE: ${{project.OPENAI_API_BASE}}
+      # Crawl4AI Configuration (connect to external service)
+      CRAWL4AI_URL: ${CRAWL4AI_URL}

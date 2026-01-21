@@ -11,8 +11,8 @@ host = "budibase.${main_domain}"
 # Database Configuration (connect to external Supabase)
 DATABASE_URL = "postgresql://postgres:${{project.POSTGRES_PASSWORD}}@${{project.POSTGRES_HOST}}:5432/${{project.POSTGRES_DB}}"
 
-# Internal Redis for caching
-REDIS_URL = "redis://redis:6379"
+# External Redis for caching
+REDIS_URL = "${{project.REDIS_URL}}"
 
 # App Configuration
 JWT_SECRET = "${password:32}"
@@ -37,8 +37,4 @@ SMTP_SECURE = "true"
 
 [[config.mounts]]
 volumeName = "budibase-data"
-mountPath = "/data"
-
-[[config.mounts]]
-volumeName = "budibase-redis"
 mountPath = "/data"
