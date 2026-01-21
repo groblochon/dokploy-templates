@@ -16,17 +16,17 @@ BLINKO_SECRET = "${blinko_secret}"
 BLINKO_HOST = "blinko.${main_domain}"
 
 # Database Configuration (connect to external PostgreSQL)
-POSTGRES_PASSWORD = "${{project.POSTGRES_PASSWORD}}"
 POSTGRES_HOST = "${{project.POSTGRES_HOST}}"
 POSTGRES_DB = "${{project.POSTGRES_DB}}"
+POSTGRES_PASSWORD = "${{project.POSTGRES_PASSWORD}}"
 
 # OpenAI Configuration (optional)
 OPENAI_API_BASE = "${{project.OPENAI_API_BASE}}"
 OPENAI_API_KEY = "${{project.OPENAI_API_KEY}}"
 
 # Additional Blinko Configuration (commented - uncomment if needed)
-# NODE_ENV = "production"
-# NEXTAUTH_URL = "https://blinko.${main_domain}"
+NODE_ENV = "production"
+NEXTAUTH_URL = "https://blinko.${main_domain}"
 # REDIS_URL = "${{project.REDIS_URL}}"
 # DISABLE_SIGNUP = "false"
 # MAX_FILE_SIZE = "100MB"
