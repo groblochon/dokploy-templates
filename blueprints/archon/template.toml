@@ -3,8 +3,8 @@ main_domain = "${domain}"
 
 [config]
 [[config.domains]]
-serviceName = "archon"
-port = 8080
+serviceName = "archon-frontend"
+port = 3737
 host = "archon.${main_domain}"
 
 [config.env]

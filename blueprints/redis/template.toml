@@ -1,4 +1,9 @@
 [config]
+[[config.domains]]
+serviceName = "redis"
+port = 6379
+host = "redis.${main_domain}"
+
 [[config.mounts]]
 volumeName = "redis-data"
 mountPath = "/data"

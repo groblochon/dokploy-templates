@@ -1,10 +1,14 @@
+version: "3.8"
+
 services:
-  archon:
+  # Server Service (FastAPI + Socket.IO + Crawling)
+  archon-server:
     build:
       context: https://github.com/coleam00/Archon.git#stable
+      dockerfile: python/Dockerfile.server
     restart: unless-stopped
     expose:
-      - 8080
+      - 8181
     environment:
       # Supabase Configuration
       SUPABASE_URL: ${{project.SUPABASE_URL}}
@@ -14,4 +18,54 @@ services:
       OPENAI_API_KEY: ${{project.OPENAI_API_KEY}}
       OPENAI_API_BASE: ${{project.OPENAI_API_BASE}}
       # Crawl4AI Configuration (connect to external service)
-      CRAWL4AI_URL: ${CRAWL4AI_URL}
+      CRAWL4AI_URL: ${{project.CRAWL4AI_URL}}
+      # Archon Configuration
+      SERVICE_DISCOVERY_MODE: dokploy
+      LOG_LEVEL: INFO
+      ARCHON_SERVER_PORT: 8181
+      ARCHON_MCP_PORT: 8051
+      ARCHON_AGENTS_PORT: 8052
+      AGENTS_ENABLED: false
+
+  # Lightweight MCP Server Service (HTTP-based)
+  archon-mcp:
+    build:
+      context: https://github.com/coleam00/Archon.git#stable
+      dockerfile: python/Dockerfile.mcp
+    restart: unless-stopped
+    expose:
+      - 8051
+    environment:
+      # Supabase Configuration
+      SUPABASE_URL: ${{project.SUPABASE_URL}}
+      SUPABASE_ANON_KEY: ${{project.SUPABASE_ANON_KEY}}
+      SUPABASE_SERVICE_KEY: ${{project.SUPABASE_SERVICE_KEY}}
+      # Configuration
+      SERVICE_DISCOVERY_MODE: dokploy
+      TRANSPORT: sse
+      LOG_LEVEL: INFO
+      # MCP needs to know where to find other services
+      API_SERVICE_URL: http://archon-server:8181
+      AGENTS_ENABLED: false
+      AGENTS_SERVICE_URL: http://archon-agents:8052
+      ARCHON_MCP_PORT: 8051
+      ARCHON_SERVER_PORT: 8181
+      ARCHON_AGENTS_PORT: 8052
+    depends_on:
+      - archon-server
+
+  # Frontend
+  archon-frontend:
+    build:
+      context: https://github.com/coleam00/Archon.git#stable
+      dockerfile: archon-ui-main/Dockerfile
+    restart: unless-stopped
+    expose:
+      - 3737
+    environment:
+      VITE_ARCHON_SERVER_PORT: 8181
+      ARCHON_SERVER_PORT: 8181
+      PROD: "true"
+      DOCKER_ENV: "true"
+    depends_on:
+      - archon-server
