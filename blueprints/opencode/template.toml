@@ -21,7 +21,7 @@ POSTGRES_PASSWORD = "${{project.POSTGRES_PASSWORD}}"
 
 # OpenAI Configuration
 OPENAI_API_BASE = "${{project.OPENAI_API_BASE}}"
-OPENAI_API_KEY = "${{project.OPEN_AI_API_KEY}}"
+OPENAI_API_KEY = "${{project.OPENAI_API_KEY}}"
 
 # MCP Configuration
 MCP_SERVER_HOST = "0.0.0.0"

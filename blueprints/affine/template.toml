@@ -22,7 +22,7 @@ S3_SECRET_ACCESS_KEY = "${{project.S3_SECRET_ACCESS_KEY}}"
 
 # OpenAI Configuration (optional)
 OPENAI_API_BASE = "${{project.OPENAI_API_BASE}}"
-OPENAI_API_KEY = "${{project.OPEN_AI_API_KEY}}"
+OPENAI_API_KEY = "${{project.OPENAI_API_KEY}}"
 
 [[config.mounts]]
 volumeName = "affine-data"

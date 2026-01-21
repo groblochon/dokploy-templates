@@ -1,2 +1,31 @@
+[variables]
+main_domain = "${domain}"
+registry_http_secret = "${password:30}"
+
 [config]
-# S3 Storage enabled, local mounts removed
+[[config.domains]]
+serviceName = "registry"
+port = 5000
+host = "registry-api.${main_domain}"
+
+[[config.domains]]
+serviceName = "registry-ui"
+port = 80
+host = "registry.${main_domain}"
+
+[config.env]
+REGISTRY_HTTP_SECRET = "${registry_http_secret}"
+
+# S3 Configuration from Project
+S3_ENDPOINT = "${{project.S3_ENDPOINT}}"
+S3_REGION = "${{project.S3_REGION}}"
+S3_BUCKET = "${{project.S3_BUCKET}}"
+S3_ACCESS_KEY_ID = "${{project.S3_ACCESS_KEY_ID}}"
+S3_SECRET_ACCESS_KEY = "${{project.S3_SECRET_ACCESS_KEY}}"
+
+[[config.mounts]]
+filePath = "/auth/registry.password"
+content = """
+# from: docker run --rm --entrypoint htpasswd httpd:2 -Bbn docker password
+docker:$2y$10$qWZoWev/u5PV7WneFoRAMuoGpRcAQOgUuIIdLnU7pJXogrBSY23/2 
+"""

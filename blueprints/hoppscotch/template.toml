@@ -23,7 +23,7 @@ REDIS_HOST = "${{project.REDIS_HOST}}"
 
 # OpenAI Configuration (optional)
 OPENAI_API_BASE = "${{project.OPENAI_API_BASE}}"
-OPENAI_API_KEY = "${{project.OPEN_AI_API_KEY}}"
+OPENAI_API_KEY = "${{project.OPENAI_API_KEY}}"
 
 [[config.mounts]]
 volumeName = "hoppscotch-data"

@@ -17,12 +17,12 @@ REDIS_URL = "redis://redis:6379"
 # App Configuration
 JWT_SECRET = "${password:32}"
 # S3 Configuration (using project variables)
-AWS_ACCESS_KEY_ID = "${{project.AWS_ACCESS_KEY_ID}}"
-AWS_SECRET_ACCESS_KEY = "${{project.AWS_SECRET_ACCESS_KEY}}"
-AWS_REGION = "${{project.AWS_REGION}}"
-AWS_BUCKET = "${{project.AWS_BUCKET}}"
+AWS_ACCESS_KEY_ID = "${{project.S3_ACCESS_KEY_ID}}"
+AWS_SECRET_ACCESS_KEY = "${{project.S3_SECRET_ACCESS_KEY}}"
+AWS_REGION = "${{project.S3_REGION}}"
+AWS_BUCKET = "${{project.S3_BUCKET}}"
 AWS_S3_FORCE_PATH_STYLE = "true"
-AWS_S3_ENDPOINT_URL = "${{project.AWS_S3_ENDPOINT_URL}}"
+AWS_S3_ENDPOINT_URL = "${{project.S3_ENDPOINT}}"
 
 # OpenAI Configuration
 OPEN_AI_API_KEY = "${{project.OPENAI_API_KEY}}"

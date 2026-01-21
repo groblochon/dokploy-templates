@@ -23,10 +23,10 @@ services:
       SMTP_AUTHENTICATION: "plain"
       SMTP_ENABLE_STARTTLS: "true"
       # S3 Configuration (using project variables)
-      AWS_ACCESS_KEY_ID: "${{project.AWS_ACCESS_KEY_ID}}"
-      AWS_SECRET_ACCESS_KEY: "${{project.AWS_SECRET_ACCESS_KEY}}"
-      AWS_REGION: "${{project.AWS_REGION}}"
-      AWS_BUCKET: "${{project.AWS_BUCKET}}"
+      AWS_ACCESS_KEY_ID: "${{project.S3_ACCESS_KEY_ID}}"
+      AWS_SECRET_ACCESS_KEY: "${{project.S3_SECRET_ACCESS_KEY}}"
+      AWS_REGION: "${{project.S3_REGION}}"
+      AWS_BUCKET: "${{project.S3_BUCKET}}"
       # Application Configuration
       RAILS_ENV: "production"
       RAILS_LOG_TO_STDOUT: "true"
@@ -52,10 +52,10 @@ services:
       DATABASE_URL: postgresql://postgres:${{project.POSTGRES_PASSWORD}}@${{project.POSTGRES_HOST}}:5432/${{project.POSTGRES_DB}}
       REDIS_URL: redis://redis:6379
       # S3 Configuration (using project variables)
-      AWS_ACCESS_KEY_ID: "${{project.AWS_ACCESS_KEY_ID}}"
-      AWS_SECRET_ACCESS_KEY: "${{project.AWS_SECRET_ACCESS_KEY}}"
-      AWS_REGION: "${{project.AWS_REGION}}"
-      AWS_BUCKET: "${{project.AWS_BUCKET}}"
+      AWS_ACCESS_KEY_ID: "${{project.S3_ACCESS_KEY_ID}}"
+      AWS_SECRET_ACCESS_KEY: "${{project.S3_SECRET_ACCESS_KEY}}"
+      AWS_REGION: "${{project.S3_REGION}}"
+      AWS_BUCKET: "${{project.S3_BUCKET}}"
     command: bundle exec sidekiq -C config/sidekiq.yml
     depends_on:
       - redis

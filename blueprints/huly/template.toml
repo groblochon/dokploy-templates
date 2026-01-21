@@ -20,8 +20,8 @@ POSTGRES_DB = "${{project.POSTGRES_DB}}"
 POSTGRES_PASSWORD = "${{project.POSTGRES_PASSWORD}}"
 
 # OpenAI Configuration (optional)
-OPENAI_API_BASE = "${{project.OPEN_AI_API_BASE}}"
-OPENAI_API_KEY = "${{project.OPEN_AI_API_KEY}}"
+OPENAI_API_BASE = "${{project.OPENAI_API_BASE}}"
+OPENAI_API_KEY = "${{project.OPENAI_API_KEY}}"
 
 # Configuration
 HULY_HOST = "huly.${main_domain}"

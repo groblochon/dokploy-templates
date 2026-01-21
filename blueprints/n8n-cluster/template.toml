@@ -23,8 +23,8 @@ POSTGRES_PASSWORD = "${{project.POSTGRES_PASSWORD}}"
 REDIS_CLUSTER_HOST = "redis-cluster"
 
 # OpenAI Configuration
-OPENAI_API_BASE = "${{project.OPEN_AI_API_BASE}}"
-OPENAI_API_KEY = "${{project.OPEN_AI_API_KEY}}"
+OPENAI_API_BASE = "${{project.OPENAI_API_BASE}}"
+OPENAI_API_KEY = "${{project.OPENAI_API_KEY}}"
 
 # S3 Configuration
 S3_ENDPOINT = "${{project.S3_ENDPOINT}}"

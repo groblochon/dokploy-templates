@@ -29,11 +29,11 @@ services:
       EMAIL_FROM: "${{project.EMAIL_FROM}}"
       # S3 Configuration (using project variables)
       STORAGE_LOCATIONS: "s3"
-      STORAGE_S3_BUCKET: "${{project.AWS_BUCKET}}"
-      STORAGE_S3_REGION: "${{project.AWS_REGION}}"
-      STORAGE_S3_KEY: "${{project.AWS_ACCESS_KEY_ID}}"
-      STORAGE_S3_SECRET: "${{project.AWS_SECRET_ACCESS_KEY}}"
-      STORAGE_S3_ENDPOINT: "${{project.AWS_S3_ENDPOINT_URL}}"
+      STORAGE_S3_BUCKET: "${{project.S3_BUCKET}}"
+      STORAGE_S3_REGION: "${{project.S3_REGION}}"
+      STORAGE_S3_KEY: "${{project.S3_ACCESS_KEY_ID}}"
+      STORAGE_S3_SECRET: "${{project.S3_SECRET_ACCESS_KEY}}"
+      STORAGE_S3_ENDPOINT: "${{project.S3_ENDPOINT}}"
     expose:
       - 8055
     depends_on:
