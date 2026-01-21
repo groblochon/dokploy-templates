@@ -12,14 +12,22 @@ host = "blinko.${main_domain}"
 # Secrets
 BLINKO_SECRET = "${blinko_secret}"
 
-# Database Configuration (connect to external Supabase)
-POSTGRES_HOST = "${{project.POSTGRES_HOST}}"
-POSTGRES_DB = "${{project.POSTGRES_DB}}"
-POSTGRES_PASSWORD = "${{project.POSTGRES_PASSWORD}}"
+# Host Configuration
+BLINKO_HOST = "blinko.${main_domain}"
+
+# Database Configuration (connect to external PostgreSQL - automatically constructed)
+# DATABASE_URL = "postgresql://postgres:${{project.POSTGRES_PASSWORD}}@${{project.POSTGRES_HOST}}:5432/${{project.POSTGRES_DB}}"
 
 # OpenAI Configuration (optional)
 OPENAI_API_BASE = "${{project.OPENAI_API_BASE}}"
 OPENAI_API_KEY = "${{project.OPENAI_API_KEY}}"
+
+# Additional Blinko Configuration (commented - uncomment if needed)
+# NODE_ENV = "production"
+# NEXTAUTH_URL = "https://blinko.${main_domain}"
+# REDIS_URL = "${{project.REDIS_URL}}"
+# DISABLE_SIGNUP = "false"
+# MAX_FILE_SIZE = "100MB"
 
 [[config.mounts]]
 volumeName = "blinko-data"
