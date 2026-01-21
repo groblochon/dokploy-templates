@@ -27,4 +27,4 @@ services:
       - appwrite-uploads:/var/www/appwrite
 
 volumes:
-  appwrite-uploads:
+  appwrite-uploads: {}

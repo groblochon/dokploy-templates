@@ -37,4 +37,3 @@ services:
       timeout: 10s
       retries: 3
 
-volumes: # Local volume removed in favor of S3 storage
