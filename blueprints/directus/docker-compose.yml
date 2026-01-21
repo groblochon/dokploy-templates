@@ -46,4 +46,4 @@ services:
       - directus-redis:/data
 
 volumes:
-  directus-redis:
+  directus-redis: {}

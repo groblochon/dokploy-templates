@@ -3,7 +3,6 @@
   "name": "Whisper ASR",
   "version": "latest",
   "description": "OpenAI Whisper speech-to-text recognition webservice",
-  "logo": "whisper.svg",
   "links": {
     "github": "https://github.com/onerahmet/openai-whisper-asr-webservice",
     "website": "https://github.com/onerahmet/openai-whisper-asr-webservice",
@@ -15,5 +14,6 @@
     "transcription",
     "ai",
     "audio"
-  ]
+  ],
+  "logo": "whisper.png"
 }

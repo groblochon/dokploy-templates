@@ -1,19 +1,16 @@
 {
   "id": "linkwarden",
   "name": "Linkwarden",
-  "version": "v2.9.3",
-  "description": "Self-hosted collaborative bookmark manager to organize, share, and discover links",
-  "logo": "linkwarden.svg",
+  "version": "2.9.3",
+  "description": "Self-hosted, open-source collaborative bookmark manager to collect, organize and archive webpages.",
+  "logo": "linkwarden.png",
   "links": {
     "github": "https://github.com/linkwarden/linkwarden",
     "website": "https://linkwarden.app/",
-    "docs": "https://github.com/linkwarden/linkwarden#readme"
+    "docs": "https://docs.linkwarden.app/"
   },
   "tags": [
     "bookmarks",
-    "collaboration",
-    "links",
-    "self-hosted",
-    "organizer"
+    "link-sharing"
   ]
 }

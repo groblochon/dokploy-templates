@@ -43,8 +43,8 @@ services:
     container_name: milvus-minio
     restart: unless-stopped
     environment:
-      MINIO_ACCESS_KEY: ${MILVUS_MINIO_ACCESS_KEY}
-      MINIO_SECRET_KEY: ${MILVUS_MINIO_SECRET_KEY}
+      MINIO_ACCESS_KEY: "${MILVUS_MINIO_ACCESS_KEY}"
+      MINIO_SECRET_KEY: "${MILVUS_MINIO_SECRET_KEY}"
     volumes:
       - milvus-minio-data:/minio_data
     command: minio server /minio_data
@@ -55,6 +55,6 @@ services:
       retries: 3
 
 volumes:
-  milvus-data:
-  milvus-etcd-data:
-  milvus-minio-data:
+  milvus-data: {}
+  milvus-etcd-data: {}
+  milvus-minio-data: {}

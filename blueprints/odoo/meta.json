@@ -3,7 +3,6 @@
   "name": "Odoo",
   "version": "17.0",
   "description": "Open source ERP and business management platform",
-  "logo": "odoo.svg",
   "links": {
     "github": "https://github.com/odoo/odoo",
     "website": "https://www.odoo.com/",
@@ -16,5 +15,6 @@
     "inventory",
     "accounting",
     "project-management"
-  ]
+  ],
+  "logo": "odoo.png"
 }

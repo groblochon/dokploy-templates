@@ -3,7 +3,6 @@
   "name": "Redis",
   "version": "latest",
   "description": "In-memory data structure store, used as database, cache and message broker",
-  "logo": "redis.svg",
   "links": {
     "github": "https://github.com/redis/redis",
     "website": "https://redis.io/",
@@ -13,5 +12,6 @@
     "database",
     "cache",
     "message-broker"
-  ]
+  ],
+  "logo": "redis.png"
 }

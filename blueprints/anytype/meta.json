@@ -2,18 +2,16 @@
   "id": "anytype",
   "name": "Anytype",
   "version": "latest",
-  "description": "Collaborative knowledge base and note-taking app with real-time sync",
-  "logo": "anytype.svg",
+  "description": "Anytype is a personal knowledge base—your digital brain—that lets you gather, connect and remix all kinds of information. Create pages, tasks, wikis, journals—even entire apps—and define your own data model while your data stays offline-first, private and encrypted across devices.\n\nAfter installation, you can view the Anytype client configuration by running `cat /data/client-config.yml` inside the service container.",
+  "logo": "logo.png",
   "links": {
-    "github": "https://github.com/anyproto/any-sync-bundle",
-    "website": "https://anytype.io/",
-    "docs": "https://anytype.io/help"
+    "github": "https://github.com/grishy/any-sync-bundle",
+    "docs": "https://doc.anytype.io/anytype-docs",
+    "website": "https://anytype.io/"
   },
   "tags": [
     "note-taking",
-    "knowledge-base",
-    "collaboration",
-    "productivity",
-    "sync"
+    "local-first",
+    "peer-to-peer"
   ]
 }

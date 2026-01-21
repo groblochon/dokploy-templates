@@ -3,7 +3,6 @@
   "name": "Open Notebook",
   "version": "latest",
   "description": "AI-powered notebook with SurrealDB backend and OpenAI integration",
-  "logo": "open-notebook.svg",
   "links": {
     "github": "https://github.com/lfnovo/open_notebook",
     "website": "https://github.com/lfnovo/open_notebook",
@@ -15,5 +14,6 @@
     "surrealdb",
     "openai",
     "productivity"
-  ]
+  ],
+  "logo": "open-notebook.png"
 }

@@ -3,7 +3,6 @@
   "name": "N8N Cluster",
   "version": "latest",
   "description": "High availability N8N with Redis cluster and worker processes",
-  "logo": "n8n-cluster.svg",
   "links": {
     "github": "https://github.com/n8nio/n8n",
     "website": "https://n8n.io/",
@@ -15,5 +14,6 @@
     "high-availability",
     "redis-cluster",
     "workers"
-  ]
+  ],
+  "logo": "n8n-cluster.png"
 }

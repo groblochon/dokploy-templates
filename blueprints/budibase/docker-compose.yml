@@ -33,4 +33,4 @@ services:
       - budibase-data:/data
 
 volumes:
-  budibase-data:
+  budibase-data: {}

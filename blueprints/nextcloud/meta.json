@@ -3,7 +3,6 @@
   "name": "Nextcloud",
   "version": "30.0.2",
   "description": "Open source collaboration platform for file sharing and productivity",
-  "logo": "nextcloud.svg",
   "links": {
     "github": "https://github.com/nextcloud/server",
     "website": "https://nextcloud.com/",
@@ -14,5 +13,6 @@
     "file-sharing",
     "productivity",
     "cloud"
-  ]
+  ],
+  "logo": "nextcloud.png"
 }

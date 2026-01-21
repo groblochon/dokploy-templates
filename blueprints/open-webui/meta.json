@@ -1,18 +1,15 @@
 {
   "id": "open-webui",
   "name": "Open WebUI",
-  "version": "latest",
-  "description": "Open source AI interface that supports multiple LLM providers",
-  "logo": "open-webui.svg",
+  "version": "v0.3.7",
+  "description": "Open WebUI is a free and open source chatgpt alternative. Open WebUI is an extensible, feature-rich, and user-friendly self-hosted WebUI designed to operate entirely offline. It supports various LLM runners, including Ollama and OpenAI-compatible APIs. The template include ollama and webui services.",
+  "logo": "open-webui.png",
   "links": {
     "github": "https://github.com/open-webui/open-webui",
     "website": "https://openwebui.com/",
     "docs": "https://docs.openwebui.com/"
   },
   "tags": [
-    "ai",
-    "chatbot",
-    "llm",
-    "interface"
+    "chat"
   ]
 }

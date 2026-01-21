@@ -3,7 +3,6 @@
   "name": "Outlinewiki",
   "version": "main",
   "description": "Collaborative knowledge base and wiki system",
-  "logo": "outlinewiki.svg",
   "links": {
     "github": "https://github.com/outline/outline",
     "website": "https://www.getoutline.com/",
@@ -14,5 +13,6 @@
     "knowledge-base",
     "collaboration",
     "documentation"
-  ]
+  ],
+  "logo": "outlinewiki.png"
 }

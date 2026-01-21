@@ -3,7 +3,6 @@
   "name": "LangServe",
   "version": "latest",
   "description": "LangChain service deployment and scaling framework",
-  "logo": "langserve.svg",
   "links": {
     "github": "https://github.com/langchain-ai/langserve",
     "website": "https://python.langchain.com/docs/langserve",
@@ -15,5 +14,6 @@
     "deployment",
     "scaling",
     "api"
-  ]
+  ],
+  "logo": "langserve.png"
 }

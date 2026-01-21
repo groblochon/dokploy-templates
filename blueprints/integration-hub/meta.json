@@ -3,7 +3,6 @@
   "name": "Integration Hub",
   "version": "latest",
   "description": "Central hub for API integration and automation workflows",
-  "logo": "integration-hub.svg",
   "links": {
     "github": "https://github.com/integration-hub/integration-hub",
     "website": "https://integration-hub.io/",
@@ -15,5 +14,6 @@
     "automation",
     "workflows",
     "hub"
-  ]
+  ],
+  "logo": "integration-hub.png"
 }

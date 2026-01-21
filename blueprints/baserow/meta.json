@@ -2,18 +2,14 @@
   "id": "baserow",
   "name": "Baserow",
   "version": "1.25.2",
-  "description": "Open source no-code database and Airtable alternative",
-  "logo": "baserow.svg",
+  "description": "Baserow is an open source database management tool that allows you to create and manage databases.",
   "links": {
-    "github": "https://github.com/bram2w/baserow",
+    "github": "https://github.com/Baserow/baserow",
     "website": "https://baserow.io/",
-    "docs": "https://baserow.io/docs/"
+    "docs": "https://baserow.io/docs/index"
   },
   "tags": [
-    "database",
-    "no-code",
-    "airtable",
-    "collaboration",
-    "self-hosted"
-  ]
+    "database"
+  ],
+  "logo": "baserow.png"
 }

@@ -20,4 +20,4 @@ services:
       retries: 3
 
 volumes:
-  clickhouse-data:
+  clickhouse-data: {}

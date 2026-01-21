@@ -1,19 +1,19 @@
 {
   "id": "crawl4ai",
   "name": "Crawl4AI",
-  "version": "latest",
-  "description": "Open-source LLM Friendly Web Crawler & Scraper for AI data extraction",
-  "logo": "crawl4ai.svg",
+  "version": "0.7.3",
+  "description": "Crawl4AI is a modern AI-powered web crawler with support for screenshots, PDFs, JavaScript execution, and LLM-based extraction. Includes an interactive playground and MCP (Model Context Protocol) integration.",
+  "logo": "image.png",
   "links": {
     "github": "https://github.com/unclecode/crawl4ai",
-    "website": "https://crawl4ai.com/",
-    "docs": "https://docs.crawl4ai.com/"
+    "website": "https://crawl4ai.com",
+    "docs": "https://github.com/unclecode/crawl4ai#readme"
   },
   "tags": [
     "crawler",
-    "scraper",
-    "llm",
-    "data-extraction",
-    "ai"
+    "scraping",
+    "AI",
+    "LLM",
+    "API"
   ]
 }

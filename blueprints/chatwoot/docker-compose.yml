@@ -55,4 +55,4 @@ services:
       - chatwoot-storage:/app/storage
 
 volumes:
-  chatwoot-storage:
+  chatwoot-storage: {}

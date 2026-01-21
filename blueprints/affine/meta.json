@@ -3,7 +3,6 @@
   "name": "Affine",
   "version": "stable",
   "description": "AI-powered collaborative knowledge base and note-taking app",
-  "logo": "affine.svg",
   "links": {
     "github": "https://github.com/toeverything/AFFiNE",
     "website": "https://affine.pro/",
@@ -15,5 +14,6 @@
     "collaboration",
     "knowledge-base",
     "productivity"
-  ]
+  ],
+  "logo": "affine.png"
 }

@@ -23,5 +23,4 @@ services:
       retries: 3
 
 volumes:
-  anytype-data:
-    name: anytype-data {}
+  anytype-data: {}

@@ -3,7 +3,6 @@
   "name": "Milvus",
   "version": "v2.6.6",
   "description": "Open source vector database for scalable similarity search",
-  "logo": "milvus.svg",
   "links": {
     "github": "https://github.com/milvusdb/milvus",
     "website": "https://milvus.io/",
@@ -15,5 +14,6 @@
     "similarity-search",
     "ai",
     "embeddings"
-  ]
+  ],
+  "logo": "milvus.png"
 }

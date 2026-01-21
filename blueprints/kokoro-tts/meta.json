@@ -2,7 +2,7 @@
   "id": "kokoro-tts",
   "name": "Kokoro TTS",
   "version": "latest",
-  "description": "High-quality text-to-speech synthesis with Kokoro model",
+  "description": "Dockerized FastAPI wrapper for the Kokoro-82M text-to-speech model with multi-language support and OpenAI-compatible endpoints.",
   "logo": "kokoro-tts.svg",
   "links": {
     "github": "https://github.com/remsky/Kokoro-FastAPI",
@@ -10,10 +10,10 @@
     "docs": "https://github.com/remsky/Kokoro-FastAPI#readme"
   },
   "tags": [
-    "tts",
     "text-to-speech",
     "ai",
-    "audio",
-    "synthesis"
+    "voice",
+    "fastapi",
+    "openai-compatible"
   ]
 }

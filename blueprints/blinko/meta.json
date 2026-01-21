@@ -2,18 +2,17 @@
   "id": "blinko",
   "name": "Blinko",
   "version": "latest",
-  "description": "AI-powered note-taking app with quick idea capture and permanent notes",
+  "description": "Blinko is a modern web application for managing and organizing your digital content and workflows.",
   "logo": "blinko.svg",
   "links": {
     "github": "https://github.com/blinkospace/blinko",
-    "website": "https://blinko.mintlify.app/",
-    "docs": "https://github.com/blinkospace/blinko#readme"
+    "website": "https://blinko.space/",
+    "docs": "https://docs.blinko.space/"
   },
   "tags": [
-    "note-taking",
-    "ai",
-    "collaboration",
-    "knowledge-management",
-    "productivity"
+    "productivity",
+    "organization",
+    "workflow",
+    "nextjs"
   ]
 }

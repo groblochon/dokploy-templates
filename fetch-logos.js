@@ -11,7 +11,12 @@ const localBlueprints = fs.readdirSync('blueprints')
 // Get official blueprints from GitHub API
 async function getOfficialBlueprints() {
   return new Promise((resolve, reject) => {
-    const req = https.get('https://api.github.com/repos/Dokploy/templates/contents/blueprints?ref=canary', (res) => {
+    const options = {
+      headers: {
+        'User-Agent': 'dokploy-templates-script'
+      }
+    };
+    const req = https.get('https://api.github.com/repos/Dokploy/templates/contents/blueprints?ref=canary', options, (res) => {
       let data = '';
       res.on('data', chunk => data += chunk);
       res.on('end', () => {
@@ -47,21 +52,31 @@ async function getOfficialBlueprints() {
 // Get logo files for a specific blueprint
 async function getLogoFiles(blueprintName) {
   return new Promise((resolve, reject) => {
-    https.get(`https://api.github.com/repos/Dokploy/templates/contents/blueprints/${blueprintName}?ref=canary`, (res) => {
+    const options = {
+      headers: {
+        'User-Agent': 'dokploy-templates-script'
+      }
+    };
+    const req = https.get(`https://api.github.com/repos/Dokploy/templates/contents/blueprints/${blueprintName}?ref=canary`, options, (res) => {
       let data = '';
       res.on('data', chunk => data += chunk);
       res.on('end', () => {
         try {
           const json = JSON.parse(data);
-          const logoFiles = json
-            .filter(item => item.type === 'file' && /\.(svg|png|jpg|jpeg|gif|ico)$/i.test(item.name))
-            .map(item => item.name);
-          resolve(logoFiles);
+          if (json.message && (json.message.includes('rate limit') || json.message.includes('Not Found'))) {
+            resolve([]); // Rate limited or blueprint not found, skip this blueprint
+          } else {
+            const logoFiles = json
+              .filter(item => item.type === 'file' && /\.(svg|png|jpg|jpeg|gif|ico)$/i.test(item.name))
+              .map(item => item.name);
+            resolve(logoFiles);
+          }
         } catch (e) {
           resolve([]); // Blueprint might not exist or have access issues
         }
       });
-    }).on('error', () => resolve([]));
+    });
+    req.on('error', () => resolve([]));
   });
 }
 

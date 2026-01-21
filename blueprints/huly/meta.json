@@ -1,19 +1,17 @@
 {
   "id": "huly",
   "name": "Huly",
-  "version": "latest",
-  "description": "Open source workspace and collaboration platform",
+  "version": "0.6.377",
+  "description": "Huly — All-in-One Project Management Platform (alternative to Linear, Jira, Slack, Notion, Motion)",
   "logo": "huly.svg",
   "links": {
-    "github": "https://github.com/huly/huly",
-    "website": "https://huly.app/",
-    "docs": "https://huly.app/docs"
+    "github": "https://github.com/hcengineering/huly-selfhost",
+    "website": "https://huly.io/",
+    "docs": "https://docs.huly.io/"
   },
   "tags": [
-    "collaboration",
-    "workspace",
-    "productivity",
     "project-management",
-    "self-hosted"
+    "community",
+    "discussion"
   ]
 }

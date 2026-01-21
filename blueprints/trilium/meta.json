@@ -1,19 +1,17 @@
 {
   "id": "trilium",
-  "name": "Trilium Notes",
+  "name": "Trilium",
+  "description": "Trilium Notes is a hierarchical note taking application with focus on building large personal knowledge bases.",
+  "logo": "trilium.png",
   "version": "latest",
-  "description": "Hierarchical note-taking and knowledge management application",
-  "logo": "trilium.svg",
   "links": {
-    "github": "https://github.com/trilium-next/Notes",
-    "website": "https://trilium.com/",
-    "docs": "https://trilium.com/docs"
+    "github": "https://github.com/zadam/trilium",
+    "website": "https://github.com/zadam/trilium",
+    "docs": "https://github.com/zadam/trilium/wiki/"
   },
   "tags": [
-    "note-taking",
-    "knowledge-management",
-    "hierarchical",
-    "markdown",
-    "collaboration"
+    "self-hosted",
+    "productivity",
+    "personal-use"
   ]
 }

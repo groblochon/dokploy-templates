@@ -1,20 +1,17 @@
 {
   "id": "surrealdb",
   "name": "SurrealDB",
-  "version": "v2",
-  "description": "Scalable, distributed, and collaborative document database",
+  "version": "2.3.10",
+  "description": "SurrealDB is a native, open-source, multi-model database that lets you store and manage data across relational, document, graph, time-series, vector & search, and geospatial models—all in one place.",
   "logo": "surrealdb.svg",
   "links": {
     "github": "https://github.com/surrealdb/surrealdb",
-    "website": "https://surrealdb.com/",
-    "docs": "https://surrealdb.com/docs"
+    "website": "https://surrealdb.com",
+    "docs": "https://surrealdb.com/docs/surrealdb"
   },
   "tags": [
     "database",
-    "nosql",
-    "realtime",
-    "multi-model",
-    "graph",
-    "distributed"
+    "sql",
+    "surrealdb"
   ]
 }

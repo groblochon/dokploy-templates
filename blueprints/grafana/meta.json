@@ -1,8 +1,8 @@
 {
   "id": "grafana",
   "name": "Grafana",
-  "version": "11.0.0",
-  "description": "Open source observability and data visualization platform",
+  "version": "9.5.20",
+  "description": "Grafana is an open source platform for data visualization and monitoring.",
   "logo": "grafana.svg",
   "links": {
     "github": "https://github.com/grafana/grafana",
@@ -10,9 +10,6 @@
     "docs": "https://grafana.com/docs/"
   },
   "tags": [
-    "monitoring",
-    "visualization",
-    "observability",
-    "dashboard"
+    "monitoring"
   ]
 }

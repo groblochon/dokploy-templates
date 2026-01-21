@@ -20,4 +20,4 @@ services:
       start_period: 60s
 
 volumes:
-  kokoro-models:
+  kokoro-models: {}

@@ -35,4 +35,4 @@ services:
       - firebase-data:/tmp/firebase-emulators
 
 volumes:
-  firebase-data:
+  firebase-data: {}

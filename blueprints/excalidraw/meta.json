@@ -2,18 +2,14 @@
   "id": "excalidraw",
   "name": "Excalidraw",
   "version": "latest",
-  "description": "Virtual collaborative whiteboard for sketching hand-drawn like diagrams",
-  "logo": "excalidraw.svg",
+  "description": "Excalidraw is a free and open source online diagramming tool that lets you easily create and share beautiful diagrams.",
+  "logo": "excalidraw.jpg",
   "links": {
     "github": "https://github.com/excalidraw/excalidraw",
     "website": "https://excalidraw.com/",
-    "docs": "https://github.com/excalidraw/excalidraw#readme"
+    "docs": "https://docs.excalidraw.com/"
   },
   "tags": [
-    "whiteboard",
-    "collaboration",
-    "diagrams",
-    "drawing",
-    "sketching"
+    "drawing"
   ]
 }

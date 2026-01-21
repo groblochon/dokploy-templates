@@ -25,4 +25,4 @@ services:
       - nhost-data:/var/lib/nhost
 
 volumes:
-  nhost-data:
+  nhost-data: {}

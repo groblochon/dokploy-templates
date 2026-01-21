@@ -5,9 +5,9 @@ services:
     expose:
       - 8000
     environment:
-      OPENAI_API_KEY: ${OPENAI_API_KEY}
-      OPENAI_API_BASE: ${OPENAI_API_BASE}
-      DATABASE_URL: postgresql://postgres:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:5432/${POSTGRES_DB}
+      OPENAI_API_KEY: "${OPENAI_API_KEY}"
+      OPENAI_API_BASE: "${OPENAI_API_BASE}"
+      DATABASE_URL: "${POSTGRES_URL}"
     volumes:
       - langserve-data:/app
     command: >
@@ -16,4 +16,4 @@ services:
                uvicorn main:app --host 0.0.0.0 --port 8000"
 
 volumes:
-  langserve-data:
+  langserve-data: {}

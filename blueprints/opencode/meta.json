@@ -3,7 +3,6 @@
   "name": "OpenCode",
   "version": "latest",
   "description": "VS Code-like IDE in your browser with AI assistant and MCP support",
-  "logo": "opencode.svg",
   "links": {
     "github": "https://github.com/opencodegen/opencodegen",
     "website": "https://opencode.ai/",
@@ -15,5 +14,6 @@
     "mcp",
     "development",
     "browser"
-  ]
+  ],
+  "logo": "opencode.png"
 }

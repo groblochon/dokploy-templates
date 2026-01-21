@@ -3,7 +3,6 @@
   "name": "Firebase Emulators",
   "version": "latest",
   "description": "Local Firebase emulator suite including Auth, Firestore, Storage, Functions, Pub/Sub, and Data Connect. Perfect for development and testing Firebase applications.",
-  "logo": "firebase.svg",
   "links": {
     "github": "https://github.com/firebase/firebase-tools",
     "website": "https://firebase.google.com/",
@@ -17,5 +16,6 @@
     "storage",
     "functions",
     "emulator"
-  ]
+  ],
+  "logo": "firebase.png"
 }
