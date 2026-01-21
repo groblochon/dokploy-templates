@@ -1,0 +1,4 @@
+[config]
+[[config.mounts]]
+volumeName = "redis-data"
+mountPath = "/data"

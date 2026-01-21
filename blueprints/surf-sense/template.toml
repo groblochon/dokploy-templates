@@ -1,0 +1,35 @@
+[variables]
+main_domain = "${domain}"
+surf_secret_key = "${base64:32}"
+
+[config]
+[[config.domains]]
+serviceName = "surf-sense"
+port = 3000
+host = "surf.${main_domain}"
+
+[[config.domains]]
+serviceName = "surf-sense"
+port = 8000
+host = "surf-api.${main_domain}"
+
+[config.env]
+# Secrets
+SURF_SECRET_KEY = "${surf_secret_key}"
+
+# Optional AI/ML Configuration
+EMBEDDING_MODEL = "${SURF_EMBEDDING_MODEL:-sentence-transformers/all-MiniLM-L6-v2}"
+RERANKERS_ENABLED = "${SURF_RERANKERS_ENABLED:-false}"
+
+# Optional Services Configuration
+ETL_SERVICE = "${SURF_ETL_SERVICE:-DOCLING}"
+TTS_SERVICE = "${SURF_TTS_SERVICE:-local/kokoro}"
+STT_SERVICE = "${SURF_STT_SERVICE:-local/base}"
+
+# Optional Auth Configuration
+AUTH_TYPE = "${SURF_AUTH_TYPE:-LOCAL}"
+REGISTRATION_ENABLED = "${SURF_REGISTRATION_ENABLED:-true}"
+
+[[config.mounts]]
+volumeName = "surf-sense-data"
+mountPath = "/data"

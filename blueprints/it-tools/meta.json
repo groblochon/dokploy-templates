@@ -1,0 +1,18 @@
+{
+  "id": "it-tools",
+  "name": "IT-Tools",
+  "version": "latest",
+  "description": "Collection of handy online tools for developers and IT enthusiasts",
+  "logo": "it-tools.svg",
+  "links": {
+    "github": "https://github.com/CorentinTh/it-tools",
+    "website": "https://it-tools.tech/",
+    "docs": "https://github.com/CorentinTh/it-tools#readme"
+  },
+  "tags": [
+    "tools",
+    "utilities",
+    "development",
+    "productivity"
+  ]
+}

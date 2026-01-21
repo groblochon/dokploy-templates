@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   crawl4ai:
     image: unclecode/crawl4ai:latest
@@ -8,16 +6,11 @@ services:
     expose:
       - 11235
     environment:
-      - LLM_PROVIDER=${LLM_PROVIDER}
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
-      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
-      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY}
-      - GROQ_API_KEY=${GROQ_API_KEY}
-      - TOGETHER_API_KEY=${TOGETHER_API_KEY}
-      - MISTRAL_API_KEY=${MISTRAL_API_KEY}
-      - GEMINI_API_TOKEN=${GEMINI_API_TOKEN}
+      LLM_PROVIDER: openai
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      OPENAI_API_BASE: ${OPENAI_API_BASE}
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:11235/health"]
+      test: [ "CMD", "curl", "-f", "http://localhost:11235/health" ]
       interval: 30s
       timeout: 10s
       retries: 3

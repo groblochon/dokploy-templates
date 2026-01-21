@@ -1,0 +1,65 @@
+services:
+  dify-api:
+    image: langgenius/dify-api:0.15.3
+    restart: unless-stopped
+    expose:
+      - 5001
+    environment:
+      MODE: api
+      SECRET_KEY: ${DIFY_SECRET_KEY}
+      # Database Configuration
+      DB_HOST: ${POSTGRES_HOST}
+      DB_PORT: 5432
+      DB_DATABASE: ${POSTGRES_DB}
+      DB_USERNAME: postgres
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      # Redis Configuration
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: 6379
+      # S3 Configuration
+      STORAGE_TYPE: s3
+      S3_ENDPOINT: ${S3_ENDPOINT}
+      S3_BUCKET_NAME: ${S3_BUCKET}
+      S3_ACCESS_KEY: ${S3_ACCESS_KEY_ID}
+      S3_SECRET_KEY: ${S3_SECRET_ACCESS_KEY}
+      S3_REGION: ${S3_REGION}
+      # Vector DB - pgvector
+      VECTOR_STORE: pgvecto_rs
+      PGVECTO_RS_HOST: ${POSTGRES_HOST}
+      PGVECTO_RS_PORT: 5432
+      PGVECTO_RS_USER: postgres
+      PGVECTO_RS_PASSWORD: ${POSTGRES_PASSWORD}
+      PGVECTO_RS_DATABASE: ${POSTGRES_DB}
+
+  dify-web:
+    image: langgenius/dify-web:0.15.3
+    restart: unless-stopped
+    expose:
+      - 3000
+    environment:
+      CONSOLE_API_URL: ""
+      APP_API_URL: ""
+    depends_on:
+      - dify-api
+
+  dify-worker:
+    image: langgenius/dify-api:0.15.3
+    restart: unless-stopped
+    environment:
+      MODE: worker
+      SECRET_KEY: ${DIFY_SECRET_KEY}
+      DB_HOST: ${POSTGRES_HOST}
+      DB_PORT: 5432
+      DB_DATABASE: ${POSTGRES_DB}
+      DB_USERNAME: postgres
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: 6379
+      STORAGE_TYPE: s3
+      S3_ENDPOINT: ${S3_ENDPOINT}
+      S3_BUCKET_NAME: ${S3_BUCKET}
+      S3_ACCESS_KEY: ${S3_ACCESS_KEY_ID}
+      S3_SECRET_KEY: ${S3_SECRET_ACCESS_KEY}
+      S3_REGION: ${S3_REGION}
+    depends_on:
+      - dify-api

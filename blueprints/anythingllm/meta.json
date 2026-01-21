@@ -1,0 +1,18 @@
+{
+  "id": "anythingllm",
+  "name": "AnythingLLM",
+  "version": "latest",
+  "description": "Open source multi-user RAG AI application with built-in LLM support",
+  "logo": "anythingllm.svg",
+  "links": {
+    "github": "https://github.com/Mintplex-Labs/anything-llm",
+    "website": "https://anythingllm.com/",
+    "docs": "https://docs.anythingllm.com/"
+  },
+  "tags": [
+    "ai",
+    "rag",
+    "llm",
+    "knowledge-base"
+  ]
+}

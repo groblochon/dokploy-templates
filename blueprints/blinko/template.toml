@@ -1,20 +1,26 @@
 [variables]
 main_domain = "${domain}"
-postgres_password = "${password:32}"
-nextauth_secret = "${password:32}"
-database_url = "postgresql://postgres:${postgres_password}@blinko-postgres:5432/postgres"
-nextauth_url = "http://${main_domain}"
-next_public_base_url = "http://${main_domain}"
+blinko_secret = "${base64:32}"
 
 [config]
 [[config.domains]]
-serviceName = "blinko-website"
+serviceName = "blinko"
 port = 1111
-host = "${main_domain}"
+host = "blinko.${main_domain}"
 
 [config.env]
-NEXTAUTH_SECRET = "${nextauth_secret}"
-POSTGRES_PASSWORD = "${postgres_password}"
-DATABASE_URL = "${database_url}"
-NEXTAUTH_URL = "${nextauth_url}"
-NEXT_PUBLIC_BASE_URL = "${next_public_base_url}"
+# Secrets
+BLINKO_SECRET = "${blinko_secret}"
+
+# Database Configuration (connect to external Supabase)
+POSTGRES_HOST = "${{project.POSTGRES_HOST}}"
+POSTGRES_DB = "${{project.POSTGRES_DB}}"
+POSTGRES_PASSWORD = "${{project.POSTGRES_PASSWORD}}"
+
+# OpenAI Configuration (optional)
+OPENAI_API_BASE = "${{project.OPENAI_API_BASE}}"
+OPENAI_API_KEY = "${{project.OPENAI_API_KEY}}"
+
+[[config.mounts]]
+volumeName = "blinko-data"
+mountPath = "/app/.blinko"

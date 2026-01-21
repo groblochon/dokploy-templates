@@ -1,0 +1,20 @@
+{
+  "id": "glean",
+  "name": "Glean",
+  "version": "main",
+  "description": "Open source RSS reader & knowledge management with AI-powered recommendations",
+  "logo": "glean.svg",
+  "links": {
+    "github": "https://github.com/LeslieLeung/glean",
+    "website": "https://github.com/LeslieLeung/glean",
+    "docs": "https://github.com/LeslieLeung/glean#readme"
+  },
+  "tags": [
+    "rss",
+    "reader",
+    "knowledge-management",
+    "ai",
+    "recommendations",
+    "milvus"
+  ]
+}

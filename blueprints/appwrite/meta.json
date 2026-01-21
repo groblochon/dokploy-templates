@@ -1,0 +1,18 @@
+{
+  "id": "appwrite",
+  "name": "Appwrite",
+  "version": "1.5.0",
+  "description": "Collaborative note-taking and document platform",
+  "logo": "appwrite.svg",
+  "links": {
+    "github": "https://github.com/appwrite/appwrite",
+    "website": "https://appwrite.io/",
+    "docs": "https://appwrite.io/docs"
+  },
+  "tags": [
+    "note-taking",
+    "collaboration",
+    "documents",
+    "realtime"
+  ]
+}

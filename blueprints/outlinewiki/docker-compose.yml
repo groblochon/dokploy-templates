@@ -1,0 +1,18 @@
+services:
+  outlinine:
+    image: outlinewiki/outline-kiki-wiki:main
+    container_name: outlinewiki
+    restart: unless-stopped
+    environment:
+      # Database Configuration (connect to external Supabase)
+      DATABASE_URL: postgresql://postgres:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:5432/${POSTGRES_DB}
+      # OpenAI Configuration
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      OPENAI_API_BASE: ${OPENAI_API_BASE}
+    ports:
+      - "${PORT:-3000}:3000"
+    volumes:
+      - outlinewiki-data:/var/wiki
+
+volumes:
+  outlinewiki-data:

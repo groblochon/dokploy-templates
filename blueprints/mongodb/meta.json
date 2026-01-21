@@ -1,0 +1,18 @@
+{
+  "id": "mongodb",
+  "name": "MongoDB",
+  "version": "7-jammy",
+  "description": "General purpose document-oriented NoSQL database",
+  "logo": "mongodb.svg",
+  "links": {
+    "github": "https://github.com/mongodb/mongo",
+    "website": "https://www.mongodb.com/",
+    "docs": "https://docs.mongodb.com/"
+  },
+  "tags": [
+    "database",
+    "nosql",
+    "document-oriented",
+    "mongodb"
+  ]
+}

@@ -1,14 +1,19 @@
-version: "3.8"
-
 services:
   meilisearch:
-    image: getmeili/meilisearch:v1.8.3
-    volumes:
-      - meili_data:/meili_data
+    image: getmeili/meilisearch:v1.13.3
+    restart: unless-stopped
+    expose:
+      - 7700
     environment:
       MEILI_MASTER_KEY: ${MEILI_MASTER_KEY}
-      MEILI_ENV: ${MEILI_ENV}
+      MEILI_NO_ANALYTICS: "true"
+    volumes:
+      - meilisearch-data:/meili_data
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:7700/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
 volumes:
-  meili_data:
-    driver: local
+  meilisearch-data:

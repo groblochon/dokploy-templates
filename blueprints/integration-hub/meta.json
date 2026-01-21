@@ -1,0 +1,19 @@
+{
+  "id": "integration-hub",
+  "name": "Integration Hub",
+  "version": "latest",
+  "description": "Central hub for API integration and automation workflows",
+  "logo": "integration-hub.svg",
+  "links": {
+    "github": "https://github.com/integration-hub/integration-hub",
+    "website": "https://integration-hub.io/",
+    "docs": "https://docs.integration-hub.io/"
+  },
+  "tags": [
+    "integration",
+    "api",
+    "automation",
+    "workflows",
+    "hub"
+  ]
+}

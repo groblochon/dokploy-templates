@@ -1,0 +1,35 @@
+[variables]
+main_domain = "${domain}"
+
+[config]
+[[config.domains]]
+serviceName = "nextcloud-aio-mastercontainer"
+port = 8080
+host = "nextcloud.${main_domain}"
+
+[[config.domains]]
+serviceName = "nextcloud-aio-mastercontainer"
+port = 80
+host = "cloud.${main_domain}"
+
+[[config.domains]]
+serviceName = "nextcloud-aio-mastercontainer"
+port = 8443
+host = "nextcloud.${main_domain}"
+
+[config.env]
+# Nextcloud AIO Configuration
+APACHE_PORT = 11000
+APACHE_IP_BINDING = "127.0.0.1"
+NEXTCLOUD_DATADIR = "/mnt/ncdata"
+NEXTCLOUD_UPLOAD_LIMIT = "16G"
+NEXTCLOUD_MAX_TIME = 3600
+NEXTCLOUD_MEMORY_LIMIT = "512M"
+NEXTCLOUD_STARTUP_APPS = "deck twofactor_totp tasks calendar contacts notes"
+NEXTCLOUD_ADDITIONAL_APKS = "imagemagick"
+NEXTCLOUD_ADDITIONAL_PHP_EXTENSIONS = "imagick"
+SKIP_DOMAIN_VALIDATION = "false"
+
+[[config.mounts]]
+volumeName = "nextcloud_aio_mastercontainer"
+mountPath = "/mnt/docker-aio-config"

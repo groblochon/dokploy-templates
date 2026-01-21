@@ -1,10 +1,25 @@
-version: "3.8"
 services:
   baserow:
     image: baserow/baserow:1.25.2
+    restart: unless-stopped
+    expose:
+      - 80
     environment:
-      BASEROW_PUBLIC_URL: "http://${BASEROW_HOST}"
+      BASEROW_PUBLIC_URL: https://${BASEROW_HOST}
+      # Database Configuration (connect to external Supabase)
+      DATABASE_HOST: ${POSTGRES_HOST}
+      DATABASE_PORT: 5432
+      DATABASE_NAME: ${POSTGRES_DB}
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: ${POSTGRES_PASSWORD}
+      # S3 Configuration
+      AWS_ACCESS_KEY_ID: ${S3_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${S3_SECRET_ACCESS_KEY}
+      AWS_STORAGE_BUCKET_NAME: ${S3_BUCKET}
+      AWS_S3_ENDPOINT_URL: ${S3_ENDPOINT}
+      AWS_S3_REGION_NAME: ${S3_REGION}
     volumes:
-      - baserow_data:/baserow/data
+      - baserow-data:/baserow/data
+
 volumes:
-  baserow_data:
+  baserow-data:

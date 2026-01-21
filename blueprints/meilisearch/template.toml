@@ -1,15 +1,17 @@
 [variables]
 main_domain = "${domain}"
-master_key = "${base64:32}"
+meili_master_key = "${password:32}"
 
 [config]
-mounts = []
-
 [[config.domains]]
 serviceName = "meilisearch"
-port = 7_700
-host = "${main_domain}"
+port = 7700
+host = "search.${main_domain}"
 
 [config.env]
-MEILI_ENV = "development"
-MEILI_MASTER_KEY = "${master_key}"
+MEILI_MASTER_KEY = "${meili_master_key}"
+MEILI_NO_ANALYTICS = "true"
+
+[[config.mounts]]
+volumeName = "meilisearch-data"
+mountPath = "/meili_data"

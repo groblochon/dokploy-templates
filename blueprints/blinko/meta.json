@@ -1,0 +1,19 @@
+{
+  "id": "blinko",
+  "name": "Blinko",
+  "version": "latest",
+  "description": "AI-powered note-taking app with quick idea capture and permanent notes",
+  "logo": "blinko.svg",
+  "links": {
+    "github": "https://github.com/blinkospace/blinko",
+    "website": "https://blinko.mintlify.app/",
+    "docs": "https://github.com/blinkospace/blinko#readme"
+  },
+  "tags": [
+    "note-taking",
+    "ai",
+    "collaboration",
+    "knowledge-management",
+    "productivity"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "outlinewiki",
+  "name": "Outlinewiki",
+  "version": "main",
+  "description": "Collaborative knowledge base and wiki system",
+  "logo": "outlinewiki.svg",
+  "links": {
+    "github": "https://github.com/outline/outline",
+    "website": "https://www.getoutline.com/",
+    "docs": "https://docs.getoutline.com/"
+  },
+  "tags": [
+    "wiki",
+    "knowledge-base",
+    "collaboration",
+    "documentation"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "id": "supabase",
+  "name": "Supabase",
+  "version": "15.8.1.060",
+  "description": "Open source Firebase alternative with PostgreSQL, auth, storage, and realtime features",
+  "logo": "supabase.svg",
+  "links": {
+    "github": "https://github.com/supabase/supabase",
+    "website": "https://supabase.com/",
+    "docs": "https://supabase.com/docs"
+  },
+  "tags": [
+    "database",
+    "postgresql",
+    "authentication",
+    "storage",
+    "realtime"
+  ]
+}

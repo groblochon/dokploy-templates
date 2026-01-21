@@ -1,0 +1,19 @@
+{
+  "id": "clickhouse",
+  "name": "ClickHouse",
+  "version": "latest",
+  "description": "High-performance columnar database management system",
+  "logo": "clickhouse.svg",
+  "links": {
+    "github": "https://github.com/ClickHouse/ClickHouse",
+    "website": "https://clickhouse.com/",
+    "docs": "https://clickhouse.com/docs/en/"
+  },
+  "tags": [
+    "database",
+    "analytics",
+    "data-warehouse",
+    "columnar-storage",
+    "olap"
+  ]
+}

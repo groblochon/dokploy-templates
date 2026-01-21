@@ -1,0 +1,18 @@
+[variables]
+main_domain = "${domain}"
+
+[config]
+[[config.domains]]
+serviceName = "archon"
+port = 8080
+host = "archon.${main_domain}"
+
+[config.env]
+# Supabase Configuration (connect to external Supabase)
+SUPABASE_URL = "https://${{project.API_DOMAIN}}"
+SUPABASE_ANON_KEY = "${{project.SUPABASE_ANON_KEY}}"
+SUPABASE_SERVICE_KEY = "${{project.SUPABASE_SERVICE_KEY}}"
+
+# OpenAI Configuration
+OPENAI_API_BASE = "${{project.OPENAI_API_BASE}}"
+OPENAI_API_KEY = "${{project.OPENAI_API_KEY}}"

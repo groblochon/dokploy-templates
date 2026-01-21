@@ -1,0 +1,19 @@
+{
+  "id": "excalidraw",
+  "name": "Excalidraw",
+  "version": "latest",
+  "description": "Virtual collaborative whiteboard for sketching hand-drawn like diagrams",
+  "logo": "excalidraw.svg",
+  "links": {
+    "github": "https://github.com/excalidraw/excalidraw",
+    "website": "https://excalidraw.com/",
+    "docs": "https://github.com/excalidraw/excalidraw#readme"
+  },
+  "tags": [
+    "whiteboard",
+    "collaboration",
+    "diagrams",
+    "drawing",
+    "sketching"
+  ]
+}

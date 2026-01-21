@@ -1,0 +1,46 @@
+[variables]
+main_domain = "${domain}"
+n8n_workers = "2"
+n8n_worker_timeout = "300"
+
+[config]
+[[config.domains]]
+serviceName = "n8n-cluster"
+port = 5678
+host = "n8n-cluster.${main_domain}"
+
+[config.env]
+# High Availability Configuration
+N8N_WORKERS = "${n8n_workers}"
+N8N_WORKER_TIMEOUT = "${n8n_worker_timeout}"
+
+# Database Configuration (connect to external Supabase)
+POSTGRES_HOST = "${{project.POSTGRES_HOST}}"
+POSTGRES_DB = "${{project.POSTGRES_DB}}"
+POSTGRES_PASSWORD = "${{project.POSTGRES_PASSWORD}}"
+
+# Redis Cluster Configuration (internal)
+REDIS_CLUSTER_HOST = "redis-cluster"
+
+# OpenAI Configuration
+OPENAI_API_BASE = "${{project.OPEN_AI_API_BASE}}"
+OPENAI_API_KEY = "${{project.OPEN_AI_API_KEY}}"
+
+# S3 Configuration
+S3_ENDPOINT = "${{project.S3_ENDPOINT}}"
+S3_REGION = "${{project.S3_REGION}}"
+S3_BUCKET = "${{project.S3_BUCKET}}"
+S3_ACCESS_KEY_ID = "${{project.S3_ACCESS_KEY_ID}}"
+S3_SECRET_ACCESS_KEY = "${{project.S3_SECRET_ACCESS_KEY}}"
+
+[[config.mounts]]
+volumeName = "n8n-cluster-data"
+mountPath = "/home/node/.n8n"
+
+[[config.mounts]]
+volumeName = "redis-cluster-data"
+mountPath = "/data"
+
+[[config.mounts]]
+volumeName = "redis-cluster-config"
+mountPath = "/etc/redis"

@@ -1,0 +1,19 @@
+{
+  "id": "baserow",
+  "name": "Baserow",
+  "version": "1.25.2",
+  "description": "Open source no-code database and Airtable alternative",
+  "logo": "baserow.svg",
+  "links": {
+    "github": "https://github.com/bram2w/baserow",
+    "website": "https://baserow.io/",
+    "docs": "https://baserow.io/docs/"
+  },
+  "tags": [
+    "database",
+    "no-code",
+    "airtable",
+    "collaboration",
+    "self-hosted"
+  ]
+}

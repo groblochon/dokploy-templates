@@ -1,0 +1,18 @@
+{
+  "id": "flowise",
+  "name": "Flowise",
+  "version": "latest",
+  "description": "Drag & drop UI to build customized LLM flows",
+  "logo": "flowise.svg",
+  "links": {
+    "github": "https://github.com/FlowiseAI/Flowise",
+    "website": "https://flowiseai.com/",
+    "docs": "https://docs.flowiseai.com/"
+  },
+  "tags": [
+    "ai",
+    "llm",
+    "workflow",
+    "low-code"
+  ]
+}

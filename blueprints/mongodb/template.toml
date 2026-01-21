@@ -1,0 +1,17 @@
+[variables]
+main_domain = "${domain}"
+mongodb_root_password = "${password:16}"
+
+[config]
+[[config.domains]]
+serviceName = "mongodb"
+port = 27017
+host = "mongodb.${main_domain}"
+
+[config.env]
+MONGODB_ROOT_USERNAME = "root"
+MONGODB_ROOT_PASSWORD = "${mongodb_root_password}"
+
+[[config.mounts]]
+volumeName = "mongodb-data"
+mountPath = "/data/db"

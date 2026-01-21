@@ -1,24 +1,35 @@
 [variables]
 main_domain = "${domain}"
-jwt_secret = "${password:32}"
-jwt_refresh_secret = "${password:32}"
-express_secret = "${password:32}"
+
+# Secrets
+flowise_secret_key = "${base64:32}"
+flowise_passphrase = "${password:16}"
+jwt_secret = "${base64:64}"
 
 [config]
 [[config.domains]]
 serviceName = "flowise"
 port = 3000
-host = "${main_domain}"
+host = "flowise.${main_domain}"
 
 [config.env]
-JWT_AUTH_TOKEN_SECRET = "${jwt_secret}"
-JWT_REFRESH_TOKEN_SECRET = "${jwt_refresh_secret}"
-EXPRESS_SESSION_SECRET = "${express_secret}"
+# OpenAI Configuration
+OPENAI_API_BASE = "${{project.OPENAI_API_BASE}}"
+OPENAI_API_KEY = "${{project.OPENAI_API_KEY}}"
+
+# Database Configuration (connect to external Supabase)
+POSTGRES_HOST = "${{project.POSTGRES_HOST}}"
+POSTGRES_DB = "${{project.POSTGRES_DB}}"
+POSTGRES_PASSWORD = "${{project.POSTGRES_PASSWORD}}"
+
+# Redis Configuration (connect to external Redis)
+REDIS_HOST = "${{project.REDIS_HOST}}"
+
+# Secrets
+FLOWISE_SECRET_KEY = "${flowise_secret_key}"
+JWT_SECRET = "${jwt_secret}"
+FLOWISE_PASSPHRASE = "${flowise_passphrase}"
 
 [[config.mounts]]
-name = "flowise_data"
+volumeName = "flowise-data"
 mountPath = "/root/.flowise"
-
-[[config.mounts]]
-name = "redis_data"
-mountPath = "/data"

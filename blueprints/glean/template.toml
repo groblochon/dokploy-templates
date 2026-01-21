@@ -1,0 +1,58 @@
+[variables]
+main_domain = "${domain}"
+glean_secret_key = "${base64:32}"
+milvus_minio_access_key = "${password:16}"
+milvus_minio_secret_key = "${password:32}"
+
+[config]
+[[config.domains]]
+serviceName = "glean-web"
+port = 80
+host = "glean.${main_domain}"
+
+[[config.domains]]
+serviceName = "glean-admin"
+port = 80
+host = "glean-admin.${main_domain}"
+
+[config.env]
+# Secrets
+GLEAN_SECRET_KEY = "${glean_secret_key}"
+MILVUS_MINIO_ACCESS_KEY = "${milvus_minio_access_key}"
+MILVUS_MINIO_SECRET_KEY = "${milvus_minio_secret_key}"
+
+# Database Configuration (connect to external Supabase)
+POSTGRES_HOST = "${{project.POSTGRES_HOST}}"
+POSTGRES_DB = "${{project.POSTGRES_DB}}"
+POSTGRES_PASSWORD = "${{project.POSTGRES_PASSWORD}}"
+
+# Redis Configuration (connect to external Redis)
+REDIS_HOST = "${{project.REDIS_HOST}}"
+
+# OpenAI Configuration
+OPENAI_API_BASE = "${{project.OPENAI_API_BASE}}"
+OPENAI_API_KEY = "${{project.OPENAI_API_KEY}}"
+
+# Admin Configuration
+ADMIN_USER = "${{project.ADMIN_USER}}"
+ADMIN_PASSWORD = "${{project.ADMIN_PASSWORD}}"
+
+# Configuration
+GLEAN_HOST = "glean.${main_domain}"
+GLEAN_ADMIN_HOST = "glean-admin.${main_domain}"
+
+[[config.mounts]]
+volumeName = "glean-logs"
+mountPath = "/app/logs"
+
+[[config.mounts]]
+volumeName = "milvus-etcd-data"
+mountPath = "/etcd"
+
+[[config.mounts]]
+volumeName = "milvus-minio-data"
+mountPath = "/minio_data"
+
+[[config.mounts]]
+volumeName = "milvus-data"
+mountPath = "/var/lib/milvus"

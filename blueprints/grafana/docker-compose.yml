@@ -1,9 +1,20 @@
-version: "3.8"
 services:
   grafana:
-    image: grafana/grafana-enterprise:9.5.20
+    image: grafana/grafana-enterprise:11.0.0
     restart: unless-stopped
+    expose:
+      - 3000
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD}
+      # Database Configuration
+      GF_DATABASE_TYPE: postgres
+      GF_DATABASE_HOST: ${POSTGRES_HOST}:5432
+      GF_DATABASE_NAME: ${POSTGRES_DB}
+      GF_DATABASE_USER: postgres
+      GF_DATABASE_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
-      - grafana-storage:/var/lib/grafana
+      - grafana-data:/var/lib/grafana
+
 volumes:
-  grafana-storage: {}
+  grafana-data:

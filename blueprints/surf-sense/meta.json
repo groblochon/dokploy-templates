@@ -1,0 +1,19 @@
+{
+  "id": "surf-sense",
+  "name": "SurfSense",
+  "version": "latest",
+  "description": "AI-powered notebook and research tool for organizing web content",
+  "logo": "surf-sense.svg",
+  "links": {
+    "github": "https://github.com/MODSetter/SurfSense",
+    "website": "https://deta.surf/",
+    "docs": "https://github.com/MODSetter/SurfSense#readme"
+  },
+  "tags": [
+    "notebook",
+    "ai",
+    "research",
+    "knowledge-management",
+    "surf"
+  ]
+}

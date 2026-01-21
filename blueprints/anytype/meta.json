@@ -1,0 +1,19 @@
+{
+  "id": "anytype",
+  "name": "Anytype",
+  "version": "latest",
+  "description": "Collaborative knowledge base and note-taking app with real-time sync",
+  "logo": "anytype.svg",
+  "links": {
+    "github": "https://github.com/anyproto/any-sync-bundle",
+    "website": "https://anytype.io/",
+    "docs": "https://anytype.io/help"
+  },
+  "tags": [
+    "note-taking",
+    "knowledge-base",
+    "collaboration",
+    "productivity",
+    "sync"
+  ]
+}

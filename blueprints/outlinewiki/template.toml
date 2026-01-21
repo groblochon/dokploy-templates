@@ -1,0 +1,22 @@
+[variables]
+main_domain = "${domain}"
+
+[config]
+[[config.domains]]
+serviceName = "outlinewiki"
+port = 3000
+host = "outline.${main_domain}"
+
+[config.env]
+# Database Configuration (connect to external Supabase)
+POSTGRES_HOST = "${{project.POSTGRES_HOST}}"
+POSTGRES_DB = "${{project.POSTGRES_DB}}"
+POSTGRES_PASSWORD = "${{project.POSTGRES_PASSWORD}}"
+
+# OpenAI Configuration
+OPENAI_API_BASE = "${{project.OPENAI_API_BASE}}"
+OPENAI_API_KEY = "${{project.OPEN_AI_API_KEY}}"
+
+[[config.mounts]]
+volumeName = "outlinewiki-data"
+mountPath = "/var/wiki"

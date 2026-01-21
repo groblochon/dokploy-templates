@@ -2,10 +2,11 @@
 main_domain = "${domain}"
 
 [config]
-env = {}
-mounts = []
-
 [[config.domains]]
 serviceName = "uptime-kuma"
-port = 3_001
-host = "${main_domain}"
+port = 3001
+host = "uptime.${main_domain}"
+
+[[config.mounts]]
+volumeName = "uptime-kuma-data"
+mountPath = "/app/data"

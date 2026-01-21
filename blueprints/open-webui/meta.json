@@ -1,0 +1,18 @@
+{
+  "id": "open-webui",
+  "name": "Open WebUI",
+  "version": "latest",
+  "description": "Open source AI interface that supports multiple LLM providers",
+  "logo": "open-webui.svg",
+  "links": {
+    "github": "https://github.com/open-webui/open-webui",
+    "website": "https://openwebui.com/",
+    "docs": "https://docs.openwebui.com/"
+  },
+  "tags": [
+    "ai",
+    "chatbot",
+    "llm",
+    "interface"
+  ]
+}

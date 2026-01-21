@@ -1,17 +1,32 @@
 [variables]
 main_domain = "${domain}"
-postgres_password = "${password}"
-next_secret = "${base64:32}"
+nextauth_secret = "${base64:64}"
 
 [config]
-mounts = []
-
 [[config.domains]]
 serviceName = "linkwarden"
-port = 3_000
-host = "${main_domain}"
+port = 3000
+host = "linkwarden.${main_domain}"
 
 [config.env]
-POSTGRES_PASSWORD = "${postgres_password}"
-NEXTAUTH_SECRET = "${next_secret}"
-NEXTAUTH_URL = "http://${main_domain}/api/v1/auth"
+# Secrets
+NEXTAUTH_SECRET = "${nextauth_secret}"
+
+# Configuration
+LINKWARDEN_HOST = "linkwarden.${main_domain}"
+
+# Database Configuration (connect to external Supabase)
+POSTGRES_HOST = "${{project.POSTGRES_HOST}}"
+POSTGRES_DB = "${{project.POSTGRES_DB}}"
+POSTGRES_PASSWORD = "${{project.POSTGRES_PASSWORD}}"
+
+# S3 Configuration
+S3_ENDPOINT = "${{project.S3_ENDPOINT}}"
+S3_REGION = "${{project.S3_REGION}}"
+S3_BUCKET = "${{project.S3_BUCKET}}"
+S3_ACCESS_KEY_ID = "${{project.S3_ACCESS_KEY_ID}}"
+S3_SECRET_ACCESS_KEY = "${{project.S3_SECRET_ACCESS_KEY}}"
+
+[[config.mounts]]
+volumeName = "linkwarden-data"
+mountPath = "/data/data"

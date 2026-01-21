@@ -1,0 +1,17 @@
+{
+  "id": "vaultwarden",
+  "name": "Vaultwarden",
+  "version": "1.34.3",
+  "description": "Alternative implementation of the Bitwarden server API in Rust",
+  "logo": "vaultwarden.svg",
+  "links": {
+    "github": "https://github.com/dani-garcia/vaultwarden",
+    "website": "https://github.com/dani-garcia/vaultwarden",
+    "docs": "https://github.com/dani-garcia/vaultwarden/wiki"
+  },
+  "tags": [
+    "password-manager",
+    "security",
+    "vault"
+  ]
+}

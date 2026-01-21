@@ -2,10 +2,21 @@
 main_domain = "${domain}"
 
 [config]
-env = []
-mounts = []
-
 [[config.domains]]
 serviceName = "grafana"
-port = 3_000
-host = "${main_domain}"
+port = 3000
+host = "grafana.${main_domain}"
+
+[config.env]
+# Database Configuration (connect to external Supabase)
+POSTGRES_HOST = "${{project.POSTGRES_HOST}}"
+POSTGRES_DB = "${{project.POSTGRES_DB}}"
+POSTGRES_PASSWORD = "${{project.POSTGRES_PASSWORD}}"
+
+# Grafana Configuration
+GRAFANA_ADMIN_USER = "${{project.ADMIN_USER}}"
+GRAFANA_ADMIN_PASSWORD = "${{project.ADMIN_PASSWORD}}"
+
+[[config.mounts]]
+volumeName = "grafana-data"
+mountPath = "/var/lib/grafana"

@@ -1,40 +1,29 @@
 services:
   linkwarden:
-    environment:
-      - NEXTAUTH_SECRET
-      - NEXTAUTH_URL
-      - DATABASE_URL=postgresql://linkwarden:${POSTGRES_PASSWORD}@postgres:5432/linkwarden
+    build:
+      context: https://github.com/linkwarden/linkwarden.git#v2.9.3
     restart: unless-stopped
-    image: ghcr.io/linkwarden/linkwarden:v2.9.3
-    ports:
+    expose:
       - 3000
+    environment:
+      NEXTAUTH_SECRET: ${NEXTAUTH_SECRET}
+      NEXTAUTH_URL: https://${LINKWARDEN_HOST}/api/v1/auth
+      # Database Configuration
+      DATABASE_URL: postgresql://postgres:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:5432/${POSTGRES_DB}
+      # S3 Configuration
+      SPACES_ENDPOINT: ${S3_ENDPOINT}
+      SPACES_REGION: ${S3_REGION}
+      SPACES_BUCKET_NAME: ${S3_BUCKET}
+      SPACES_KEY: ${S3_ACCESS_KEY_ID}
+      SPACES_SECRET: ${S3_SECRET_ACCESS_KEY}
     volumes:
       - linkwarden-data:/data/data
-    depends_on:
-      - postgres
     healthcheck:
-      test: curl --fail http://localhost:3000 || exit 1
+      test: [ "CMD", "curl", "--fail", "http://localhost:3000" ]
       interval: 60s
       retries: 2
       start_period: 60s
       timeout: 15s
 
-  postgres:
-    image: postgres:17-alpine
-    restart: unless-stopped
-    user: postgres
-    environment:
-      POSTGRES_USER: linkwarden
-      POSTGRES_DB: linkwarden
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
 volumes:
   linkwarden-data:
-  postgres-data:

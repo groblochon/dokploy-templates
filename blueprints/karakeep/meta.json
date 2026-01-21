@@ -1,0 +1,19 @@
+{
+  "id": "karakeep",
+  "name": "Karakeep",
+  "version": "latest",
+  "description": "Self-hosted bookmark and link saving service with AI-powered search",
+  "logo": "karakeep.svg",
+  "links": {
+    "github": "https://github.com/karakeep-app/karakeep",
+    "website": "https://karakeep.app/",
+    "docs": "https://github.com/karakeep-app/karakeep#readme"
+  },
+  "tags": [
+    "bookmarks",
+    "links",
+    "ai",
+    "search",
+    "self-hosted"
+  ]
+}

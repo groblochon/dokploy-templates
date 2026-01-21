@@ -1,0 +1,31 @@
+[variables]
+main_domain = "${domain}"
+milvus_minio_access_key = "${password:16}"
+milvus_minio_secret_key = "${password:32}"
+
+[config]
+[[config.domains]]
+serviceName = "milvus"
+port = 19530
+host = "milvus.${main_domain}"
+
+[[config.domains]]
+serviceName = "milvus"
+port = 9091
+host = "milvus-grpc.${main_domain}"
+
+[config.env]
+MILVUS_MINIO_ACCESS_KEY = "${milvus_minio_access_key}"
+MILVUS_MINIO_SECRET_KEY = "${milvus_minio_secret_key}"
+
+[[config.mounts]]
+volumeName = "milvus-data"
+mountPath = "/var/lib/milvus"
+
+[[config.mounts]]
+volumeName = "milvus-etcd-data"
+mountPath = "/etcd"
+
+[[config.mounts]]
+volumeName = "milvus-minio-data"
+mountPath = "/minio_data"

@@ -1,15 +1,23 @@
 services:
   clickhouse:
     image: clickhouse/clickhouse-server:latest
+    container_name: clickhouse
     restart: unless-stopped
+    ports:
+      - "${HTTP_PORT:-8123}:8123"
+      - "${TCP_PORT:-9000}:9000"
     environment:
-      - CLICKHOUSE_USER=${CLICKHOUSE_USER}
-      - CLICKHOUSE_PASSWORD=${CLICKHOUSE_PASSWORD}
+      CLICKHOUSE_DB: default
+      CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: 1
+      CLICKHOUSE_HTTP_PORT: 8123
+      CLICKHOUSE_TCP_PORT: 9000
     volumes:
       - clickhouse-data:/var/lib/clickhouse
-      - clickhouse-logs:/var/log/clickhouse-server
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8123/ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
 volumes:
   clickhouse-data:
-  clickhouse-logs:
-

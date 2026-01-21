@@ -1,17 +1,23 @@
 [variables]
 main_domain = "${domain}"
-clickhouse_user = "default"
-clickhouse_password = "${password:32}"
 
 [config]
-mounts = []
-
 [[config.domains]]
 serviceName = "clickhouse"
 port = 8123
-host = "${main_domain}"
+host = "clickhouse.${main_domain}"
+
+[[config.domains]]
+serviceName = "clickhouse"
+port = 9000
+host = "clickhouse-tcp.${main_domain}"
 
 [config.env]
-CLICKHOUSE_USER = "${clickhouse_user}"
-CLICKHOUSE_PASSWORD = "${clickhouse_password}"
+CLICKHOUSE_DB: default
+CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: 1
+CLICKHOUSE_HTTP_PORT: 8123
+CLICKHOUSE_TCP_PORT: 9000
 
+[[config.mounts]]
+volumeName = "clickhouse-data"
+mountPath = "/var/lib/clickhouse"

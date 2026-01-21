@@ -1,0 +1,20 @@
+{
+  "id": "surrealdb",
+  "name": "SurrealDB",
+  "version": "v2",
+  "description": "Scalable, distributed, and collaborative document database",
+  "logo": "surrealdb.svg",
+  "links": {
+    "github": "https://github.com/surrealdb/surrealdb",
+    "website": "https://surrealdb.com/",
+    "docs": "https://surrealdb.com/docs"
+  },
+  "tags": [
+    "database",
+    "nosql",
+    "realtime",
+    "multi-model",
+    "graph",
+    "distributed"
+  ]
+}

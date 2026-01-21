@@ -2,10 +2,7 @@
 main_domain = "${domain}"
 
 [config]
-env = []
-mounts = []
-
 [[config.domains]]
 serviceName = "excalidraw"
 port = 80
-host = "${main_domain}"
+host = "draw.${main_domain}"

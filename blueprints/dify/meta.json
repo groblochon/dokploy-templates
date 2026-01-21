@@ -1,0 +1,19 @@
+{
+  "id": "dify",
+  "name": "Dify",
+  "version": "0.15.3",
+  "description": "Open source LLM app development platform with AI workflow capabilities",
+  "logo": "dify.svg",
+  "links": {
+    "github": "https://github.com/langgenius/dify",
+    "website": "https://dify.ai/",
+    "docs": "https://docs.dify.ai/"
+  },
+  "tags": [
+    "ai",
+    "llm",
+    "workflow",
+    "platform",
+    "development"
+  ]
+}

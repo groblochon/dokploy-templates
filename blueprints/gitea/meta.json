@@ -1,0 +1,19 @@
+{
+  "id": "gitea",
+  "name": "Gitea",
+  "version": "1.24.4",
+  "description": "Self-hosted Git service written in Go with lightweight setup",
+  "logo": "gitea.svg",
+  "links": {
+    "github": "https://github.com/go-gitea/gitea",
+    "website": "https://gitea.io/",
+    "docs": "https://docs.gitea.io/"
+  },
+  "tags": [
+    "git",
+    "version-control",
+    "code-hosting",
+    "self-hosted",
+    "development"
+  ]
+}

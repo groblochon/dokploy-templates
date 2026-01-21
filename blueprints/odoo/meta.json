@@ -1,0 +1,20 @@
+{
+  "id": "odoo",
+  "name": "Odoo",
+  "version": "17.0",
+  "description": "Open source ERP and business management platform",
+  "logo": "odoo.svg",
+  "links": {
+    "github": "https://github.com/odoo/odoo",
+    "website": "https://www.odoo.com/",
+    "docs": "https://www.odoo.com/documentation/"
+  },
+  "tags": [
+    "erp",
+    "business-management",
+    "crm",
+    "inventory",
+    "accounting",
+    "project-management"
+  ]
+}

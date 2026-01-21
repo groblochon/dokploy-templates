@@ -1,0 +1,19 @@
+{
+  "id": "huly",
+  "name": "Huly",
+  "version": "latest",
+  "description": "Open source workspace and collaboration platform",
+  "logo": "huly.svg",
+  "links": {
+    "github": "https://github.com/huly/huly",
+    "website": "https://huly.app/",
+    "docs": "https://huly.app/docs"
+  },
+  "tags": [
+    "collaboration",
+    "workspace",
+    "productivity",
+    "project-management",
+    "self-hosted"
+  ]
+}

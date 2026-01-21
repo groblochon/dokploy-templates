@@ -1,0 +1,18 @@
+{
+  "id": "uptime-kuma",
+  "name": "Uptime Kuma",
+  "version": "latest",
+  "description": "Fancy uptime monitoring tool with beautiful interface",
+  "logo": "uptime-kuma.svg",
+  "links": {
+    "github": "https://github.com/louislam/uptime-kuma",
+    "website": "https://uptime.kuma.pet/",
+    "docs": "https://github.com/louislam/uptime-kuma/wiki"
+  },
+  "tags": [
+    "monitoring",
+    "uptime",
+    "status-page",
+    "alerting"
+  ]
+}

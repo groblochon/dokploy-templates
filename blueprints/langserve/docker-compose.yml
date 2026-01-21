@@ -1,0 +1,19 @@
+services:
+  langserve:
+    image: python:3.11-slim
+    restart: unless-stopped
+    expose:
+      - 8000
+    environment:
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      OPENAI_API_BASE: ${OPENAI_API_BASE}
+      DATABASE_URL: postgresql://postgres:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:5432/${POSTGRES_DB}
+    volumes:
+      - langserve-data:/app
+    command: >
+      bash -c "pip install langchain langserve uvicorn fastapi langchain-openai &&
+               echo 'from langserve import add_routes; from fastapi import FastAPI; app = FastAPI(); add_routes(app, ChatOpenAI(base_url=\"${OPENAI_API_BASE}\"), path=\"/openai\")' > /app/main.py &&
+               uvicorn main:app --host 0.0.0.0 --port 8000"
+
+volumes:
+  langserve-data:

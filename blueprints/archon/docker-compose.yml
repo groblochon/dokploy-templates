@@ -1,0 +1,15 @@
+services:
+  archon:
+    build:
+      context: https://github.com/coleam00/Archon.git#stable
+    restart: unless-stopped
+    expose:
+      - 8080
+    environment:
+      # Supabase Configuration
+      SUPABASE_URL: ${{project.SUPABASE_URL}}
+      SUPABASE_ANON_KEY: ${{project.SUPABASE_ANON_KEY}}
+      SUPABASE_SERVICE_KEY: ${{project.SUPABASE_SERVICE_KEY}}
+      # OpenAI Configuration
+      OPENAI_API_KEY: ${{project.OPENAI_API_KEY}}
+      OPENAI_API_BASE: ${{project.OPENAI_API_BASE}}

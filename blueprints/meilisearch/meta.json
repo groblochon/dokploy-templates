@@ -1,0 +1,19 @@
+{
+  "id": "meilisearch",
+  "name": "Meilisearch",
+  "version": "v1.13.3",
+  "description": "Lightning fast, typo-tolerant, hyper-relevant search engine",
+  "logo": "meilisearch.svg",
+  "links": {
+    "github": "https://github.com/meilisearch/meilisearch",
+    "website": "https://www.meilisearch.com/",
+    "docs": "https://docs.meilisearch.com/"
+  },
+  "tags": [
+    "search",
+    "database",
+    "elasticsearch-alternative",
+    "full-text-search",
+    "fast"
+  ]
+}

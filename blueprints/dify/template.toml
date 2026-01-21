@@ -1,0 +1,28 @@
+[variables]
+main_domain = "${domain}"
+dify_secret_key = "${base64:32}"
+
+[config]
+[[config.domains]]
+serviceName = "dify-web"
+port = 3000
+host = "dify.${main_domain}"
+
+[config.env]
+# Secrets
+DIFY_SECRET_KEY = "${dify_secret_key}"
+
+# Database Configuration (connect to external Supabase)
+POSTGRES_HOST = "${{project.POSTGRES_HOST}}"
+POSTGRES_DB = "${{project.POSTGRES_DB}}"
+POSTGRES_PASSWORD = "${{project.POSTGRES_PASSWORD}}"
+
+# Redis Configuration (connect to external Redis)
+REDIS_HOST = "${{project.REDIS_HOST}}"
+
+# S3 Configuration
+S3_ENDPOINT = "${{project.S3_ENDPOINT}}"
+S3_BUCKET = "${{project.S3_BUCKET}}"
+S3_ACCESS_KEY_ID = "${{project.S3_ACCESS_KEY_ID}}"
+S3_SECRET_ACCESS_KEY = "${{project.S3_SECRET_ACCESS_KEY}}"
+S3_REGION = "${{project.S3_REGION}}"

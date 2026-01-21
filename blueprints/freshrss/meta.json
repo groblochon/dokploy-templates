@@ -1,0 +1,17 @@
+{
+  "id": "freshrss",
+  "name": "FreshRSS",
+  "version": "latest",
+  "description": "Open source RSS aggregator and reader",
+  "logo": "freshrss.svg",
+  "links": {
+    "github": "https://github.com/FreshRSS/FreshRSS",
+    "website": "https://freshrss.org/",
+    "docs": "https://freshrss.org/docs"
+  },
+  "tags": [
+    "rss",
+    "reader",
+    "aggregator"
+  ]
+}

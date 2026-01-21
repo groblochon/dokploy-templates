@@ -1,0 +1,19 @@
+{
+  "id": "kokoro-tts",
+  "name": "Kokoro TTS",
+  "version": "latest",
+  "description": "High-quality text-to-speech synthesis with Kokoro model",
+  "logo": "kokoro-tts.svg",
+  "links": {
+    "github": "https://github.com/remsky/Kokoro-FastAPI",
+    "website": "https://github.com/remsky/Kokoro-FastAPI",
+    "docs": "https://github.com/remsky/Kokoro-FastAPI#readme"
+  },
+  "tags": [
+    "tts",
+    "text-to-speech",
+    "ai",
+    "audio",
+    "synthesis"
+  ]
+}

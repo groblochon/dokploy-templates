@@ -2,13 +2,21 @@
 main_domain = "${domain}"
 
 [config]
-mounts = []
-
 [[config.domains]]
 serviceName = "vaultwarden"
 port = 80
-host = "${main_domain}"
+host = "vaultwarden.${main_domain}"
 
 [config.env]
+# Database Configuration (connect to external Supabase)
+POSTGRES_HOST = "${{project.POSTGRES_HOST}}"
+POSTGRES_DB = "${{project.POSTGRES_DB}}"
+POSTGRES_PASSWORD = "${{project.POSTGRES_PASSWORD}}"
+
+# Configuration
+DOMAIN = "https://vaultwarden.${main_domain}"
 SIGNUPS_ALLOWED = "true"
-DOMAIN = "https://${main_domain}"
+
+[[config.mounts]]
+volumeName = "vaultwarden-data"
+mountPath = "/data"
