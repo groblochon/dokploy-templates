@@ -50,6 +50,6 @@ services:
       - pipelines-data:/app/pipelines/data
 
 volumes:
-  openwebui-data:
-  chromadb-data:
-  pipelines-data:
+  openwebui-data: {}
+  chromadb-data: {}
+  pipelines-data: {}

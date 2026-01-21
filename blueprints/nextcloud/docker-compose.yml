@@ -1,31 +1,51 @@
 version: "3.8"
 
 services:
-  nextcloud-aio-mastercontainer:
-    image: ghcr.io/nextcloud-releases/all-in-one:latest
-    init: true
-    restart: always
-    container_name: nextcloud-aio-mastercontainer
-    volumes:
-      - nextcloud_aio_mastercontainer:/mnt/docker-aio-config
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    network_mode: bridge
-    ports:
-      - 80:80
-      - 8080:8080
-      - 8443:8443
+  nextcloud:
+    image: nextcloud:29-apache
+    restart: unless-stopped
+    expose:
+      - 80
     environment:
-      APACHE_PORT: 11000
-      APACHE_IP_BINDING: 127.0.0.1
-      NEXTCLOUD_DATADIR: /mnt/ncdata
-      NEXTCLOUD_UPLOAD_LIMIT: 16G
-      NEXTCLOUD_MAX_TIME: 3600
-      NEXTCLOUD_MEMORY_LIMIT: 512M
-      NEXTCLOUD_STARTUP_APPS: deck twofactor_totp tasks calendar contacts notes
-      NEXTCLOUD_ADDITIONAL_APKS: imagemagick
-      NEXTCLOUD_ADDITIONAL_PHP_EXTENSIONS: imagick
-      SKIP_DOMAIN_VALIDATION: false
+      - NEXTCLOUD_ADMIN_USER=${NEXTCLOUD_ADMIN_USER}
+      - NEXTCLOUD_ADMIN_PASSWORD=${NEXTCLOUD_ADMIN_PASSWORD}
+      - NEXTCLOUD_TRUSTED_DOMAINS=${NEXTCLOUD_HOST}
+      - OVERWRITEPROTOCOL=https
+      - OBJECTSTORE_S3_HOST=${S3_HOST}
+      - OBJECTSTORE_S3_PORT=${S3_PORT}
+      - OBJECTSTORE_S3_SSL=true
+      - OBJECTSTORE_S3_BUCKET=${S3_BUCKET}
+      - OBJECTSTORE_S3_KEY=${S3_ACCESS_KEY_ID}
+      - OBJECTSTORE_S3_SECRET=${S3_SECRET_ACCESS_KEY}
+      - OBJECTSTORE_S3_REGION=${S3_REGION}
+      - OBJECTSTORE_S3_USE_PATH_STYLE=true
+    volumes:
+      - nextcloud-data:/var/www/html
+    depends_on:
+      - postgres
+      - redis
+
+  postgres:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    expose:
+      - 5432
+    environment:
+      - POSTGRES_DB=nextcloud
+      - POSTGRES_USER=nextcloud
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    expose:
+      - 6379
+    volumes:
+      - redis-data:/data
 
 volumes:
-  nextcloud_aio_mastercontainer:
-    name: nextcloud_aio_mastercontainer
+  nextcloud-data: {}
+  postgres-data: {}
+  redis-data: {}

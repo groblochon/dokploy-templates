@@ -31,5 +31,5 @@ services:
       - postgres-data:/var/lib/postgresql/data
 
 volumes:
-  langflow-data:
-  postgres-data:
+  langflow-data: {}
+  postgres-data: {}
