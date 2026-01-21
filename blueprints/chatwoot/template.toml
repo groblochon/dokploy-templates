@@ -15,8 +15,8 @@ DATABASE_URL = "postgresql://postgres:${{project.POSTGRES_PASSWORD}}@${{project.
 FORCE_SSL = "true"
 FRONTEND_URL = "https://chatwoot.${main_domain}"
 
-# Redis Configuration
-REDIS_URL = "redis://redis:6379"
+# External Redis Configuration
+REDIS_URL = "${{project.REDIS_URL}}"
 
 # Email Configuration
 MAILER_SENDER_EMAIL = "${{project.EMAIL_FROM}}"
@@ -43,7 +43,3 @@ RAILS_SERVE_STATIC_FILES = "true"
 [[config.mounts]]
 volumeName = "chatwoot-storage"
 mountPath = "/app/storage"
-
-[[config.mounts]]
-volumeName = "chatwoot-redis"
-mountPath = "/data"
