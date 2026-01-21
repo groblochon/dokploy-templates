@@ -11,14 +11,14 @@ services:
       - 8181
     environment:
       # Supabase Configuration
-      SUPABASE_URL: ${SUPABASE_URL}}
-      SUPABASE_ANON_KEY: ${SUPABASE_ANON_KEY}}
-      SUPABASE_SERVICE_KEY: ${SUPABASE_SERVICE_KEY}}
+      SUPABASE_URL: ${SUPABASE_URL}
+      SUPABASE_ANON_KEY: ${SUPABASE_ANON_KEY}
+      SUPABASE_SERVICE_KEY: ${SUPABASE_SERVICE_KEY}
       # OpenAI Configuration
-      OPENAI_API_KEY: ${OPENAI_API_KEY}}
-      OPENAI_API_BASE: ${OPENAI_API_BASE}}
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      OPENAI_API_BASE: ${OPENAI_API_BASE}
       # Crawl4AI Configuration (connect to external service)
-      CRAWL4AI_URL: ${CRAWL4AI_URL}}
+      CRAWL4AI_URL: ${CRAWL4AI_URL}
       # Archon Configuration
       SERVICE_DISCOVERY_MODE: dokploy
       LOG_LEVEL: INFO
@@ -37,9 +37,9 @@ services:
       - 8051
     environment:
       # Supabase Configuration
-      SUPABASE_URL: ${SUPABASE_URL}}
-      SUPABASE_ANON_KEY: ${SUPABASE_ANON_KEY}}
-      SUPABASE_SERVICE_KEY: ${SUPABASE_SERVICE_KEY}}
+      SUPABASE_URL: ${SUPABASE_URL}
+      SUPABASE_ANON_KEY: ${SUPABASE_ANON_KEY}
+      SUPABASE_SERVICE_KEY: ${SUPABASE_SERVICE_KEY}
       # Configuration
       SERVICE_DISCOVERY_MODE: dokploy
       TRANSPORT: sse

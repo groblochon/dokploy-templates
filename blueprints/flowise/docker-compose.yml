@@ -8,22 +8,22 @@ services:
       PORT: 3000
       # Database Configuration
       DATABASE_TYPE: postgres
-      DATABASE_HOST: ${POSTGRES_HOST}
+      DATABASE_HOST: "${POSTGRES_HOST}"
       DATABASE_PORT: 5432
-      DATABASE_NAME: ${POSTGRES_DB}
+      DATABASE_NAME: "${POSTGRES_DB}"
       DATABASE_USER: postgres
-      DATABASE_PASSWORD: ${POSTGRES_PASSWORD}
+      DATABASE_PASSWORD: "${POSTGRES_PASSWORD}"
       # Redis Configuration
-      REDIS_URL: redis://${REDIS_HOST}:6379
+      REDIS_URL: "${REDIS_URL}"
       # OpenAI Configuration
-      OPENAI_API_KEY: ${OPENAI_API_KEY}
-      OPENAI_API_BASE: ${OPENAI_API_BASE}
+      OPENAI_API_KEY: "${OPENAI_API_KEY}"
+      OPENAI_API_BASE: "${OPENAI_API_BASE}"
       # Secrets
-      FLOWISE_SECRETKEY_OVERWRITE: ${FLOWISE_SECRET_KEY}
-      JWT_AUTH_TOKEN_SECRET: ${JWT_SECRET}
-      PASSPHRASE: ${FLOWISE_PASSPHRASE}
+      FLOWISE_SECRETKEY_OVERWRITE: "${FLOWISE_SECRET_KEY}"
+      JWT_AUTH_TOKEN_SECRET: "${JWT_SECRET}"
+      PASSPHRASE: "${FLOWISE_PASSPHRASE}"
     volumes:
       - flowise-data:/root/.flowise
 
 volumes:
-  flowise-data:
+  flowise-data: {}

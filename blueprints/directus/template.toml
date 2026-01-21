@@ -10,11 +10,11 @@ host = "directus.${main_domain}"
 [config.env]
 # Database Configuration (connect to external Supabase)
 DB_CLIENT = "pg"
-DB_HOST = "${POSTGRES_HOST}"
+DB_HOST = "${{project.POSTGRES_HOST}}"
 DB_PORT = "5432"
-DB_DATABASE = "${POSTGRES_DB}"
+DB_DATABASE = "${{project.POSTGRES_DB}}"
 DB_USER = "postgres"
-DB_PASSWORD = "${POSTGRES_PASSWORD}"
+DB_PASSWORD = "${{project.POSTGRES_PASSWORD}}"
 
 # Cache Configuration
 CACHE_DRIVER = "redis"

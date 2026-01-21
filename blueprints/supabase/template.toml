@@ -21,21 +21,30 @@ port = 8000
 host = "api.${main_domain}"
 
 [config.env]
-# Supabase Configuration
-POSTGRES_PASSWORD = "${postgres_password}"
-POSTGRES_DB = "postgres"
-JWT_SECRET = "${jwt_secret}"
-JWT_EXPIRY = "3600"
-SECRET_KEY_BASE = "${secret_key_base}"
-ANON_KEY = "${anon_key}"
-SERVICE_ROLE_KEY = "${service_role_key}"
-LOGFLARE_API_KEY = "${logflare_api_key}"
-PGRST_DB_SCHEMAS = "public,storage,graphql_public"
-SUPABASE_PUBLIC_URL = "https://api.${main_domain}"
-API_EXTERNAL_URL = "https://api.${main_domain}"
-SITE_URL = "https://${main_domain}"
-DASHBOARD_USERNAME = "${{project.ADMIN_USER}}"
-DASHBOARD_PASSWORD = "${{project.ADMIN_PASSWORD}}"
+POSTGRES_PASSWORD="${{project.POSTGRES_PASSWORD}}"
+POSTGRES_DB="${{project.POSTGRES_DB}}"
+JWT_SECRET="${{project.JWT_SECRET}}"
+JWT_EXPIRY=3600
+SECRET_KEY_BASE="${{project.SECRET_KEY_BASE}}"
+ANON_KEY="${{project.ANON_KEY}}"
+SERVICE_ROLE_KEY="${{project.SERVICE_ROLE_KEY}}"
+LOGFLARE_API_KEY="${{project.LOGFLARE_API_KEY}}"
+PGRST_DB_SCHEMAS="${{project.PGRST_DB_SCHEMAS}}"
+SUPABASE_PUBLIC_URL="${{project.SUPABASE_PUBLIC_URL}}"
+API_EXTERNAL_URL="${{project.API_EXTERNAL_URL}}"
+SITE_URL="${{project.SITE_URL}}"
+DASHBOARD_USERNAME=${{project.ADMIN_USER}}
+DASHBOARD_PASSWORD=${{project.ADMIN_PASSWORD}}
+STUDIO_DEFAULT_ORGANIZATION=IA Stack
+STUDIO_DEFAULT_PROJECT=ia-stack
+STORAGE_BACKEND=file
+DISABLE_SIGNUP=false
+ENABLE_EMAIL_SIGNUP=true
+ENABLE_ANONYMOUS_USERS=false
+ENABLE_EMAIL_AUTOCONFIRM=false
+
+# OpenAI Configuration (optional)
+OPENAI_API_KEY = "${{project.OPENAI_API_KEY}}"
 STUDIO_DEFAULT_ORGANIZATION = "IA Stack"
 STUDIO_DEFAULT_PROJECT = "ia-stack"
 STORAGE_BACKEND = "file"

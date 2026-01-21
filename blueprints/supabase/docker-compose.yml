@@ -246,6 +246,6 @@ services:
     command: [ "postgres", "-c", "config_file=/etc/postgresql/postgresql.conf", "-c", "log_min_messages=fatal" ]
 
 volumes:
-  supabase-db-data:
-  supabase-db-config:
-  supabase-storage-data:
+  supabase-db-data: {}
+  supabase-db-config: {}
+  supabase-storage-data: {}

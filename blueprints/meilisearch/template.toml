@@ -9,7 +9,7 @@ port = 7700
 host = "search.${main_domain}"
 
 [config.env]
-MEILI_MASTER_KEY = "${meili_master_key}"
+MEILI_MASTER_KEY = "${{project.MEILI_MASTER_KEY}}"
 MEILI_NO_ANALYTICS = "true"
 
 [[config.mounts]]

@@ -5,14 +5,14 @@ services:
     expose:
       - 3000
     environment:
-      GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER:-admin}
-      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD}
+      GF_SECURITY_ADMIN_USER: "${GRAFANA_ADMIN_USER:-admin}"
+      GF_SECURITY_ADMIN_PASSWORD: "${GRAFANA_ADMIN_PASSWORD}"
       # Database Configuration
       GF_DATABASE_TYPE: postgres
-      GF_DATABASE_HOST: ${POSTGRES_HOST}:5432
-      GF_DATABASE_NAME: ${POSTGRES_DB}
+      GF_DATABASE_HOST: "${POSTGRES_HOST}:5432"
+      GF_DATABASE_NAME: "${POSTGRES_DB}"
       GF_DATABASE_USER: postgres
-      GF_DATABASE_PASSWORD: ${POSTGRES_PASSWORD}
+      GF_DATABASE_PASSWORD: "${POSTGRES_PASSWORD}"
     volumes:
       - grafana-data:/var/lib/grafana
 

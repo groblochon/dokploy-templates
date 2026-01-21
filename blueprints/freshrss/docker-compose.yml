@@ -5,15 +5,15 @@ services:
     expose:
       - 80
     environment:
-      TZ: ${TIMEZONE:-Europe/Paris}
+      TZ: "${TIMEZONE:-Europe/Paris}"
       CRON_MIN: "13,43"
       FRESHRSS_ENV: production
-      ADMIN_EMAIL: ${ADMIN_EMAIL}
-      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      ADMIN_EMAIL: "${ADMIN_EMAIL}"
+      ADMIN_PASSWORD: "${ADMIN_PASSWORD}"
     volumes:
       - freshrss-data:/var/www/FreshRSS/data
       - freshrss-extensions:/var/www/FreshRSS/extensions
 
 volumes:
-  freshrss-data:
-  freshrss-extensions:
+  freshrss-data: {}
+  freshrss-extensions: {}

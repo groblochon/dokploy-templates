@@ -16,6 +16,7 @@ OPENAI_API_KEY = "${{project.OPENAI_API_KEY}}"
 POSTGRES_HOST = "${{project.POSTGRES_HOST}}"
 POSTGRES_DB = "${{project.POSTGRES_DB}}"
 POSTGRES_PASSWORD = "${{project.POSTGRES_PASSWORD}}"
+POSTGRES_URL = "${{project.POSTGRES_URL}}"
 
 # S3 Configuration
 S3_ENDPOINT = "${{project.S3_ENDPOINT}}"

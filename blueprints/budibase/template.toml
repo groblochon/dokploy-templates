@@ -26,8 +26,8 @@ AWS_S3_FORCE_PATH_STYLE = "true"
 AWS_S3_ENDPOINT_URL = "${{project.S3_ENDPOINT}}"
 
 # OpenAI Configuration (for AI features)
-OPEN_AI_API_KEY = "${{project.OPEN_AI_API_KEY}}"
-OPEN_AI_API_URL = "${{project.OPEN_AI_API_BASE}}"
+OPENAI_API_KEY = "${{project.OPENAI_API_KEY}}"
+OPENAI_API_BASE = "${{project.OPENAI_API_BASE}}"
 
 # Email Configuration (for notifications and user management)
 SMTP_HOST = "${{project.SMTP_HOST}}"

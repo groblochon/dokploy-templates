@@ -7,15 +7,15 @@ services:
       - 8000
     environment:
       # Database Configuration (connect to external Supabase)
-      DATABASE_URL: postgresql+asyncpg://postgres:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:5432/${POSTGRES_DB}
+      DATABASE_URL: "${POSTGRES_URL}"
       # Redis Configuration (connect to external Redis)
-      REDIS_URL: redis://${REDIS_HOST}:6379/0
+      REDIS_URL: "${REDIS_URL}"
       # Secrets
-      SECRET_KEY: ${GLEAN_SECRET_KEY}
+      SECRET_KEY: "${GLEAN_SECRET_KEY}"
       # Admin Configuration
       CREATE_ADMIN: "true"
-      ADMIN_USERNAME: ${ADMIN_USER}
-      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      ADMIN_USERNAME: "${ADMIN_USER}"
+      ADMIN_PASSWORD: "${ADMIN_PASSWORD}"
       ADMIN_ROLE: super_admin
       # Config
       DEBUG: "false"
@@ -26,8 +26,8 @@ services:
       MILVUS_PORT: 19530
       # OpenAI pour embeddings
       EMBEDDING_PROVIDER: openai
-      EMBEDDING_API_KEY: ${OPENAI_API_KEY}
-      EMBEDDING_BASE_URL: ${OPENAI_API_BASE}
+      EMBEDDING_API_KEY: "${OPENAI_API_KEY}"
+      EMBEDDING_BASE_URL: "${OPENAI_API_BASE}"
       EMBEDDING_MODEL: text-embedding-3-small
       EMBEDDING_DIMENSION: 1536
     volumes:
@@ -40,14 +40,14 @@ services:
       context: https://github.com/LeslieLeung/glean.git#main:backend
     restart: unless-stopped
     environment:
-      DATABASE_URL: postgresql+asyncpg://postgres:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:5432/${POSTGRES_DB}
-      REDIS_URL: redis://${REDIS_HOST}:6379/0
-      SECRET_KEY: ${GLEAN_SECRET_KEY}
+      DATABASE_URL: "${POSTGRES_URL}"
+      REDIS_URL: "${REDIS_URL}"
+      SECRET_KEY: "${GLEAN_SECRET_KEY}"
       MILVUS_HOST: milvus
       MILVUS_PORT: 19530
       EMBEDDING_PROVIDER: openai
-      EMBEDDING_API_KEY: ${OPENAI_API_KEY}
-      EMBEDDING_BASE_URL: ${OPENAI_API_BASE}
+      EMBEDDING_API_KEY: "${OPENAI_API_KEY}"
+      EMBEDDING_BASE_URL: "${OPENAI_API_BASE}"
       EMBEDDING_MODEL: text-embedding-3-small
       EMBEDDING_DIMENSION: 1536
     volumes:
@@ -130,7 +130,7 @@ services:
       retries: 3
 
 volumes:
-  glean-logs:
-  milvus-etcd-data:
-  milvus-minio-data:
-  milvus-data:
+  glean-logs: {}
+  milvus-etcd-data: {}
+  milvus-minio-data: {}
+  milvus-data: {}

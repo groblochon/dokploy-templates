@@ -9,17 +9,17 @@ services:
       USER_UID: 1000
       USER_GID: 1000
       GITEA__database__DB_TYPE: postgres
-      GITEA__database__HOST: ${POSTGRES_HOST}
-      GITEA__database__NAME: ${POSTGRES_DB}
+      GITEA__database__HOST: "${POSTGRES_HOST}"
+      GITEA__database__NAME: "${POSTGRES_DB}"
       GITEA__database__USER: postgres
-      GITEA__database__PASSWD: ${POSTGRES_PASSWORD}
+      GITEA__database__PASSWD: "${POSTGRES_PASSWORD}"
       # S3 Storage Configuration
-      GITEA__storage__STORAGE_TYPE: minio
-      GITEA__storage__MINIO_ENDPOINT: ${S3_ENDPOINT}
-      GITEA__storage__MINIO_ACCESS_KEY_ID: ${S3_ACCESS_KEY_ID}
-      GITEA__storage__MINIO_SECRET_ACCESS_KEY: ${S3_SECRET_ACCESS_KEY}
-      GITEA__storage__MINIO_BUCKET: ${S3_BUCKET}
-      GITEA__storage__MINIO_LOCATION: ${S3_REGION}
+      GITEA__storage__STORAGE_TYPE: s3
+      GITEA__storage__MINIO_ENDPOINT: "${S3_ENDPOINT}"
+      GITEA__storage__MINIO_ACCESS_KEY_ID: "${S3_ACCESS_KEY_ID}"
+      GITEA__storage__MINIO_SECRET_ACCESS_KEY: "${S3_SECRET_ACCESS_KEY}"
+      GITEA__storage__MINIO_BUCKET: "${S3_BUCKET}"
+      GITEA__storage__MINIO_LOCATION: "${S3_REGION}"
     volumes:
       - gitea-data:/data
     healthcheck:
@@ -29,4 +29,4 @@ services:
       retries: 10
 
 volumes:
-  gitea-data:
+  gitea-data: {}
