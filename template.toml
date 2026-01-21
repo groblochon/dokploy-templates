@@ -1,0 +1,15 @@
+[variables]
+main_domain = "${domain}"
+
+[config]
+[[config.domains]]
+serviceName = "opencode"
+port = 5173
+host = "templates.${main_domain}"
+
+[config.env]
+NODE_ENV = "development"
+
+[[config.mounts]]
+volumeName = "opencode-data"
+mountPath = "/app"

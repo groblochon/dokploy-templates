@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  opencode:
+    build: .
+    restart: unless-stopped
+    expose:
+      - 5173
+    volumes:
+      - opencode-data:/app
+    environment:
+      - NODE_ENV=development
+
+volumes:
+  opencode-data:
