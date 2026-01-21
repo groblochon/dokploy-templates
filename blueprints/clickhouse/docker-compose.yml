@@ -14,7 +14,7 @@ services:
     volumes:
       - clickhouse-data:/var/lib/clickhouse
     healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8123/ping"]
+      test: [ "CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://clickhouse:8123/ping" ]
       interval: 30s
       timeout: 10s
       retries: 3

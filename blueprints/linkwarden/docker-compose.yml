@@ -19,7 +19,7 @@ services:
     volumes:
       - linkwarden-data:/data/data
     healthcheck:
-      test: [ "CMD", "curl", "--fail", "http://localhost:3000" ]
+      test: [ "CMD", "curl", "--fail", "http://linkwarden:3000" ]
       interval: 60s
       retries: 2
       start_period: 60s

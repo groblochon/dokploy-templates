@@ -104,7 +104,7 @@ services:
       - milvus-minio-data:/minio_data
     command: minio server /minio_data
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:9000/minio/health/live" ]
+      test: [ "CMD", "curl", "-f", "http://milvus-minio:9000/minio/health/live" ]
       interval: 30s
       timeout: 20s
       retries: 3
@@ -124,7 +124,7 @@ services:
       - milvus-etcd
       - milvus-minio
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:9091/healthz" ]
+      test: [ "CMD", "curl", "-f", "http://milvus:9091/healthz" ]
       interval: 30s
       timeout: 20s
       retries: 3
