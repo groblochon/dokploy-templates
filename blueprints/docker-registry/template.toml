@@ -1,4 +1,2 @@
 [config]
-[[config.mounts]]
-volumeName = "registry-data"
-mountPath = "/var/lib/registry"
+# S3 Storage enabled, local mounts removed
