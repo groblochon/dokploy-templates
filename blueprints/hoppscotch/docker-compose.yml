@@ -18,4 +18,4 @@ services:
       - hoppscotch-data:/var/www/html/storage
 
 volumes:
-  hoppscotch-data:
+  hoppscotch-data: {}

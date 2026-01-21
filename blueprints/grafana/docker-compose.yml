@@ -17,4 +17,4 @@ services:
       - grafana-data:/var/lib/grafana
 
 volumes:
-  grafana-data:
+  grafana-data: {}

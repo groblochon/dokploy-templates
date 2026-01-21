@@ -21,7 +21,7 @@ DB_PASSWORD = "${{project.POSTGRES_PASSWORD}}"
 
 # Cache Configuration
 CACHE_DRIVER = "redis"
-CACHE_REDIS = "redis://redis:6379"
+CACHE_REDIS = "${{project.REDIS_URL}}"
 
 # Security Keys
 KEY_SECRET = "${password:32}"

@@ -5,19 +5,19 @@ services:
     restart: unless-stopped
     environment:
       # Database Configuration (connect to external Supabase)
-      DATABASE_URL: postgresql://postgres:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:5432/${POSTGRES_DB}
+      DATABASE_URL: "${POSTGRES_URL}"
       # MongoDB Configuration (connect to external MongoDB)
       MONGODB_URL: mongodb://mongodb:27017/huly
       # OpenAI Configuration (optional)
-      OPENAI_API_KEY: ${OPENAI_API_KEY}
-      OPENAI_API_BASE: ${OPENAI_API_BASE}
+      OPENAI_API_KEY: "${OPENAI_API_KEY}"
+      OPENAI_API_BASE: "${OPENAI_API_BASE}"
       # Secrets
-      SECRET_KEY: ${HULY_SECRET_KEY}
+      SECRET_KEY: "${HULY_SECRET_KEY}"
       # Configuration
-      SERVER_URL: https://${HULY_HOST}
-      ADMIN_USER: ${ADMIN_USER}
-      ADMIN_EMAIL: ${ADMIN_EMAIL}
-      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      SERVER_URL: "https://${HULY_HOST}"
+      ADMIN_USER: "${ADMIN_USER}"
+      ADMIN_EMAIL: "${ADMIN_EMAIL}"
+      ADMIN_PASSWORD: "${ADMIN_PASSWORD}"
     ports:
       - "${PORT:-3000}:3000"
     volumes:
@@ -31,10 +31,10 @@ services:
     restart: unless-stopped
     environment:
       MONGO_INITDB_ROOT_USERNAME: huly
-      MONGO_INITDB_ROOT_PASSWORD: ${HULY_MONGODB_PASSWORD}
+      MONGO_INITDB_ROOT_PASSWORD: "${HULY_MONGODB_PASSWORD}"
     volumes:
       - huly-mongodb-data:/data/db
 
 volumes:
-  huly-data:
-  huly-mongodb-data:
+  huly-data: {}
+  huly-mongodb-data: {}

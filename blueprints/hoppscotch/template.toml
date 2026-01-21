@@ -19,7 +19,7 @@ POSTGRES_DB = "${{project.POSTGRES_DB}}"
 POSTGRES_PASSWORD = "${{project.POSTGRES_PASSWORD}}"
 
 # Redis Configuration (connect to external Redis)
-REDIS_HOST = "${{project.REDIS_HOST}}"
+REDIS_HOST = "redis"
 
 # OpenAI Configuration (optional)
 OPENAI_API_BASE = "${{project.OPENAI_API_BASE}}"
