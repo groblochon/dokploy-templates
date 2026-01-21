@@ -1,3 +1,5 @@
+version: "3.8"
+
 services:
   appwrite:
     image: appwrite/appwrite:1.8.0
@@ -5,14 +7,20 @@ services:
     environment:
       # Database Configuration (connect to external Supabase)
       APPWRITE_DB_DATA_SOURCE: postgresql://postgres:${{project.POSTGRES_PASSWORD}}@${{project.POSTGRES_HOST}}:5432/${{project.POSTGRES_DB}}
-      _APPWRITE_DB_DATA_SOURCE_TABLE: appwrite
       # OpenAI Configuration
       APPWRITE_OPENAI_API_KEY: "${{project.OPENAI_API_KEY}}"
       APPWRITE_OPENAI_BASE_URL: "${{project.OPENAI_API_BASE}}"
       # Encryption Keys
-      _APPWRITE_ENCRYPTION_KEY: "${password:32}"
-      _APPWRITE_OPENSSL_KEY_V1: "${password:32}"
-      _APPWRITE_RSA_KEY_V1: "${password:32}"
+      APPWRITE_ENCRYPTION_KEY: "${password:32}"
+      APPWRITE_OPENSSL_KEY_V1: "${password:32}"
+      APPWRITE_RSA_KEY_V1: "${password:32}"
+      # S3 Configuration (using project variables)
+      _APPWRITE_STORAGE_S3_ACCESS_KEY: "${{project.AWS_ACCESS_KEY_ID}}"
+      _APPWRITE_STORAGE_S3_SECRET_KEY: "${{project.AWS_SECRET_ACCESS_KEY}}"
+      _APPWRITE_STORAGE_S3_REGION: "${{project.AWS_REGION}}"
+      _APPWRITE_STORAGE_S3_BUCKET: "${{project.AWS_BUCKET}}"
+      _APPWRITE_STORAGE_S3_ENDPOINT: "${{project.AWS_S3_ENDPOINT_URL}}"
+      _APPWRITE_STORAGE_S3_FORCE_PATH_STYLE: "true"
     expose:
       - 80
     volumes:

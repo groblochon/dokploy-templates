@@ -1,0 +1,62 @@
+[variables]
+main_domain = "${domain}"
+
+[config]
+[[config.domains]]
+serviceName = "firebase-emulators"
+port = 4000
+host = "firebase.${main_domain}"
+
+[[config.domains]]
+serviceName = "firebase-emulators"
+port = 9099
+host = "auth-firebase.${main_domain}"
+
+[[config.domains]]
+serviceName = "firebase-emulators"
+port = 8080
+host = "firestore-firebase.${main_domain}"
+
+[[config.domains]]
+serviceName = "firebase-emulators"
+port = 9199
+host = "storage-firebase.${main_domain}"
+
+[[config.domains]]
+serviceName = "firebase-emulators"
+port = 9399
+host = "data-firebase.${main_domain}"
+
+[[config.domains]]
+serviceName = "firebase-emulators"
+port = 8085
+host = "pubsub-firebase.${main_domain}"
+
+[[config.domains]]
+serviceName = "firebase-emulators"
+port = 5001
+host = "functions-firebase.${main_domain}"
+
+[config.env]
+# Firebase Project Configuration (using project variables)
+FIREBASE_PROJECT_ID = "${{project.FIREBASE_PROJECT_ID}}"
+FIREBASE_DATABASE_URL = "${{project.FIREBASE_DATABASE_URL}}"
+
+# Emulator Configuration
+FIREBASE_AUTH_EMULATOR_HOST = "0.0.0.0"
+FIREBASE_AUTH_EMULATOR_PORT = "9099"
+FIREBASE_FIRESTORE_EMULATOR_HOST = "0.0.0.0"
+FIREBASE_FIRESTORE_EMULATOR_PORT = "8080"
+FIREBASE_STORAGE_EMULATOR_HOST = "0.0.0.0"
+FIREBASE_STORAGE_EMULATOR_PORT = "9199"
+FIREBASE_UI_ENABLED = "true"
+FIREBASE_DATA_CONNECTOR_EMULATOR_HOST = "0.0.0.0"
+FIREBASE_DATA_CONNECTOR_EMULATOR_PORT = "9399"
+FIREBASE_PUBSUB_EMULATOR_HOST = "0.0.0.0"
+FIREBASE_PUBSUB_EMULATOR_PORT = "8085"
+FIREBASE_FUNCTIONS_EMULATOR_HOST = "0.0.0.0"
+FIREBASE_FUNCTIONS_EMULATOR_PORT = "5001"
+
+[[config.mounts]]
+volumeName = "firebase-data"
+mountPath = "/tmp/firebase-emulators"

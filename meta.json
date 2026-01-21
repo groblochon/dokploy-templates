@@ -1,5 +1,22 @@
 [
   {
+    "id": "actualbudget",
+    "name": "Actual Budget",
+    "version": "latest",
+    "description": "A super fast and privacy-focused app for managing your finances.",
+    "logo": "actualbudget.png",
+    "links": {
+      "github": "https://github.com/actualbudget/actual",
+      "website": "https://actualbudget.org",
+      "docs": "https://actualbudget.org/docs"
+    },
+    "tags": [
+      "budgeting",
+      "finance",
+      "money"
+    ]
+  },
+  {
     "id": "affine",
     "name": "Affine",
     "version": "stable",
@@ -257,6 +274,27 @@
       "diagrams",
       "drawing",
       "sketching"
+    ]
+  },
+  {
+    "id": "firebase",
+    "name": "Firebase Emulators",
+    "version": "18-alpine",
+    "description": "Local Firebase emulator suite including Auth, Firestore, Storage, Functions, Pub/Sub, and Data Connect. Perfect for development and testing Firebase applications.",
+    "logo": "firebase.svg",
+    "links": {
+      "github": "https://github.com/firebase/firebase-tools",
+      "website": "https://firebase.google.com/",
+      "docs": "https://firebase.google.com/docs/emulator-suite/install_and_configure"
+    },
+    "tags": [
+      "firebase",
+      "bosaas",
+      "authentication",
+      "database",
+      "storage",
+      "functions",
+      "emulator"
     ]
   },
   {
@@ -611,6 +649,26 @@
       "file-sharing",
       "productivity",
       "cloud"
+    ]
+  },
+  {
+    "id": "nhost",
+    "name": "Nhost",
+    "version": "latest",
+    "description": "Nhost is an open-source Firebase alternative that provides authentication, database, storage, and serverless functions with PostgreSQL foundation.",
+    "logo": "nhost.svg",
+    "links": {
+      "github": "https://github.com/nhost/nhost",
+      "website": "https://nhost.io/",
+      "docs": "https://nhost.io/docs/"
+    },
+    "tags": [
+      "firebase",
+      "bosaas",
+      "authentication",
+      "database",
+      "storage",
+      "functions"
     ]
   },
   {

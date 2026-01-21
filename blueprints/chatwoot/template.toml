@@ -29,7 +29,7 @@ SMTP_PASSWORD = "${{project.SMTP_PASSWORD}}"
 SMTP_AUTHENTICATION = "plain"
 SMTP_ENABLE_STARTTLS = "true"
 
-# Storage Configuration
+# S3 Configuration (using project variables)
 AWS_ACCESS_KEY_ID = "${{project.AWS_ACCESS_KEY_ID}}"
 AWS_SECRET_ACCESS_KEY = "${{project.AWS_SECRET_ACCESS_KEY}}"
 AWS_REGION = "${{project.AWS_REGION}}"

@@ -1,0 +1,20 @@
+{
+  "id": "nhost",
+  "name": "Nhost",
+  "version": "latest",
+  "description": "Nhost is an open-source Firebase alternative that provides authentication, database, storage, and serverless functions with PostgreSQL foundation.",
+  "logo": "nhost.svg",
+  "links": {
+    "github": "https://github.com/nhost/nhost",
+    "website": "https://nhost.io/",
+    "docs": "https://nhost.io/docs/"
+  },
+  "tags": [
+    "firebase",
+    "bosaas",
+    "authentication",
+    "database",
+    "storage",
+    "functions"
+  ]
+}

@@ -1,26 +1,34 @@
 services:
   odoo:
     image: odoo:17.0
-    container_name: odoo
     restart: unless-stopped
-    user: root
-    depends_on:
-      - supabase-db
     environment:
-      HOST: ${POSTGRES_HOST}
-      USER: postgres
-      PASSWORD: ${POSTGRES_PASSWORD}
-      # OpenAI Configuration (optional)
-      OPENAI_API_KEY: ${OPENAI_API_KEY}
-      OPENAI_API_BASE: ${OPENAI_API_BASE}
-      # S3 Configuration
-      AWS_ACCESS_KEY_ID: ${S3_ACCESS_KEY_ID}
-      AWS_SECRET_ACCESS_KEY: ${S3_SECRET_ACCESS_KEY}
-      AWS_STORAGE_BUCKET_NAME: ${S3_BUCKET}
-      AWS_S3_ENDPOINT_URL: ${S3_ENDPOINT}
-      AWS_S3_REGION_NAME: ${S3_REGION}
-    ports:
-      - "${PORT:-8069}:8069"
+      # Database Configuration (connect to external Supabase)
+      HOST: "${{project.POSTGRES_HOST}}"
+      USER: "postgres"
+      PASSWORD: "${{project.POSTGRES_PASSWORD}}"
+      # OpenAI Configuration (using project variables)
+      OPENAI_API_KEY: "${{project.OPENAI_API_KEY}}"
+      OPENAI_API_BASE: "${{project.OPENAI_API_BASE}}"
+      # S3 Configuration (using project variables)
+      AWS_ACCESS_KEY_ID: "${{project.AWS_ACCESS_KEY_ID}}"
+      AWS_SECRET_ACCESS_KEY: "${{project.AWS_SECRET_ACCESS_KEY}}"
+      AWS_STORAGE_BUCKET_NAME: "${{project.AWS_BUCKET}}"
+      AWS_S3_ENDPOINT_URL: "${{project.AWS_S3_ENDPOINT_URL}}"
+      AWS_S3_REGION_NAME: "${{project.AWS_REGION}}"
+      # Application Configuration
+      ODOO_RC: "/etc/odoo/odoo.conf"
+      ODOO_ADMIN_PASS: "${password:32}"
+      ODOO_DB_HOST: "${{project.POSTGRES_HOST}}"
+      ODOO_DB_PORT: "5432"
+      ODOO_DB_USER: "postgres"
+      ODOO_DB_PASSWORD: "${{project.POSTGRES_PASSWORD}}"
+      ODOO_DB_NAME: "odoo"
+      ODOO_DB_MAXCONN: "64"
+      ODOO_DB_TEMPLATE: "template0"
+      ODOO_DB_FILTER: "odoo"
+    expose:
+      - 8069
     volumes:
       - odoo-web-data:/var/lib/odoo
       - odoo-config:/etc/odoo
@@ -30,4 +38,3 @@ volumes:
   odoo-web-data:
   odoo-config:
   odoo-addons:
-  odoo-db-data:

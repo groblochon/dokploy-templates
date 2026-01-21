@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  firebase-emulators:
+    image: node:18-alpine
+    restart: unless-stopped
+    working_dir: /app
+    command: sh -c "npm install -g firebase-tools@latest && firebase emulators:start --project ${project.FIREBASE_PROJECT_ID}"
+    environment:
+      # Firebase Project Configuration
+      FIREBASE_PROJECT_ID: "${{project.FIREBASE_PROJECT_ID}}"
+      FIREBASE_DATABASE_URL: "${{project.FIREBASE_DATABASE_URL}}"
+      FIREBASE_AUTH_EMULATOR_HOST: "0.0.0.0"
+      FIREBASE_AUTH_EMULATOR_PORT: "9099"
+      FIREBASE_FIRESTORE_EMULATOR_HOST: "0.0.0.0"
+      FIREBASE_FIRESTORE_EMULATOR_PORT: "8080"
+      FIREBASE_STORAGE_EMULATOR_HOST: "0.0.0.0"
+      FIREBASE_STORAGE_EMULATOR_PORT: "9199"
+      FIREBASE_UI_ENABLED: "true"
+      FIREBASE_DATA_CONNECTOR_EMULATOR_HOST: "0.0.0.0"
+      FIREBASE_DATA_CONNECTOR_EMULATOR_PORT: "9399"
+      FIREBASE_PUBSUB_EMULATOR_HOST: "0.0.0.0"
+      FIREBASE_PUBSUB_EMULATOR_PORT: "8085"
+      FIREBASE_FUNCTIONS_EMULATOR_HOST: "0.0.0.0"
+      FIREBASE_FUNCTIONS_EMULATOR_PORT: "5001"
+    expose:
+      - "9099"  # Auth
+      - "8080"  # Firestore
+      - "9199"  # Storage
+      - "9399"  # Data Connector
+      - "8085"  # Pub/Sub
+      - "5001"  # Functions
+      - "4000"  # Firebase UI
+    volumes:
+      - firebase-data:/tmp/firebase-emulators
+
+volumes:
+  firebase-data:

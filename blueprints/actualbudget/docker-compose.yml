@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  actualbudget:
+    image: actualbudget/actual:latest
+    restart: unless-stopped
+    environment:
+      # Database Configuration (connect to external Supabase)
+      ACTUAL_DATABASE_URL: postgresql://postgres:${{project.POSTGRES_PASSWORD}}@${{project.POSTGRES_HOST}}:5432/${{project.POSTGRES_DB}}
+      # S3 Configuration (using project variables)
+      AWS_ACCESS_KEY_ID: "${{project.AWS_ACCESS_KEY_ID}}"
+      AWS_SECRET_ACCESS_KEY: "${{project.AWS_SECRET_ACCESS_KEY}}"
+      AWS_REGION: "${{project.AWS_REGION}}"
+      AWS_BUCKET: "${{project.AWS_BUCKET}}"
+      AWS_S3_FORCE_PATH_STYLE: "true"
+      # Application Configuration
+      HTTP_PORT: "5006"
+      ACTUAL_TRUST_PROXY: "1"
+      # Password Configuration
+      PASSWORD_ENCRYPTION_KEY: "${password:32}"
+    expose:
+      - 5006
+    volumes:
+      - actualbudget-data:/app/data
+      - actualbudget-uploads:/app/uploads
+
+volumes:
+  actualbudget-data:
+  actualbudget-uploads:
