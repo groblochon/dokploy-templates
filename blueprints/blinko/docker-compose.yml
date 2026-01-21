@@ -20,5 +20,4 @@ services:
       start_period: 30s
 
 volumes:
-  blinko-data:
-    name: blinko-data
+  blinko-data: {}
