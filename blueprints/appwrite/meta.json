@@ -1,8 +1,8 @@
 {
   "id": "appwrite",
   "name": "Appwrite",
-  "version": "1.5.0",
-  "description": "Collaborative note-taking and document platform",
+  "version": "1.8.0",
+  "description": "Appwrite is an end-to-end platform for building Web, Mobile, Native, or Backend apps, packaged as a set of Docker microservices. It includes both a backend server and a fully integrated hosting solution for deploying static and server-side rendered frontends.",
   "logo": "appwrite.svg",
   "links": {
     "github": "https://github.com/appwrite/appwrite",
@@ -10,9 +10,10 @@
     "docs": "https://appwrite.io/docs"
   },
   "tags": [
-    "note-taking",
-    "collaboration",
-    "documents",
-    "realtime"
+    "database",
+    "firebase",
+    "mariadb",
+    "hosting",
+    "self-hosted"
   ]
 }

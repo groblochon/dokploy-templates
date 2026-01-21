@@ -1,23 +1,22 @@
 services:
   appwrite:
-    image: appwrite/appwrite:1.5.0
-    container_name: appwrite
+    image: appwrite/appwrite:1.8.0
     restart: unless-stopped
     environment:
       # Database Configuration (connect to external Supabase)
-      _APPWRITE_DB_DATA_SOURCE: postgresql://postgres:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:5432/${POSTGRES_DB}
+      APPWRITE_DB_DATA_SOURCE: postgresql://postgres:${{project.POSTGRES_PASSWORD}}@${{project.POSTGRES_HOST}}:5432/${{project.POSTGRES_DB}}
       _APPWRITE_DB_DATA_SOURCE_TABLE: appwrite
       # OpenAI Configuration
-      _APPWRITE_OPENAI_API_KEY: ${OPENAI_API_KEY}
-      _APPWRITE_OPENAI_BASE_URL: ${OPENAI_API_BASE}
-    ports:
-      - "${PORT:-80}:80"
-      - "${PORT_HTTP:-80}:80"
-      - "${PORT_REALTIME:-80}:80"
+      APPWRITE_OPENAI_API_KEY: "${{project.OPENAI_API_KEY}}"
+      APPWRITE_OPENAI_BASE_URL: "${{project.OPENAI_API_BASE}}"
+      # Encryption Keys
+      _APPWRITE_ENCRYPTION_KEY: "${password:32}"
+      _APPWRITE_OPENSSL_KEY_V1: "${password:32}"
+      _APPWRITE_RSA_KEY_V1: "${password:32}"
+    expose:
+      - 80
     volumes:
       - appwrite-uploads:/var/www/appwrite
-    depends_on:
-      - supabase-db
 
 volumes:
   appwrite-uploads:

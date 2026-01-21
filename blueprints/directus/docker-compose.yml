@@ -1,0 +1,49 @@
+version: "3.8"
+
+services:
+  directus:
+    image: directus/directus:10.11.1
+    restart: unless-stopped
+    environment:
+      # Database Configuration (connect to external Supabase)
+      DB_CLIENT: "pg"
+      DB_HOST: "${{project.POSTGRES_HOST}}"
+      DB_PORT: "5432"
+      DB_DATABASE: "${{project.POSTGRES_DB}}"
+      DB_USER: "postgres"
+      DB_PASSWORD: "${{project.POSTGRES_PASSWORD}}"
+      # Cache Configuration
+      CACHE_DRIVER: "redis"
+      CACHE_REDIS: "redis://redis:6379"
+      # Security Keys
+      KEY_SECRET: "${password:32}"
+      KEY_PUBLIC: "${password:32}"
+      # Access Configuration
+      PUBLIC_URL: "https://directus.${main_domain}"
+      # Email Configuration
+      EMAIL_TRANSPORT: "smtp"
+      EMAIL_SMTP_HOST: "${{project.SMTP_HOST}}"
+      EMAIL_SMTP_PORT: "${{project.SMTP_PORT}}"
+      EMAIL_SMTP_USER: "${{project.SMTP_USERNAME}}"
+      EMAIL_SMTP_PASS: "${{project.SMTP_PASSWORD}}"
+      EMAIL_FROM: "${{project.EMAIL_FROM}}"
+      # S3 Configuration (using project variables)
+      STORAGE_LOCATIONS: "s3"
+      STORAGE_S3_BUCKET: "${{project.AWS_BUCKET}}"
+      STORAGE_S3_REGION: "${{project.AWS_REGION}}"
+      STORAGE_S3_KEY: "${{project.AWS_ACCESS_KEY_ID}}"
+      STORAGE_S3_SECRET: "${{project.AWS_SECRET_ACCESS_KEY}}"
+      STORAGE_S3_ENDPOINT: "${{project.AWS_S3_ENDPOINT_URL}}"
+    expose:
+      - 8055
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    volumes:
+      - directus-redis:/data
+
+volumes:
+  directus-redis:

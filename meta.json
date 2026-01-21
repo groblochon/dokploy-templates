@@ -58,8 +58,8 @@
   {
     "id": "appwrite",
     "name": "Appwrite",
-    "version": "1.5.0",
-    "description": "Collaborative note-taking and document platform",
+    "version": "1.8.0",
+    "description": "Appwrite is an end-to-end platform for building Web, Mobile, Native, or Backend apps, packaged as a set of Docker microservices. It includes both a backend server and a fully integrated hosting solution for deploying static and server-side rendered frontends.",
     "logo": "appwrite.svg",
     "links": {
       "github": "https://github.com/appwrite/appwrite",
@@ -67,10 +67,11 @@
       "docs": "https://appwrite.io/docs"
     },
     "tags": [
-      "note-taking",
-      "collaboration",
-      "documents",
-      "realtime"
+      "database",
+      "firebase",
+      "mariadb",
+      "hosting",
+      "self-hosted"
     ]
   },
   {
@@ -130,6 +131,41 @@
     ]
   },
   {
+    "id": "budibase",
+    "name": "Budibase",
+    "version": "3.5.3",
+    "description": "Budibase is an open-source low-code platform that saves engineers 100s of hours building forms, portals, and approval apps, securely.",
+    "logo": "budibase.svg",
+    "links": {
+      "github": "https://github.com/Budibase/budibase",
+      "website": "https://budibase.com/",
+      "docs": "https://docs.budibase.com/docs/"
+    },
+    "tags": [
+      "database",
+      "low-code",
+      "nocode",
+      "applications"
+    ]
+  },
+  {
+    "id": "chatwoot",
+    "name": "Chatwoot",
+    "version": "v3.14.1",
+    "description": "Open-source customer engagement platform that provides a shared inbox for teams, live chat, and omnichannel support.",
+    "logo": "chatwoot.svg",
+    "links": {
+      "github": "https://github.com/chatwoot/chatwoot",
+      "website": "https://www.chatwoot.com",
+      "docs": "https://www.chatwoot.com/docs"
+    },
+    "tags": [
+      "support",
+      "chat",
+      "customer-service"
+    ]
+  },
+  {
     "id": "clickhouse",
     "name": "ClickHouse",
     "version": "latest",
@@ -184,6 +220,24 @@
       "workflow",
       "platform",
       "development"
+    ]
+  },
+  {
+    "id": "directus",
+    "name": "Directus",
+    "version": "10.11.1",
+    "description": "Directus is a flexible data platform that wraps SQL databases with a real-time API and intuitive admin app.",
+    "logo": "directus.svg",
+    "links": {
+      "github": "https://github.com/directus/directus",
+      "website": "https://directus.io/",
+      "docs": "https://docs.directus.io/"
+    },
+    "tags": [
+      "cms",
+      "headless",
+      "api",
+      "database"
     ]
   },
   {

@@ -1,0 +1,68 @@
+version: "3.8"
+
+services:
+  chatwoot:
+    image: chatwoot/chatwoot:v3.14.1
+    restart: unless-stopped
+    environment:
+      # Database Configuration (connect to external Supabase)
+      DATABASE_URL: postgresql://postgres:${{project.POSTGRES_PASSWORD}}@${{project.POSTGRES_HOST}}:5432/${{project.POSTGRES_DB}}
+      # Frontend URL
+      FORCE_SSL: "true"
+      FRONTEND_URL: "https://chatwoot.${main_domain}"
+      # Redis Configuration
+      REDIS_URL: redis://redis:6379
+      # Email Configuration
+      MAILER_SENDER_EMAIL: "${{project.EMAIL_FROM}}"
+      MAILER_DELIVERY_METHOD: "smtp"
+      SMTP_DOMAIN: "${{project.SMTP_HOST}}"
+      SMTP_ADDRESS: "${{project.SMTP_HOST}}"
+      SMTP_PORT: "${{project.SMTP_PORT}}"
+      SMTP_USERNAME: "${{project.SMTP_USERNAME}}"
+      SMTP_PASSWORD: "${{project.SMTP_PASSWORD}}"
+      SMTP_AUTHENTICATION: "plain"
+      SMTP_ENABLE_STARTTLS: "true"
+      # S3 Configuration (using project variables)
+      AWS_ACCESS_KEY_ID: "${{project.AWS_ACCESS_KEY_ID}}"
+      AWS_SECRET_ACCESS_KEY: "${{project.AWS_SECRET_ACCESS_KEY}}"
+      AWS_REGION: "${{project.AWS_REGION}}"
+      AWS_BUCKET: "${{project.AWS_BUCKET}}"
+      # Application Configuration
+      RAILS_ENV: "production"
+      RAILS_LOG_TO_STDOUT: "true"
+      RAILS_SERVE_STATIC_FILES: "true"
+    expose:
+      - 3000
+    depends_on:
+      - redis
+    volumes:
+      - chatwoot-storage:/app/storage
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    volumes:
+      - chatwoot-redis:/data
+
+  sidekiq:
+    image: chatwoot/chatwoot:v3.14.1
+    restart: unless-stopped
+    environment:
+      # Same configuration as main service
+      DATABASE_URL: postgresql://postgres:${{project.POSTGRES_PASSWORD}}@${{project.POSTGRES_HOST}}:5432/${{project.POSTGRES_DB}}
+      REDIS_URL: redis://redis:6379
+      # S3 Configuration (using project variables)
+      AWS_ACCESS_KEY_ID: "${{project.AWS_ACCESS_KEY_ID}}"
+      AWS_SECRET_ACCESS_KEY: "${{project.AWS_SECRET_ACCESS_KEY}}"
+      AWS_REGION: "${{project.AWS_REGION}}"
+      AWS_BUCKET: "${{project.AWS_BUCKET}}"
+    command: bundle exec sidekiq -C config/sidekiq.yml
+    depends_on:
+      - redis
+      - chatwoot
+    volumes:
+      - chatwoot-storage:/app/storage
+
+volumes:
+  chatwoot-storage:
+  chatwoot-redis:

@@ -1,0 +1,49 @@
+[variables]
+main_domain = "${domain}"
+
+[config]
+[[config.domains]]
+serviceName = "chatwoot"
+port = 3000
+host = "chatwoot.${main_domain}"
+
+[config.env]
+# Database Configuration (connect to external Supabase)
+DATABASE_URL = "postgresql://postgres:${{project.POSTGRES_PASSWORD}}@${{project.POSTGRES_HOST}}:5432/${{project.POSTGRES_DB}}"
+
+# Frontend URL
+FORCE_SSL = "true"
+FRONTEND_URL = "https://chatwoot.${main_domain}"
+
+# Redis Configuration
+REDIS_URL = "redis://redis:6379"
+
+# Email Configuration
+MAILER_SENDER_EMAIL = "${{project.EMAIL_FROM}}"
+MAILER_DELIVERY_METHOD = "smtp"
+SMTP_DOMAIN = "${{project.SMTP_HOST}}"
+SMTP_ADDRESS = "${{project.SMTP_HOST}}"
+SMTP_PORT = "${{project.SMTP_PORT}}"
+SMTP_USERNAME = "${{project.SMTP_USERNAME}}"
+SMTP_PASSWORD = "${{project.SMTP_PASSWORD}}"
+SMTP_AUTHENTICATION = "plain"
+SMTP_ENABLE_STARTTLS = "true"
+
+# Storage Configuration
+AWS_ACCESS_KEY_ID = "${{project.AWS_ACCESS_KEY_ID}}"
+AWS_SECRET_ACCESS_KEY = "${{project.AWS_SECRET_ACCESS_KEY}}"
+AWS_REGION = "${{project.AWS_REGION}}"
+AWS_BUCKET = "${{project.AWS_BUCKET}}"
+
+# Application Configuration
+RAILS_ENV = "production"
+RAILS_LOG_TO_STDOUT = "true"
+RAILS_SERVE_STATIC_FILES = "true"
+
+[[config.mounts]]
+volumeName = "chatwoot-storage"
+mountPath = "/app/storage"
+
+[[config.mounts]]
+volumeName = "chatwoot-redis"
+mountPath = "/data"

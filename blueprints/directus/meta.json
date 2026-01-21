@@ -1,0 +1,18 @@
+{
+  "id": "directus",
+  "name": "Directus",
+  "version": "10.11.1",
+  "description": "Directus is a flexible data platform that wraps SQL databases with a real-time API and intuitive admin app.",
+  "logo": "directus.svg",
+  "links": {
+    "github": "https://github.com/directus/directus",
+    "website": "https://directus.io/",
+    "docs": "https://docs.directus.io/"
+  },
+  "tags": [
+    "cms",
+    "headless",
+    "api",
+    "database"
+  ]
+}

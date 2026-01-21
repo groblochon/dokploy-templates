@@ -1,0 +1,45 @@
+version: "3.8"
+
+services:
+  budibase:
+    image: budibase/budibase:3.5.3
+    restart: unless-stopped
+    environment:
+      # Database Configuration (connect to external Supabase)
+      DATABASE_URL: postgresql://postgres:${{project.POSTGRES_PASSWORD}}@${{project.POSTGRES_HOST}}:5432/${{project.POSTGRES_DB}}
+      # Internal Redis for caching
+      REDIS_URL: redis://redis:6379
+      # App Configuration
+      JWT_SECRET: "${password:32}"
+      # S3 Configuration (using project variables)
+      AWS_ACCESS_KEY_ID: "${{project.AWS_ACCESS_KEY_ID}}"
+      AWS_SECRET_ACCESS_KEY: "${{project.AWS_SECRET_ACCESS_KEY}}"
+      AWS_REGION: "${{project.AWS_REGION}}"
+      AWS_BUCKET: "${{project.AWS_BUCKET}}"
+      AWS_S3_FORCE_PATH_STYLE: "true"
+      AWS_S3_ENDPOINT_URL: "${{project.AWS_S3_ENDPOINT_URL}}"
+      # OpenAI Configuration
+      OPEN_AI_API_KEY: "${{project.OPENAI_API_KEY}}"
+      OPEN_AI_API_URL: "${{project.OPENAI_API_BASE}}"
+      # Email Configuration
+      SMTP_HOST: "${{project.SMTP_HOST}}"
+      SMTP_PORT: "${{project.SMTP_PORT}}"
+      SMTP_USER: "${{project.SMTP_USERNAME}}"
+      SMTP_PASS: "${{project.SMTP_PASSWORD}}"
+      SMTP_SECURE: "true"
+    expose:
+      - 3000
+    depends_on:
+      - redis
+    volumes:
+      - budibase-data:/data
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    volumes:
+      - budibase-redis:/data
+
+volumes:
+  budibase-data:
+  budibase-redis:
