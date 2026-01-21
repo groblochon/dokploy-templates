@@ -19,3 +19,12 @@ OPENAI_API_KEY = "${{project.OPENAI_API_KEY}}"
 
 # Crawl4AI Configuration (connect to external service)
 CRAWL4AI_URL = "${{project.CRAWL4AI_URL}}"
+
+# Additional Archon Configuration (commented - uncomment if needed)
+# LOGFIRE_TOKEN = "${{project.LOGFIRE_TOKEN}}"
+# SERVICE_DISCOVERY_MODE = "dokploy"
+# LOG_LEVEL = "INFO"
+# ARCHON_SERVER_PORT = "8181"
+# ARCHON_MCP_PORT = "8051"
+# ARCHON_AGENTS_PORT = "8052"
+# AGENTS_ENABLED = "false"

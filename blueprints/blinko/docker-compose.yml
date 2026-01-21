@@ -10,8 +10,8 @@ services:
       # OpenAI Configuration (optional)
       OPENAI_API_KEY: ${OPENAI_API_KEY}
       OPENAI_API_BASE: ${OPENAI_API_BASE}
-    ports:
-      - 1111:1111
+    expose:
+      - 1111
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://blinko:1111/" ]
       interval: 30s

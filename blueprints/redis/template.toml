@@ -1,8 +1,18 @@
+[variables]
+main_domain = "${domain}"
+redis_password = "${password:32}"
+
 [config]
 [[config.domains]]
 serviceName = "redis"
 port = 6379
 host = "redis.${main_domain}"
+
+[config.env]
+# Redis Configuration
+REDIS_PASSWORD = "${redis_password}"
+# Project variable for external connections (used by other services)
+# REDIS_URL = "redis://:${redis_password}@redis.${main_domain}:6379"
 
 [[config.mounts]]
 volumeName = "redis-data"

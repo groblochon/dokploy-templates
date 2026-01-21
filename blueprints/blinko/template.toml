@@ -24,3 +24,4 @@ OPENAI_API_KEY = "${{project.OPENAI_API_KEY}}"
 [[config.mounts]]
 volumeName = "blinko-data"
 mountPath = "/app/.blinko"
+

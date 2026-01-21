@@ -25,4 +25,4 @@ services:
       - SYS_ADMIN
 
 volumes:
-  anythingllm-data:
+  anythingllm-data: {}

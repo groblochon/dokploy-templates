@@ -8,14 +8,15 @@ port = 3000
 host = "budibase.${main_domain}"
 
 [config.env]
-# Database Configuration (connect to external Supabase)
+# Database Configuration (connect to external PostgreSQL)
 DATABASE_URL = "postgresql://postgres:${{project.POSTGRES_PASSWORD}}@${{project.POSTGRES_HOST}}:5432/${{project.POSTGRES_DB}}"
 
-# External Redis for caching
+# External Redis for caching and sessions
 REDIS_URL = "${{project.REDIS_URL}}"
 
 # App Configuration
 JWT_SECRET = "${password:32}"
+
 # S3 Configuration (using project variables)
 AWS_ACCESS_KEY_ID = "${{project.S3_ACCESS_KEY_ID}}"
 AWS_SECRET_ACCESS_KEY = "${{project.S3_SECRET_ACCESS_KEY}}"
@@ -24,16 +25,24 @@ AWS_BUCKET = "${{project.S3_BUCKET}}"
 AWS_S3_FORCE_PATH_STYLE = "true"
 AWS_S3_ENDPOINT_URL = "${{project.S3_ENDPOINT}}"
 
-# OpenAI Configuration
-OPEN_AI_API_KEY = "${{project.OPENAI_API_KEY}}"
-OPEN_AI_API_URL = "${{project.OPENAI_API_BASE}}"
+# OpenAI Configuration (for AI features)
+OPEN_AI_API_KEY = "${{project.OPEN_AI_API_KEY}}"
+OPEN_AI_API_URL = "${{project.OPEN_AI_API_BASE}}"
 
-# Email Configuration
+# Email Configuration (for notifications and user management)
 SMTP_HOST = "${{project.SMTP_HOST}}"
 SMTP_PORT = "${{project.SMTP_PORT}}"
 SMTP_USER = "${{project.SMTP_USERNAME}}"
 SMTP_PASS = "${{project.SMTP_PASSWORD}}"
 SMTP_SECURE = "true"
+
+# Additional Budibase Configuration (commented - uncomment if needed)
+# BUDIBASE_LOG_LEVEL = "info"
+# BUDIBASE_PORT = "3000"
+# BUDIBASE_ENVIRONMENT = "production"
+# BUDIBASE_CHECK_FOR_UPDATES = "true"
+# BUDIBASE_ENABLE_PUBLIC_PLUGINS = "false"
+# BUDIBASE_PLUGINS_CDN_URL = "https://cdn.budi.ba"
 
 [[config.mounts]]
 volumeName = "budibase-data"
