@@ -22,8 +22,13 @@ service_role_key_payload = """{
 
 [[config.domains]]
 serviceName = "kong"
-port = 8_000
-host = "${main_domain}"
+port = 8000
+host = "api.${main_domain}"
+
+[[config.domains]]
+serviceName = "supabase"
+port = 3000
+host = "supabase.${main_domain}"
 
 [config]
 env = [
@@ -101,11 +106,11 @@ env = [
 '############',
 '',
 '## General',
-'SITE_URL=http://localhost:3000',
-'ADDITIONAL_REDIRECT_URLS=http://${main_domain}/*,http://localhost:3000/*',
+'SITE_URL=https://supabase.ia.nos.bzh',
+'ADDITIONAL_REDIRECT_URLS=https://supabase.ia.nos.bzh/*,https://${main_domain}/*,http://${main_domain}/*,http://127.0.0.1:3000/*',
 'JWT_EXPIRY=3600',
 'DISABLE_SIGNUP=false',
-'API_EXTERNAL_URL=http://${main_domain}',
+'API_EXTERNAL_URL=https://supabase.ia.nos.bzh',
 '',
 '## Mailer Config',
 'MAILER_URLPATHS_CONFIRMATION="/auth/v1/verify"',
@@ -138,13 +143,13 @@ env = [
 '',
 'STUDIO_PORT=3000',
 '# replace if you intend to use Studio outside of localhost',
-'SUPABASE_PUBLIC_URL=http://${main_domain}',
+'SUPABASE_PUBLIC_URL=https://supabase.ia.nos.bzh,
 '',
 '# Enable webp support',
 'IMGPROXY_ENABLE_WEBP_DETECTION=true',
 '',
 '# Add your OpenAI API key to enable SQL Editor Assistant',
-'OPENAI_API_KEY=',
+'OPENAI_API_KEY=${project.OPENAI_API_KEY}',
 '',
 '',
 '############',
