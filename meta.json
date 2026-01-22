@@ -752,19 +752,6 @@
     "logo": "opencode.png"
   },
   {
-    "id": "openwebui",
-    "name": "Openwebui",
-    "version": "latest",
-    "description": "Openwebui application deployment template",
-    "links": {
-      "github": "https://github.com/openwebui/openwebui"
-    },
-    "tags": [
-      "openwebui"
-    ],
-    "logo": "openwebui.png"
-  },
-  {
     "id": "outlinewiki",
     "name": "Outlinewiki",
     "version": "main",
