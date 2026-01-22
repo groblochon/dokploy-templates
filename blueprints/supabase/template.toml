@@ -20,7 +20,6 @@ service_role_key_payload = """{
 }
 """
 
-[config]
 [[config.domains]]
 serviceName = "kong"
 port = 8000
@@ -31,6 +30,7 @@ serviceName = "supabase"
 port = 3000
 host = "supabase.${main_domain}"
 
+[config]
 env = [
 '############',
 '# To get a proper working configuration you should at least take a look at:',
