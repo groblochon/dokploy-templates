@@ -23,12 +23,17 @@ service_role_key_payload = """{
 [[config.domains]]
 serviceName = "kong"
 port = 8000
-host = "api.${main_domain}"
+host = "api-supabase.${main_domain}"
 
 [[config.domains]]
-serviceName = "supabase"
+serviceName = "studio"
 port = 3000
 host = "supabase.${main_domain}"
+
+[[config.domains]]
+serviceName = "auth"
+port = 9999
+host = "auth-supabase.${main_domain}"
 
 [config]
 env = [
@@ -107,10 +112,10 @@ env = [
 '',
 '## General',
 'SITE_URL=https://supabase.ia.nos.bzh',
-'ADDITIONAL_REDIRECT_URLS=https://supabase.ia.nos.bzh/*,https://${main_domain}/*,http://${main_domain}/*,http://127.0.0.1:3000/*',
+'ADDITIONAL_REDIRECT_URLS=https://api-supabase.ia.nos.bzh/*https://supabase.ia.nos.bzh/*,https://${main_domain}/*,http://${main_domain}/*,http://127.0.0.1:3000/*',
 'JWT_EXPIRY=3600',
 'DISABLE_SIGNUP=false',
-'API_EXTERNAL_URL=https://supabase.ia.nos.bzh',
+'API_EXTERNAL_URL=https://api-supabase.ia.nos.bzh',
 '',
 '## Mailer Config',
 'MAILER_URLPATHS_CONFIRMATION="/auth/v1/verify"',
