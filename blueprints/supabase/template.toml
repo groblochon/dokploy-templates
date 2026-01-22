@@ -154,7 +154,7 @@ env = [
 'IMGPROXY_ENABLE_WEBP_DETECTION=true',
 '',
 '# Add your OpenAI API key to enable SQL Editor Assistant',
-'OPENAI_API_KEY=${project.OPENAI_API_KEY}',
+'OPENAI_API_KEY=${{project.OPENAI_API_KEY}}',
 '',
 '',
 '############',
