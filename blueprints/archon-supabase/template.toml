@@ -123,7 +123,7 @@ PGRST_DB_SCHEMAS="public,storage,graphql_public"
 
 ## General
 SITE_URL="https://supabase.${main_domain}"
-ADDITIONAL_REDIRECT_URLS=
+#ADDITIONAL_REDIRECT_URLS=
 JWT_EXPIRY=3600
 DISABLE_SIGNUP=false
 API_EXTERNAL_URL="https://api-supabase.${main_domain}"
