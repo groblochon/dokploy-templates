@@ -6,6 +6,9 @@ logflare_api_key = "${password:32}"
 secret_key_base = "${password:64}"
 vault_enc_key = "${password:32}"
 jwt_secret = "${password:32}"
+pooler_tenant_id = "${password:32}"
+logflare_public_access_token="${password:32}"
+logflare_private_access_token="${password:32}"
 container_name_prefix = "supabase"
 anon_key_payload = """{
   "role": "anon",
@@ -77,8 +80,8 @@ VAULT_ENC_KEY="${vault_enc_key}"
 # Database - You can change these to any PostgreSQL database that has logical replication enabled.
 ############
 
-POSTGRES_HOST=db
-POSTGRES_DB=postgres
+POSTGRES_HOST="db"
+POSTGRES_DB="postgres"
 POSTGRES_PORT=5432
 # default user is postgres
 
@@ -93,7 +96,7 @@ POOLER_DEFAULT_POOL_SIZE=20
 # Maximum number of client connections Supavisor accepts per pool
 POOLER_MAX_CLIENT_CONN=100
 # Unique tenant identifier
-POOLER_TENANT_ID=your-tenant-id
+POOLER_TENANT_ID="${pooler_tenant_id}"
 # Pool size for internal metadata storage used by Supavisor
 # This is separate from client connections and used only by Supavisor itself
 POOLER_DB_POOL_SIZE=5
@@ -111,7 +114,7 @@ KONG_HTTPS_PORT=8443
 # API - Configuration for PostgREST.
 ############
 
-PGRST_DB_SCHEMAS=public,storage,graphql_public
+PGRST_DB_SCHEMAS="public,storage,graphql_public"
 
 
 ############
@@ -134,12 +137,12 @@ MAILER_URLPATHS_EMAIL_CHANGE="/auth/v1/verify"
 ## Email auth
 ENABLE_EMAIL_SIGNUP=true
 ENABLE_EMAIL_AUTOCONFIRM=false
-SMTP_ADMIN_EMAIL=admin@example.com
-SMTP_HOST=supabase-mail
+SMTP_ADMIN_EMAIL="admin@example.com"
+SMTP_HOST="supabase-mail"
 SMTP_PORT=2500
-SMTP_USER=fake_mail_user
-SMTP_PASS=fake_mail_password
-SMTP_SENDER_NAME=fake_sender
+SMTP_USER="fake_mail_user"
+SMTP_PASS="fake_mail_password"
+SMTP_SENDER_NAME="fake_sender"
 ENABLE_ANONYMOUS_USERS=false
 
 ## Phone auth
@@ -151,8 +154,8 @@ ENABLE_PHONE_AUTOCONFIRM=true
 # Studio - Configuration for the Dashboard
 ############
 
-STUDIO_DEFAULT_ORGANIZATION=Default Organization
-STUDIO_DEFAULT_PROJECT=Default Project
+STUDIO_DEFAULT_ORGANIZATION="Default Organization"
+STUDIO_DEFAULT_PROJECT="Default Project"
 
 STUDIO_PORT=3000
 # replace if you intend to use Studio outside of localhost
@@ -162,7 +165,7 @@ SUPABASE_PUBLIC_URL="https://supabase.${main_domain}"
 IMGPROXY_ENABLE_WEBP_DETECTION=true
 
 # Add your OpenAI API key to enable SQL Editor Assistant (optional)
-OPENAI_API_KEY=${{project.OPENAI_API_KEY}}
+OPENAI_API_KEY="${{project.OPENAI_API_KEY}}"
 
 
 ############
@@ -179,8 +182,8 @@ FUNCTIONS_VERIFY_JWT=false
 
 # Change vector.toml sinks to reflect this change
 # these cannot be the same value
-# LOGFLARE_PUBLIC_ACCESS_TOKEN=your-super-secret-and-long-logflare-key-public
-# LOGFLARE_PRIVATE_ACCESS_TOKEN=your-super-secret-and-long-logflare-key-private
+LOGFLARE_PUBLIC_ACCESS_TOKEN="${logflare_public_access_token}"
+LOGFLARE_PRIVATE_ACCESS_TOKEN="${logflare_private_access_token}"
 
 # Docker socket location - this value will differ depending on your OS
 DOCKER_SOCKET_LOCATION=/var/run/docker.sock
