@@ -428,8 +428,8 @@ services:
 
   archon-server:
     build:
-      context: ./archon/python
-      dockerfile: Dockerfile.server
+      context: https://github.com/coleam00/Archon.git#stable
+      dockerfile: python/Dockerfile.server
       args:
         BUILDKIT_INLINE_CACHE: 1
         ARCHON_SERVER_PORT: ${ARCHON_SERVER_PORT:-8181}
@@ -485,8 +485,8 @@ services:
 
   archon-mcp:
     build:
-      context: ./archon/python
-      dockerfile: Dockerfile.mcp
+      context: https://github.com/coleam00/Archon.git#stable
+      dockerfile: python/Dockerfile.mcp
       args:
         BUILDKIT_INLINE_CACHE: 1
         ARCHON_MCP_PORT: ${ARCHON_MCP_PORT:-8051}
@@ -528,8 +528,8 @@ services:
 
   archon-agents:
     build:
-      context: ./archon/python
-      dockerfile: Dockerfile.agents
+      context: https://github.com/coleam00/Archon.git#stable
+      dockerfile: python/Dockerfile.agents
       args:
         BUILDKIT_INLINE_CACHE: 1
         ARCHON_AGENTS_PORT: ${ARCHON_AGENTS_PORT:-8052}
@@ -564,7 +564,9 @@ services:
         condition: service_healthy
 
   frontend:
-    build: ./archon/archon-ui-main
+    build:
+      context: https://github.com/coleam00/Archon.git#stable
+      dockerfile: archon-ui-main/Dockerfile
     container_name: Archon-UI
     ports:
       - "${ARCHON_UI_PORT:-3737}:5173"
