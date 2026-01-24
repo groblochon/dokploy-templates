@@ -207,7 +207,7 @@ ARCHON_UI_PORT=3737
 HOST="archon.${main_domain}"
 
 # Optional: OpenAI API key for Archon AI features (can be configured via UI)
-OPENAI_API_KEY="${{project.OPENAI_API_KEY}}"
+#OPENAI_API_KEY="${{project.OPENAI_API_KEY}}"
 
 # Optional: Logfire token for observability
 # LOGFIRE_TOKEN=your-logfire-token
