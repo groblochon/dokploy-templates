@@ -44,7 +44,7 @@ services:
       DEFAULT_PROJECT_NAME: ${STUDIO_DEFAULT_PROJECT}
       OPENAI_API_KEY: ${OPENAI_API_KEY:-}
       SUPABASE_URL: http://kong:8000
-      SUPABASE_PUBLIC_URL: ${SUPABASE_PUBLIC_URL}
+      SUPABASE_PUBLIC_URL: supabase.${MAIN_DOMAIN}
       SUPABASE_ANON_KEY: ${ANON_KEY}
       SUPABASE_SERVICE_KEY: ${SERVICE_ROLE_KEY}
       AUTH_JWT_SECRET: ${JWT_SECRET}
@@ -550,9 +550,9 @@ services:
     ports:
       - "${ARCHON_UI_PORT:-3737}:5173"
     environment:
-      - VITE_API_URL=http://${HOST:-frontend}:${ARCHON_SERVER_PORT:-8181}
+      - VITE_API_URL=https://archon.${MAIN_DOMAIN}
       - ARCHON_SERVER_PORT=${ARCHON_SERVER_PORT:-8181}
-      - HOST=archon.${main_domain}
+      - HOST=archon.${MAIN_DOMAIN}
     healthcheck:
       test: ["CMD", "curl", "-f", "http://frontend:3737"]
       interval: 30s

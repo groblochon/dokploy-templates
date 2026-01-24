@@ -26,22 +26,22 @@ service_role_key_payload = """{
 [[config.domains]]
 serviceName = "frontend"
 port = 3737
-host = "archon.${main_domain}"
+host = "archon.${MAIN_DOMAIN}"
 
 [[config.domains]]
 serviceName = "kong"
 port = 8000
-host = "api-supabase.${main_domain}"
+host = "api-supabase.${MAIN_DOMAIN}"
 
 [[config.domains]]
 serviceName = "studio"
 port = 3000
-host = "supabase.${main_domain}"
+host = "supabase.${MAIN_DOMAIN}"
 
 [[config.domains]]
 serviceName = "auth"
 port = 9999
-host = "auth-supabase.${main_domain}"
+host = "auth-supabase.${MAIN_DOMAIN}"
 
 [config.env]
 ############
@@ -121,11 +121,11 @@ PGRST_DB_SCHEMAS="public,storage,graphql_public"
 ############
 
 ## General
-SITE_URL="https://supabase.${main_domain}"
-ADDITIONAL_REDIRECT_URLS="https://supabase.${main_domain}"
+SITE_URL="https://supabase.${{project.MAIN_DOMAIN}}"
+ADDITIONAL_REDIRECT_URLS="https://supabase.${{project.MAIN_DOMAIN}}"
 JWT_EXPIRY=3600
 DISABLE_SIGNUP=false
-API_EXTERNAL_URL="https://api-supabase.${main_domain}"
+API_EXTERNAL_URL="https://api-supabase.${{project.MAIN_DOMAIN}}"
 
 ## Mailer Config
 MAILER_URLPATHS_CONFIRMATION="/auth/v1/verify"
@@ -158,7 +158,7 @@ STUDIO_DEFAULT_PROJECT="Default Project"
 
 STUDIO_PORT=3000
 # replace if you intend to use Studio outside of localhost
-SUPABASE_PUBLIC_URL="https://supabase.${main_domain}"
+SUPABASE_PUBLIC_URL="https://supabase.${{project.MAIN_DOMAIN}}"
 
 # Enable webp support
 IMGPROXY_ENABLE_WEBP_DETECTION=true
@@ -203,7 +203,7 @@ ARCHON_AGENTS_PORT=8052
 ARCHON_UI_PORT=3737
 
 # Host configuration
-HOST="archon.${main_domain}"
+HOST="archon."${{project.MAIN_DOMAIN}}"
 
 # Optional: OpenAI API key for Archon AI features (can be configured via UI)
 #OPENAI_API_KEY="${{project.OPENAI_API_KEY}}"
