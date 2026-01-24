@@ -566,6 +566,7 @@ services:
   frontend:
     build: 
       context: https://framagit.org/groblochon/dokploy-archon-supabase.git
+      dockerfile: archon/archon-ui-main/Dockerfile
     ports:
       - "${ARCHON_UI_PORT:-3737}:5173"
     environment:
