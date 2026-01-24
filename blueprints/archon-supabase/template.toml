@@ -213,4 +213,4 @@ OPENAI_API_KEY="${{project.OPENAI_API_KEY}}"
 # LOGFIRE_TOKEN=your-logfire-token
 
 # Log level (DEBUG, INFO, WARNING, ERROR)
-LOG_LEVEL=INFO
+LOG_LEVEL="INFO"
