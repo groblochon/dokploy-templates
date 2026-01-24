@@ -26,22 +26,22 @@ service_role_key_payload = """{
 [[config.domains]]
 serviceName = "frontend"
 port = 3737
-host = "archon.${MAIN_DOMAIN}"
+host = "archon.${{MAIN_DOMAIN}}"
 
 [[config.domains]]
 serviceName = "kong"
 port = 8000
-host = "api-supabase.${MAIN_DOMAIN}"
+host = "api-supabase.${{MAIN_DOMAIN}}"
 
 [[config.domains]]
 serviceName = "studio"
 port = 3000
-host = "supabase.${MAIN_DOMAIN}"
+host = "supabase.${{MAIN_DOMAIN}}"
 
 [[config.domains]]
 serviceName = "auth"
 port = 9999
-host = "auth-supabase.${MAIN_DOMAIN}"
+host = "auth-supabase.${{MAIN_DOMAIN}}"
 
 [config.env]
 ############
