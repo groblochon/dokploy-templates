@@ -1,5 +1,4 @@
 [variables]
-main_domain = "${domain}"
 postgres_password = "${password:32}"
 dashboard_password = "${password:32}"
 logflare_api_key = "${password:32}"

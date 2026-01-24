@@ -552,7 +552,7 @@ services:
     environment:
       - VITE_API_URL=http://${HOST:-frontend}:${ARCHON_SERVER_PORT:-8181}
       - ARCHON_SERVER_PORT=${ARCHON_SERVER_PORT:-8181}
-      - HOST=${HOST:-frontend}
+      - HOST=archon.${main_domain}
     healthcheck:
       test: ["CMD", "curl", "-f", "http://frontend:3737"]
       interval: 30s
