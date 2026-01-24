@@ -107,7 +107,7 @@
     "logo": "archon.png"
   },
   {
-    "id": "archon-supabase-local",
+    "id": "archon-supabase",
     "name": "Archon Supabase Local",
     "version": "stable",
     "description": "AI-powered assistant for code documentation and explanations",

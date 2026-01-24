@@ -1,0 +1,18 @@
+{
+  "id": "archon-supabase",
+  "name": "Archon Supabase Local",
+  "version": "stable",
+  "description": "AI-powered assistant for code documentation and explanations",
+  "links": {
+    "github": "https://github.com/coleam00/Archon",
+    "website": "https://github.com/coleam00/Archon",
+    "docs": "https://github.com/coleam00/Archon#readme"
+  },
+  "tags": [
+    "ai",
+    "documentation",
+    "code",
+    "assistant"
+  ],
+  "logo": "logo.svg"
+}

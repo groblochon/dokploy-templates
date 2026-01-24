@@ -1,0 +1,66 @@
+MIT License
+
+Copyright (c) 2024 Archon + Supabase Local Development Setup
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+================================================================================
+THIRD-PARTY COMPONENTS AND ATTRIBUTION
+================================================================================
+
+This setup configuration integrates the following open-source projects:
+
+1. ARCHON AI PLATFORM
+   Repository: https://github.com/coleam00/Archon
+   Author: Cole Medin (@coleam00)
+   License: See Archon repository for current license terms
+   Description: Advanced AI application with MCP integration and knowledge management
+
+2. SUPABASE BACKEND-AS-A-SERVICE
+   Repository: https://github.com/supabase/supabase
+   Organization: Supabase
+   License: Apache License 2.0
+   Description: Open-source Firebase alternative with PostgreSQL and real-time capabilities
+
+3. SUPABASE DOCKER CONFIGURATION
+   Source: https://github.com/supabase/supabase/tree/master/docker
+   License: Apache License 2.0
+   Usage: Base configuration files adapted for this local development setup
+
+================================================================================
+ATTRIBUTION REQUIREMENTS
+================================================================================
+
+When using this setup, you must:
+
+1. Respect the license terms of both Archon and Supabase projects
+2. Provide attribution to the original projects when redistributing or modifying
+3. Include links to the original repositories in any derivative works
+4. Follow the specific license requirements of each integrated component
+
+For the most current license information, always refer to the original project repositories.
+
+================================================================================
+DISCLAIMER
+================================================================================
+
+This setup configuration is provided for local development purposes only.
+For production deployments, consult the official documentation of both
+Archon and Supabase projects for proper security, scaling, and deployment
+best practices.
