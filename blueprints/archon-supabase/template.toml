@@ -25,7 +25,7 @@ service_role_key_payload = """{
 
 [config]
 [[config.domains]]
-serviceName = "archon-frontend"
+serviceName = "frontend"
 port = 3737
 host = "archon.${main_domain}"
 
