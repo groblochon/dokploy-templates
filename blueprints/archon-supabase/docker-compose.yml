@@ -388,7 +388,7 @@ services:
     volumes:
       - ./volumes/pooler/pooler.exs:/etc/pooler/pooler.exs:ro,z
     healthcheck:
-      test: ["CMD", "curl", "-sSfL", "--head", "-o", "/dev/null", "http://127.0.0.1:4000/api/health"]
+      test: ["CMD", "curl", "-sSfL", "--head", "-o", "/dev/null", "http://supavisor:4000/api/health"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -433,7 +433,6 @@ services:
       args:
         BUILDKIT_INLINE_CACHE: 1
         ARCHON_SERVER_PORT: ${ARCHON_SERVER_PORT:-8181}
-    container_name: Archon-Server
     ports:
       - "${ARCHON_SERVER_PORT:-8181}:${ARCHON_SERVER_PORT:-8181}"
     environment:
@@ -486,11 +485,10 @@ services:
   archon-mcp:
     build:
       context: https://framagit.org/groblochon/dokploy-archon-supabase.git
-      dockerfile: archon/python/Dockerfile.mcp
+      dockerfile: python/Dockerfile.mcp
       args:
         BUILDKIT_INLINE_CACHE: 1
         ARCHON_MCP_PORT: ${ARCHON_MCP_PORT:-8051}
-    container_name: Archon-MCP
     ports:
       - "${ARCHON_MCP_PORT:-8051}:${ARCHON_MCP_PORT:-8051}"
     environment:
@@ -529,7 +527,7 @@ services:
   archon-agents:
     build:
       context: https://framagit.org/groblochon/dokploy-archon-supabase.git
-      dockerfile: archon/python/Dockerfile.agents
+      dockerfile: python/Dockerfile.agents
       args:
         BUILDKIT_INLINE_CACHE: 1
         ARCHON_AGENTS_PORT: ${ARCHON_AGENTS_PORT:-8052}
@@ -566,7 +564,7 @@ services:
   frontend:
     build: 
       context: https://framagit.org/groblochon/dokploy-archon-supabase.git
-      dockerfile: archon/archon-ui-main/Dockerfile
+      dockerfile: archon-ui-main/Dockerfile
     ports:
       - "${ARCHON_UI_PORT:-3737}:5173"
     environment:

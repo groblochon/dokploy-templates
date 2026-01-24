@@ -1,431 +1,517 @@
-# 🚀 Archon + Supabase Local Development Setup
-
-A unified Docker Compose setup for running [Archon](https://github.com/coleam00/Archon) AI application with a **local Supabase instance** for development and testing. This setup gives you complete control over your data and allows offline development without relying on Supabase cloud services.
-
-## ✨ What This Provides
-
-- **Local Archon AI Development**: Complete Archon system (Server, MCP, Agents, Frontend) running locally
-- **Self-Hosted Supabase**: Full Supabase stack (Database, Auth, API Gateway, Studio) running on your machine
-- **Data Privacy**: All data stays on your local machine - no cloud dependencies
-- **Offline Development**: Work without internet connection once images are downloaded  
-- **Automatic Database Setup**: Archon tables created automatically during initialization
-- **One Command Deployment**: Everything runs locally with `docker compose up --build`
-- **Hot Reload Development**: Source code changes reflected immediately for rapid iteration
-
-## 🏠 Local Development Focus
-
-This setup is specifically designed for **local development and testing**. It runs Archon with a complete Supabase instance on your local machine, providing:
-
-- **🔒 Data Privacy**: All your data remains on your machine
-- **⚡ Fast Development**: No network latency to cloud services  
-- **💰 Cost-Free**: No Supabase cloud subscription needed for development
-- **🛠️ Full Control**: Complete access to database, logs, and configuration
-- **📶 Offline Capable**: Continue development without internet access
-
-> **Note**: This is not intended for production deployment. For production, consider using [Supabase Cloud](https://supabase.com) or setting up a production-grade self-hosted instance with proper security, scaling, and backup strategies.
-
-## 🎯 Quick Start
-
-### Prerequisites
-
-- Docker and Docker Compose v2+ installed
-- Git for cloning repositories
-- At least 8GB RAM recommended
-- Ports 3000, 3737, 8000, 8181, 8051, 8052 available
-
-### Setup Instructions
-
-1. **Clone Required Repositories**
-   ```bash
-   # Create project directory
-   mkdir archon-supabase-project && cd archon-supabase-project
-   
-   # Clone this setup repository
-   git clone <YOUR_REPO_URL> .
-   
-   # Clone Archon repository
-   git clone https://github.com/coleam00/Archon.git archon
-   ```
-
-2. **Configure Environment**
-   ```bash
-   # Copy environment template
-   cp .env.example .env
-   
-   # Edit the .env file with your preferred settings
-   # IMPORTANT: Change the default passwords and secrets!
-   nano .env
-   ```
-
-   **⚠️ CRITICAL: Generate JWT Keys Properly**
-   
-   The `ANON_KEY` and `SERVICE_ROLE_KEY` must be generated from your `JWT_SECRET` using the official Supabase JWT Generator:
-   
-   1. **Create a JWT Secret**: Generate a strong, random 32+ character string for `JWT_SECRET`
-   2. **Visit the JWT Generator**: Go to https://supabase.com/docs/guides/self-hosting/docker and scroll to the "JWT Generator" section
-   3. **Generate ANON_KEY**:
-      - Enter your `JWT_SECRET`
-      - Set payload to:
-        ```json
-        {
-          "role": "anon",
-          "iss": "supabase",
-          "iat": 1755759600,
-          "exp": 1913526000
-        }
-        ```
-      - Copy the generated token to `ANON_KEY`
-   4. **Generate SERVICE_ROLE_KEY**:
-      - Keep the same `JWT_SECRET`
-      - Change payload to:
-        ```json
-        {
-          "role": "service_role", 
-          "iss": "supabase",
-          "iat": 1755759600,
-          "exp": 1913526000
-        }
-        ```
-      - Copy the generated token to `SERVICE_ROLE_KEY`
-
-3. **Start the System**
-   ```bash
-   # Build and start all services
-   docker compose up --build
-   
-   # Or run in background
-   docker compose up --build -d
-   ```
-
-4. **Access Your Local Applications**
-   - **Archon UI**: http://localhost:3737 (main application interface)
-   - **Supabase Studio**: http://localhost:3000 (local database management)
-   - **Supabase API**: http://localhost:8000 (local REST API & auth)
-   - **Archon Server API**: http://localhost:8181/health (backend health check)
-   
-   All services run locally on your machine - no external dependencies!
-
-## 🏗️ Architecture Overview
-
-### Services and Ports
-
-| Service | Container Name | External Port | Description |
-|---------|---------------|---------------|-------------|
-| **Archon Services** | | | |
-| Frontend | Archon-UI | 3737 | React-based user interface |
-| Server | Archon-Server | 8181 | FastAPI backend |
-| MCP | Archon-MCP | 8051 | Model Context Protocol server |
-| Agents | Archon-Agents | 8052 | AI/ML processing services |
-| **Supabase Services** | | | |
-| Studio | supabase-studio | 3000 | Web admin interface |
-| Kong | supabase-kong | 8000, 8443 | API gateway |
-| Database | supabase-db | 5432 | PostgreSQL with pgvector |
-| Pooler | supabase-pooler | 6543 | Connection pooling |
-| Analytics | supabase-analytics | 4000 | Logflare analytics |
-
-### Database Schema
-
-Archon tables are automatically created during database initialization:
-
-- `archon_settings` - Configuration and credentials
-- `archon_sources` - Knowledge base sources  
-- `archon_crawled_pages` - Document chunks with embeddings
-- `archon_code_examples` - Code snippets with embeddings
-- `archon_projects` - Project management
-- `archon_tasks` - Task tracking
-- `archon_project_sources` - Project-source relationships
-- `archon_document_versions` - Document version control
-- `archon_prompts` - Agent system prompts
-
-## ⚙️ Configuration
-
-### Required Environment Variables
-
-The following **must** be changed in your `.env` file before production:
-
-```bash
-# Database password
-POSTGRES_PASSWORD=your-super-secret-and-long-postgres-password
-
-# JWT secret (32+ characters) - Used to generate ANON_KEY and SERVICE_ROLE_KEY
-JWT_SECRET=your-super-secret-jwt-token-with-at-least-32-characters-long
-
-# JWT-based API keys (MUST be generated using the JWT Generator tool)
-ANON_KEY=YOUR_GENERATED_ANON_KEY_FROM_JWT_GENERATOR
-SERVICE_ROLE_KEY=YOUR_GENERATED_SERVICE_ROLE_KEY_FROM_JWT_GENERATOR
-
-# Supabase dashboard login
-DASHBOARD_USERNAME=supabase
-DASHBOARD_PASSWORD=your-secure-dashboard-password
-
-# Encryption keys
-SECRET_KEY_BASE=your-secret-key-base-64-chars-long
-VAULT_ENC_KEY=your-encryption-key-32-chars-min
-
-# Logflare tokens
-LOGFLARE_PUBLIC_ACCESS_TOKEN=your-super-secret-and-long-logflare-key-public
-LOGFLARE_PRIVATE_ACCESS_TOKEN=your-super-secret-and-long-logflare-key-private
-```
-
-**🔑 JWT Key Generation is Critical**
-
-The `ANON_KEY` and `SERVICE_ROLE_KEY` are NOT random strings - they must be properly generated JWT tokens using your `JWT_SECRET`. Using incorrect keys will cause authentication failures. Always use the official Supabase JWT Generator tool at https://supabase.com/docs/guides/self-hosting/docker.
-
-### Optional Configuration
-
-```bash
-# OpenAI API key (can also be configured via Archon UI)
-OPENAI_API_KEY=sk-your-openai-api-key-here
-
-# Logfire observability token
-LOGFIRE_TOKEN=your-logfire-token
-
-# Service ports (defaults shown)
-ARCHON_SERVER_PORT=8181
-ARCHON_MCP_PORT=8051
-ARCHON_AGENTS_PORT=8052
-ARCHON_UI_PORT=3737
-```
-
-## 🛠️ Development Workflow
-
-### Managing Services
-
-```bash
-# View service status
-docker compose ps
-
-# View logs for all services
-docker compose logs -f
-
-# View logs for specific service
-docker compose logs -f archon-server
-
-# Restart a specific service
-docker compose restart archon-server
-
-# Stop everything
-docker compose down
-
-# Reset everything (DESTRUCTIVE - removes all data)
-docker compose down -v --remove-orphans
-```
-
-### Code Development
-
-The setup includes volume mounts for hot reload development:
-
-- Archon Python code: `./archon/python/src` → `/app/src`
-- Archon Frontend: `./archon/archon-ui-main/src` → `/app/src`
-
-Changes to source files are automatically reflected in running containers.
-
-### Local Database Access
-
-**Via Local Supabase Studio:**
-- URL: http://localhost:3000
-- Username: `supabase` (or your `DASHBOARD_USERNAME`)
-- Password: Set in `.env` as `DASHBOARD_PASSWORD`
-
-**Via Direct Local Connection:**
-```bash
-# Local PostgreSQL connection details
-Host: localhost
-Port: 5432
-Database: postgres
-Username: postgres
-Password: <your POSTGRES_PASSWORD>
-```
-
-Your database runs locally in a Docker container with full access and control.
-
-## 🔧 AI Provider Setup
-
-Archon supports multiple AI providers. Configure through the local Settings UI at http://localhost:3737:
-
-- **OpenAI**: Requires API key
-- **Google Gemini**: Requires API key  
-- **Ollama**: For completely local AI models (no internet required)
-
-API keys can be set via environment variables or configured through the web interface. With Ollama, you can run AI models entirely offline on your local machine.
-
-## 🌟 Why Local Development?
-
-### Benefits of This Setup:
-- **🔐 Complete Privacy**: Your conversations, documents, and data never leave your machine
-- **⚡ Lightning Fast**: No network latency - everything runs locally
-- **💵 Zero Cloud Costs**: No Supabase subscription fees during development
-- **🛠️ Full Debugging**: Direct access to logs, database, and all components
-- **📶 Work Anywhere**: Develop offline without internet connectivity
-- **🔄 Rapid Iteration**: Instant feedback loop for development changes
-- **🎯 Production Testing**: Test database migrations and configurations safely
-
-## 📁 Required Files from Supabase
-
-This setup requires specific files from the [Supabase Docker setup](https://github.com/supabase/supabase/tree/master/docker). The following files are included:
-
-### API Configuration
-- `volumes/api/kong.yml` - Kong gateway configuration
-
-### Database Setup
-- `volumes/db/realtime.sql` - Realtime extensions
-- `volumes/db/webhooks.sql` - Webhook functionality  
-- `volumes/db/roles.sql` - Database roles and permissions
-- `volumes/db/jwt.sql` - JWT authentication setup
-- `volumes/db/_supabase.sql` - Core Supabase schema
-- `volumes/db/logs.sql` - Logging configuration
-- `volumes/db/pooler.sql` - Connection pooler setup
-- `volumes/db/archon_setup.sql` - Archon-specific tables
-
-### Functions & Storage
-- `volumes/functions/` - Edge function templates
-- `volumes/storage/` - File storage configuration
-
-### Monitoring
-- `volumes/logs/vector.yml` - Log collection configuration
-- `volumes/pooler/pooler.exs` - Database pooler settings
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-**Port Conflicts:**
-```bash
-# Check if ports are in use
-netstat -tulpn | grep -E ':(3000|3737|8000|8181|8051|8052)'
-
-# Stop conflicting services or change ports in .env
-```
-
-**JWT/Authentication Issues:**
-```bash
-# Common error: "JWT is invalid" or "Authentication failed"
-# Solution: Regenerate JWT keys using the proper tool
-
-# 1. Generate new JWT_SECRET (32+ characters)
-# 2. Use Supabase JWT Generator: https://supabase.com/docs/guides/self-hosting/docker
-# 3. Generate ANON_KEY with role="anon" 
-# 4. Generate SERVICE_ROLE_KEY with role="service_role"
-# 5. Update .env file and restart services
-
-docker compose restart
-```
-
-**Database Connection Issues:**
-```bash
-# Check database logs
-docker compose logs -f db
-
-# Verify database is healthy
-docker compose ps db
-```
-
-**Service Dependencies:**
-```bash
-# Restart in dependency order
-docker compose restart db
-docker compose restart kong
-docker compose restart archon-server
-```
-
-**Memory Issues:**
-```bash
-# Monitor resource usage
-docker stats
-
-# Increase Docker memory allocation if needed
-```
-
-### Reset Everything
-
-If you encounter persistent issues:
-
-```bash
-# Stop and remove everything (DESTRUCTIVE)
-docker compose down -v --remove-orphans
-
-# Remove any conflicting images
-docker system prune -a
-
-# Restart from clean state
-docker compose up --build
-```
-
-## 🔒 Security Notes
-
-- **Change all default passwords** in `.env` before production
-- **Never commit your `.env` file** to version control
-- The default JWT keys are for **development only**
-- Consider using Docker secrets for production deployments
-- Database is exposed on port 5432 - restrict access in production
-
-## 🙏 Attribution & Credits
-
-This local development setup is made possible by combining these excellent open-source projects:
-
-### **🤖 Archon AI Platform**
-- **Repository**: [https://github.com/coleam00/Archon](https://github.com/coleam00/Archon)
-- **Author**: [@coleam00](https://github.com/coleam00) (Cole Medin)
-- **Description**: Advanced AI application with MCP integration, knowledge management, and agent capabilities
-- **License**: Check the Archon repository for current license terms
-
-### **🚀 Supabase Backend-as-a-Service**
-- **Repository**: [https://github.com/supabase/supabase](https://github.com/supabase/supabase)
-- **Organization**: [Supabase](https://github.com/supabase)
-- **Description**: Open-source Firebase alternative with PostgreSQL, authentication, and real-time capabilities
-- **License**: Apache License 2.0
-- **Docker Setup**: Based on [Supabase Docker Configuration](https://github.com/supabase/supabase/tree/master/docker)
-
-### **🔧 Configuration Sources**
-- **Supabase JWT Generator**: Official tool from [Supabase Self-Hosting Docs](https://supabase.com/docs/guides/self-hosting/docker)
-- **Docker Compose Structure**: Adapted from official Supabase Docker setup
-- **Database Schema**: Custom integration combining Archon requirements with Supabase architecture
-
-### **📚 Documentation & Resources**
-- **Setup Inspiration**: Official Supabase self-hosting documentation
-- **Security Best Practices**: Following both Archon and Supabase recommended configurations
-- **Development Workflow**: Optimized for local development based on both projects' guidelines
-
-## 📝 License & Usage
-
-### **License Information**
-- **This Setup Configuration**: MIT License (see LICENSE file)
-- **Archon**: Please refer to the [Archon repository](https://github.com/coleam00/Archon) for license terms
-- **Supabase**: Apache License 2.0 - see [Supabase License](https://github.com/supabase/supabase/blob/master/LICENSE)
-
-### **Attribution Requirements**
-When using this setup:
-1. **Credit Archon**: Link to [Cole Medin's Archon project](https://github.com/coleam00/Archon)
-2. **Credit Supabase**: Link to [Supabase project](https://github.com/supabase/supabase)  
-3. **Respect Original Licenses**: Follow the license terms of both projects
-4. **Community Contribution**: Consider contributing improvements back to the original projects
-
-## 🤝 Contributing
-
-1. Report issues in the respective repositories:
-   - Archon issues: https://github.com/coleam00/Archon/issues
-   - Supabase issues: https://github.com/supabase/supabase/issues
-
-2. For setup-specific issues, create an issue in this repository
-
-## 🚀 What's Next?
-
-After your local setup is running:
-
-1. **Configure AI Providers** - Add your API keys via the local Settings UI at http://localhost:3737
-2. **Create Projects** - Start organizing your AI workflows locally
-3. **Upload Knowledge** - Add documents to your local knowledge base
-4. **Explore Features** - Try the MCP integration and agent capabilities
-5. **Experiment Safely** - Test features without affecting any cloud resources
-
-### 🎯 Development Tips:
-- **Use Ollama** for completely offline AI development
-- **Database Studio** at http://localhost:3000 for direct data inspection
-- **Hot Reload** means code changes appear instantly
-- **All data persists** between container restarts via Docker volumes
+<p align="center">
+  <img src="./archon-ui-main/public/archon-main-graphic.png" alt="Archon Main Graphic" width="853" height="422">
+</p>
+
+<p align="center">
+   <a href="https://trendshift.io/repositories/13964" target="_blank"><img src="https://trendshift.io/api/badge/repositories/13964" alt="coleam00%2FArchon | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+</p>
+
+<p align="center">
+  <em>Power up your AI coding assistants with your own custom knowledge base and task management as an MCP server</em>
+</p>
+
+<p align="center">
+  <a href="#quick-start">Quick Start</a> •
+  <a href="#upgrading">Upgrading</a> •
+  <a href="#whats-included">What's Included</a> •
+  <a href="#architecture">Architecture</a> •
+  <a href="#troubleshooting">Troubleshooting</a>
+</p>
 
 ---
 
-**Happy Local Building! 🎉🏠**
+## 🎯 What is Archon?
 
-*Develop with confidence knowing your data stays private and your costs stay zero.*
+> Archon is currently in beta! Expect things to not work 100%, and please feel free to share any feedback and contribute with fixes/new features! Thank you to everyone for all the excitement we have for Archon already, as well as the bug reports, PRs, and discussions. It's a lot for our small team to get through but we're committed to addressing everything and making Archon into the best tool it possibly can be!
+
+Archon is the **command center** for AI coding assistants. For you, it's a sleek interface to manage knowledge, context, and tasks for your projects. For the AI coding assistant(s), it's a **Model Context Protocol (MCP) server** to collaborate on and leverage the same knowledge, context, and tasks. Connect Claude Code, Kiro, Cursor, Windsurf, etc. to give your AI agents access to:
+
+- **Your documentation** (crawled websites, uploaded PDFs/docs)
+- **Smart search capabilities** with advanced RAG strategies
+- **Task management** integrated with your knowledge base
+- **Real-time updates** as you add new content and collaborate with your coding assistant on tasks
+- **Much more** coming soon to build Archon into an integrated environment for all context engineering
+
+This new vision for Archon replaces the old one (the agenteer). Archon used to be the AI agent that builds other agents, and now you can use Archon to do that and more.
+
+> It doesn't matter what you're building or if it's a new/existing codebase - Archon's knowledge and task management capabilities will improve the output of **any** AI driven coding.
+
+## 🔗 Important Links
+
+- **[GitHub Discussions](https://github.com/coleam00/Archon/discussions)** - Join the conversation and share ideas about Archon
+- **[Contributing Guide](CONTRIBUTING.md)** - How to get involved and contribute to Archon
+- **[Introduction Video](https://youtu.be/8pRc_s2VQIo)** - Getting started guide and vision for Archon
+- **[Archon Kanban Board](https://github.com/users/coleam00/projects/1)** - Where maintainers are managing issues/features
+- **[Dynamous AI Mastery](https://dynamous.ai)** - The birthplace of Archon - come join a vibrant community of other early AI adopters all helping each other transform their careers and businesses!
+
+## Quick Start
+
+<p align="center">
+  <a href="https://youtu.be/DMXyDpnzNpY">
+    <img src="https://img.youtube.com/vi/DMXyDpnzNpY/maxresdefault.jpg" alt="Archon Setup Tutorial" width="640" />
+  </a>
+  <br/>
+  <em>📺 Click to watch the setup tutorial on YouTube</em>
+  <br/>
+  <a href="./archon-example-workflow">-> Example AI coding workflow in the video <-</a>
+</p>
+
+### Prerequisites
+
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+- [Node.js 18+](https://nodejs.org/) (for hybrid development mode)
+- [Supabase](https://supabase.com/) account (free tier or local Supabase both work)
+- [OpenAI API key](https://platform.openai.com/api-keys) (Gemini and Ollama are supported too!)
+- (OPTIONAL) [Make](https://www.gnu.org/software/make/) (see [Installing Make](#installing-make) below)
+
+### Setup Instructions
+
+1. **Clone Repository**:
+   ```bash
+   git clone -b stable https://github.com/coleam00/archon.git
+   ```
+   ```bash
+   cd archon
+   ```
+   
+   **Note:** The `stable` branch is recommended for using Archon. If you want to contribute or try the latest features, use the `main` branch with `git clone https://github.com/coleam00/archon.git`
+2. **Environment Configuration**:
+
+   ```bash
+   cp .env.example .env
+   # Edit .env and add your Supabase credentials:
+   # SUPABASE_URL=https://your-project.supabase.co
+   # SUPABASE_SERVICE_KEY=your-service-key-here
+   ```
+
+   IMPORTANT NOTES:
+   - For cloud Supabase: They recently introduced a new type of service role key but use the legacy one (the longer one).
+   - For local Supabase: Set `SUPABASE_URL` to http://host.docker.internal:8000 (unless you have an IP address set up). To get `SUPABASE_SERVICE_KEY` run `supabase status -o env`.
+
+3. **Database Setup**: In your [Supabase project](https://supabase.com/dashboard) SQL Editor, copy, paste, and execute the contents of `migration/complete_setup.sql`
+
+4. **Start Services** (choose one):
+
+   **Full Docker Mode (Recommended for Normal Archon Usage)**
+
+   ```bash
+   docker compose up --build -d
+   ```
+
+   This starts all core microservices in Docker:
+   - **Server**: Core API and business logic (Port: 8181)
+   - **MCP Server**: Protocol interface for AI clients (Port: 8051)
+   - **UI**: Web interface (Port: 3737)
+
+   Ports are configurable in your .env as well!
+
+5. **Configure API Keys**:
+   - Open http://localhost:3737
+   - You'll automatically be brought through an onboarding flow to set your API key (OpenAI is default)
+
+## ⚡ Quick Test
+
+Once everything is running:
+
+1. **Test Web Crawling**: Go to http://localhost:3737 → Knowledge Base → "Crawl Website" → Enter a doc URL (such as https://ai.pydantic.dev/llms.txt)
+2. **Test Document Upload**: Knowledge Base → Upload a PDF
+3. **Test Projects**: Projects → Create a new project and add tasks
+4. **Integrate with your AI coding assistant**: MCP Dashboard → Copy connection config for your AI coding assistant 
+
+## Installing Make
+
+<details>
+<summary><strong>🛠️ Make installation (OPTIONAL - For Dev Workflows)</strong></summary>
+
+### Windows
+
+```bash
+# Option 1: Using Chocolatey
+choco install make
+
+# Option 2: Using Scoop
+scoop install make
+
+# Option 3: Using WSL2
+wsl --install
+# Then in WSL: sudo apt-get install make
+```
+
+### macOS
+
+```bash
+# Make comes pre-installed on macOS
+# If needed: brew install make
+```
+
+### Linux
+
+```bash
+# Debian/Ubuntu
+sudo apt-get install make
+
+# RHEL/CentOS/Fedora
+sudo yum install make
+```
+
+</details>
+
+<details>
+<summary><strong>🚀 Quick Command Reference for Make</strong></summary>
+<br/>
+
+| Command           | Description                                             |
+| ----------------- | ------------------------------------------------------- |
+| `make dev`        | Start hybrid dev (backend in Docker, frontend local) ⭐ |
+| `make dev-docker` | Everything in Docker                                    |
+| `make stop`       | Stop all services                                       |
+| `make test`       | Run all tests                                           |
+| `make lint`       | Run linters                                             |
+| `make install`    | Install dependencies                                    |
+| `make check`      | Check environment setup                                 |
+| `make clean`      | Remove containers and volumes (with confirmation)       |
+
+</details>
+
+## 🔄 Database Reset (Start Fresh if Needed)
+
+If you need to completely reset your database and start fresh:
+
+<details>
+<summary>⚠️ <strong>Reset Database - This will delete ALL data for Archon!</strong></summary>
+
+1. **Run Reset Script**: In your Supabase SQL Editor, run the contents of `migration/RESET_DB.sql`
+
+   ⚠️ WARNING: This will delete all Archon specific tables and data! Nothing else will be touched in your DB though.
+
+2. **Rebuild Database**: After reset, run `migration/complete_setup.sql` to create all the tables again.
+
+3. **Restart Services**:
+
+   ```bash
+   docker compose --profile full up -d
+   ```
+
+4. **Reconfigure**:
+   - Select your LLM/embedding provider and set the API key again
+   - Re-upload any documents or re-crawl websites
+
+The reset script safely removes all tables, functions, triggers, and policies with proper dependency handling.
+
+</details>
+
+## 📚 Documentation
+
+### Core Services
+
+| Service                    | Container Name             | Default URL           | Purpose                                    |
+| -------------------------- | -------------------------- | --------------------- | ------------------------------------------ |
+| **Web Interface**          | archon-ui                  | http://localhost:3737 | Main dashboard and controls                |
+| **API Service**            | archon-server              | http://localhost:8181 | Web crawling, document processing          |
+| **MCP Server**             | archon-mcp                 | http://localhost:8051 | Model Context Protocol interface           |
+| **Agents Service**         | archon-agents              | http://localhost:8052 | AI/ML operations, reranking                |
+| **Agent Work Orders** *(optional)* | archon-agent-work-orders | http://localhost:8053 | Workflow execution with Claude Code CLI    |  
+
+## Upgrading
+
+To upgrade Archon to the latest version:
+
+1. **Pull latest changes**:
+   ```bash
+   git pull
+   ```
+
+2. **Rebuild and restart containers**:
+   ```bash
+   docker compose up -d --build
+   ```
+   This rebuilds containers with the latest code and restarts all services.
+
+3. **Check for database migrations**:
+   - Open the Archon settings in your browser: [http://localhost:3737/settings](http://localhost:3737/settings)
+   - Navigate to the **Database Migrations** section
+   - If there are pending migrations, the UI will display them with clear instructions
+   - Click on each migration to view and copy the SQL
+   - Run the SQL scripts in your Supabase SQL editor in the order shown
+
+## What's Included
+
+### 🧠 Knowledge Management
+
+- **Smart Web Crawling**: Automatically detects and crawls entire documentation sites, sitemaps, and individual pages
+- **Document Processing**: Upload and process PDFs, Word docs, markdown files, and text documents with intelligent chunking
+- **Code Example Extraction**: Automatically identifies and indexes code examples from documentation for enhanced search
+- **Vector Search**: Advanced semantic search with contextual embeddings for precise knowledge retrieval
+- **Source Management**: Organize knowledge by source, type, and tags for easy filtering
+
+### 🤖 AI Integration
+
+- **Model Context Protocol (MCP)**: Connect any MCP-compatible client (Claude Code, Cursor, even non-AI coding assistants like Claude Desktop)
+- **MCP Tools**: Comprehensive yet simple set of tools for RAG queries, task management, and project operations
+- **Multi-LLM Support**: Works with OpenAI, Ollama, and Google Gemini models
+- **RAG Strategies**: Hybrid search, contextual embeddings, and result reranking for optimal AI responses
+- **Real-time Streaming**: Live responses from AI agents with progress tracking
+
+### 📋 Project & Task Management
+
+- **Hierarchical Projects**: Organize work with projects, features, and tasks in a structured workflow
+- **AI-Assisted Creation**: Generate project requirements and tasks using integrated AI agents
+- **Document Management**: Version-controlled documents with collaborative editing capabilities
+- **Progress Tracking**: Real-time updates and status management across all project activities
+
+### 🔄 Real-time Collaboration
+
+- **WebSocket Updates**: Live progress tracking for crawling, processing, and AI operations
+- **Multi-user Support**: Collaborative knowledge building and project management
+- **Background Processing**: Asynchronous operations that don't block the user interface
+- **Health Monitoring**: Built-in service health checks and automatic reconnection
+
+## Architecture
+
+### Microservices Structure
+
+Archon uses true microservices architecture with clear separation of concerns:
+
+```
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   Frontend UI   │    │  Server (API)   │    │   MCP Server    │    │ Agents Service  │
+│                 │    │                 │    │                 │    │                 │
+│  React + Vite   │◄──►│    FastAPI +    │◄──►│    Lightweight  │◄──►│   PydanticAI    │
+│  Port 3737      │    │    SocketIO     │    │    HTTP Wrapper │    │   Port 8052     │
+│                 │    │    Port 8181    │    │    Port 8051    │    │                 │
+└─────────────────┘    └─────────────────┘    └─────────────────┘    └─────────────────┘
+         │                        │                        │                        │
+         └────────────────────────┼────────────────────────┼────────────────────────┘
+                                  │                        │
+                         ┌─────────────────┐               │
+                         │    Database     │               │
+                         │                 │               │
+                         │    Supabase     │◄──────────────┘
+                         │    PostgreSQL   │
+                         │    PGVector     │
+                         └─────────────────┘
+```
+
+### Service Responsibilities
+
+| Service                  | Location                       | Purpose                          | Key Features                                                       |
+| ------------------------ | ------------------------------ | -------------------------------- | ------------------------------------------------------------------ |
+| **Frontend**             | `archon-ui-main/`              | Web interface and dashboard      | React, TypeScript, TailwindCSS, Socket.IO client                   |
+| **Server**               | `python/src/server/`           | Core business logic and APIs     | FastAPI, service layer, Socket.IO broadcasts, all ML/AI operations |
+| **MCP Server**           | `python/src/mcp/`              | MCP protocol interface           | Lightweight HTTP wrapper, MCP tools, session management            |
+| **Agents**               | `python/src/agents/`           | PydanticAI agent hosting         | Document and RAG agents, streaming responses                       |
+| **Agent Work Orders** *(optional)* | `python/src/agent_work_orders/` | Workflow execution engine | Claude Code CLI automation, repository management, SSE updates |
+
+### Communication Patterns
+
+- **HTTP-based**: All inter-service communication uses HTTP APIs
+- **Socket.IO**: Real-time updates from Server to Frontend
+- **MCP Protocol**: AI clients connect to MCP Server via SSE or stdio
+- **No Direct Imports**: Services are truly independent with no shared code dependencies
+
+### Key Architectural Benefits
+
+- **Lightweight Containers**: Each service contains only required dependencies
+- **Independent Scaling**: Services can be scaled independently based on load
+- **Development Flexibility**: Teams can work on different services without conflicts
+- **Technology Diversity**: Each service uses the best tools for its specific purpose
+
+## 🔧 Configuring Custom Ports & Hostname
+
+By default, Archon services run on the following ports:
+
+- **archon-ui**: 3737
+- **archon-server**: 8181
+- **archon-mcp**: 8051
+- **archon-agents**: 8052 (optional)
+- **archon-agent-work-orders**: 8053 (optional)
+
+### Changing Ports
+
+To use custom ports, add these variables to your `.env` file:
+
+```bash
+# Service Ports Configuration
+ARCHON_UI_PORT=3737
+ARCHON_SERVER_PORT=8181
+ARCHON_MCP_PORT=8051
+ARCHON_AGENTS_PORT=8052
+AGENT_WORK_ORDERS_PORT=8053
+```
+
+Example: Running on different ports:
+
+```bash
+ARCHON_SERVER_PORT=8282
+ARCHON_MCP_PORT=8151
+```
+
+### Configuring Hostname
+
+By default, Archon uses `localhost` as the hostname. You can configure a custom hostname or IP address by setting the `HOST` variable in your `.env` file:
+
+```bash
+# Hostname Configuration
+HOST=localhost  # Default
+
+# Examples of custom hostnames:
+HOST=192.168.1.100     # Use specific IP address
+HOST=archon.local      # Use custom domain
+HOST=myserver.com      # Use public domain
+```
+
+This is useful when:
+
+- Running Archon on a different machine and accessing it remotely
+- Using a custom domain name for your installation
+- Deploying in a network environment where `localhost` isn't accessible
+
+After changing hostname or ports:
+
+1. Restart Docker containers: `docker compose down && docker compose --profile full up -d`
+2. Access the UI at: `http://${HOST}:${ARCHON_UI_PORT}`
+3. Update your AI client configuration with the new hostname and MCP port
+
+## 🔧 Development
+
+### Quick Start
+
+```bash
+# Install dependencies
+make install
+
+# Start development (recommended)
+make dev        # Backend in Docker, frontend local with hot reload
+
+# Alternative: Everything in Docker
+make dev-docker # All services in Docker
+
+# Stop everything (local FE needs to be stopped manually)
+make stop
+```
+
+### Development Modes
+
+#### Hybrid Mode (Recommended) - `make dev`
+
+Best for active development with instant frontend updates:
+
+- Backend services run in Docker (isolated, consistent)
+- Frontend runs locally with hot module replacement
+- Instant UI updates without Docker rebuilds
+
+#### Full Docker Mode - `make dev-docker`
+
+For all services in Docker environment:
+
+- All services run in Docker containers
+- Better for integration testing
+- Slower frontend updates
+
+### Testing & Code Quality
+
+```bash
+# Run tests
+make test       # Run all tests
+make test-fe    # Run frontend tests
+make test-be    # Run backend tests
+
+# Run linters
+make lint       # Lint all code
+make lint-fe    # Lint frontend code
+make lint-be    # Lint backend code
+
+# Check environment
+make check      # Verify environment setup
+
+# Clean up
+make clean      # Remove containers and volumes (asks for confirmation)
+```
+
+### Viewing Logs
+
+```bash
+# View logs using Docker Compose directly
+docker compose logs -f              # All services
+docker compose logs -f archon-server # API server
+docker compose logs -f archon-mcp    # MCP server
+docker compose logs -f archon-ui     # Frontend
+```
+
+**Note**: The backend services are configured with `--reload` flag in their uvicorn commands and have source code mounted as volumes for automatic hot reloading when you make changes.
+
+## Troubleshooting
+
+### Common Issues and Solutions
+
+#### Port Conflicts
+
+If you see "Port already in use" errors:
+
+```bash
+# Check what's using a port (e.g., 3737)
+lsof -i :3737
+
+# Stop all containers and local services
+make stop
+
+# Change the port in .env
+```
+
+#### Docker Permission Issues (Linux)
+
+If you encounter permission errors with Docker:
+
+```bash
+# Add your user to the docker group
+sudo usermod -aG docker $USER
+
+# Log out and back in, or run
+newgrp docker
+```
+
+#### Windows-Specific Issues
+
+- **Make not found**: Install Make via Chocolatey, Scoop, or WSL2 (see [Installing Make](#installing-make))
+- **Line ending issues**: Configure Git to use LF endings:
+  ```bash
+  git config --global core.autocrlf false
+  ```
+
+#### Frontend Can't Connect to Backend
+
+- Check backend is running: `curl http://localhost:8181/health`
+- Verify port configuration in `.env`
+- For custom ports, ensure both `ARCHON_SERVER_PORT` and `VITE_ARCHON_SERVER_PORT` are set
+
+#### Docker Compose Hangs
+
+If `docker compose` commands hang:
+
+```bash
+# Reset Docker Compose
+docker compose down --remove-orphans
+docker system prune -f
+
+# Restart Docker Desktop (if applicable)
+```
+
+#### Hot Reload Not Working
+
+- **Frontend**: Ensure you're running in hybrid mode (`make dev`) for best HMR experience
+- **Backend**: Check that volumes are mounted correctly in `docker-compose.yml`
+- **File permissions**: On some systems, mounted volumes may have permission issues
+
+## 📈 Progress
+
+<p align="center">
+  <a href="https://star-history.com/#coleam00/Archon&Date">
+    <img src="https://api.star-history.com/svg?repos=coleam00/Archon&type=Date" width="500" alt="Star History Chart">
+  </a>
+</p>
+
+## 📄 License
+
+Archon Community License (ACL) v1.2 - see [LICENSE](LICENSE) file for details.
+
+**TL;DR**: Archon is free, open, and hackable. Run it, fork it, share it - just don't sell it as-a-service without permission.
