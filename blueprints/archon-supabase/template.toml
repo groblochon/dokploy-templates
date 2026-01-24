@@ -56,7 +56,7 @@ host = "auth-supabase.${main_domain}"
 # YOU MUST CHANGE THESE BEFORE GOING INTO PRODUCTION
 ############
 
-POSTGRES_PASSWORD=${postgres_password}
+POSTGRES_PASSWORD="${postgres_password}"
 # IMPORTANT: Generate your own 32+ character JWT secret
 JWT_SECRET=${jwt_secret}
 
