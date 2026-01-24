@@ -437,8 +437,6 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./archon/python/src:/app/src
       - ./archon/python/tests:/app/tests
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
     command:
       [
         "python",
@@ -496,8 +494,6 @@ services:
         condition: service_healthy
       archon-agents:
         condition: service_healthy
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
     healthcheck:
       test:
         [
