@@ -58,19 +58,19 @@ host = "auth-supabase.${main_domain}"
 
 POSTGRES_PASSWORD="${postgres_password}"
 # IMPORTANT: Generate your own 32+ character JWT secret
-JWT_SECRET=${jwt_secret}
+JWT_SECRET="${jwt_secret}"
 
 # IMPORTANT: Generate these keys using your JWT_SECRET with the Supabase JWT Generator
 # Visit: https://supabase.com/docs/guides/self-hosting/docker (scroll to JWT Generator section)
 # Use the JWT Generator tool to create tokens with:
 # 1. For ANON_KEY: role="anon", iss="supabase"
 # 2. For SERVICE_ROLE_KEY: role="service_role", iss="supabase"
-ANON_KEY=${jwt:jwt_secret:anon_key_payload}
-SERVICE_ROLE_KEY=${jwt:jwt_secret:service_role_key_payload}
-DASHBOARD_USERNAME=${{project.ADMIN_USER}}
-DASHBOARD_PASSWORD=${{project.ADMIN_PASSWORD}}
-SECRET_KEY_BASE=${secret_key_base}
-VAULT_ENC_KEY=${vault_enc_key}
+ANON_KEY="${jwt:jwt_secret:anon_key_payload}"
+SERVICE_ROLE_KEY="${jwt:jwt_secret:service_role_key_payload}"
+DASHBOARD_USERNAME="${{project.ADMIN_USER}}"
+DASHBOARD_PASSWORD="${{project.ADMIN_PASSWORD}}"
+SECRET_KEY_BASE="${secret_key_base}"
+VAULT_ENC_KEY="${vault_enc_key}"
 
 
 ############
@@ -119,11 +119,11 @@ PGRST_DB_SCHEMAS=public,storage,graphql_public
 ############
 
 ## General
-SITE_URL=https://supabase.${main_domain}
+SITE_URL="https://supabase.${main_domain}"
 ADDITIONAL_REDIRECT_URLS=
 JWT_EXPIRY=3600
 DISABLE_SIGNUP=false
-API_EXTERNAL_URL=https://api-supabase.${main_domain}
+API_EXTERNAL_URL="https://api-supabase.${main_domain}"
 
 ## Mailer Config
 MAILER_URLPATHS_CONFIRMATION="/auth/v1/verify"
@@ -156,7 +156,7 @@ STUDIO_DEFAULT_PROJECT=Default Project
 
 STUDIO_PORT=3000
 # replace if you intend to use Studio outside of localhost
-SUPABASE_PUBLIC_URL=https://supabase.${main_domain}
+SUPABASE_PUBLIC_URL="https://supabase.${main_domain}"
 
 # Enable webp support
 IMGPROXY_ENABLE_WEBP_DETECTION=true
@@ -204,7 +204,7 @@ ARCHON_UI_PORT=3737
 HOST=archon.${main_domain}
 
 # Optional: OpenAI API key for Archon AI features (can be configured via UI)
-OPENAI_API_KEY=${{project.OPENAI_API_KEY}}
+OPENAI_API_KEY="${{project.OPENAI_API_KEY}}"
 
 # Optional: Logfire token for observability
 # LOGFIRE_TOKEN=your-logfire-token
