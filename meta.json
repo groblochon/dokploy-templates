@@ -107,6 +107,24 @@
     "logo": "archon.png"
   },
   {
+    "id": "archon-supabase-local",
+    "name": "Archon Supabase Local",
+    "version": "stable",
+    "description": "AI-powered assistant for code documentation and explanations",
+    "links": {
+      "github": "https://github.com/coleam00/Archon",
+      "website": "https://github.com/coleam00/Archon",
+      "docs": "https://github.com/coleam00/Archon#readme"
+    },
+    "tags": [
+      "ai",
+      "documentation",
+      "code",
+      "assistant"
+    ],
+    "logo": "archon.png"
+  },
+  {
     "id": "baserow",
     "name": "Baserow",
     "version": "1.25.2",
