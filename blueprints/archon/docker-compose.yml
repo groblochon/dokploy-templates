@@ -10,10 +10,13 @@ services:
     expose:
       - 8181
     environment:
-      # Supabase Configuration
-      SUPABASE_URL: "${SUPABASE_URL}"
-      SUPABASE_ANON_KEY: "${SUPABASE_ANON_KEY}"
-      SUPABASE_SERVICE_KEY: "${SUPABASE_SERVICE_KEY}"
+      # Supabase Configuration (integrated)
+      SUPABASE_URL: "https://api-supabase.${main_domain}"
+      SUPABASE_ANON_KEY: "${ANON_KEY}"
+      SUPABASE_SERVICE_KEY: "${SERVICE_ROLE_KEY}"
+      
+      # Direct database connection via pooler
+      DATABASE_URL: "postgresql://supabase_archon_admin:${{project.POSTGRES_PASSWORD}}}@supabase-pooler.supabase-project.svc.cluster.local:6543/postgres"
       # OpenAI Configuration
       OPENAI_API_KEY: "${OPENAI_API_KEY}"
       OPENAI_API_BASE: "${OPENAI_API_BASE}"
@@ -36,10 +39,13 @@ services:
     expose:
       - 8051
     environment:
-      # Supabase Configuration
-      SUPABASE_URL: "${SUPABASE_URL}"
-      SUPABASE_ANON_KEY: "${SUPABASE_ANON_KEY}"
-      SUPABASE_SERVICE_KEY: "${SUPABASE_SERVICE_KEY}"
+      # Supabase Configuration (integrated)
+      SUPABASE_URL: "https://api-supabase.${main_domain}"
+      SUPABASE_ANON_KEY: "${ANON_KEY}"
+      SUPABASE_SERVICE_KEY: "${SERVICE_ROLE_KEY}"
+      
+      # Direct database connection via pooler
+      DATABASE_URL: "postgresql://supabase_archon_admin:${{project.POSTGRES_PASSWORD}}}@supabase-pooler.supabase-project.svc.cluster.local:6543/postgres"
       # Configuration
       SERVICE_DISCOVERY_MODE: dokploy
       TRANSPORT: sse

@@ -39,8 +39,9 @@ services:
     plugins:
       - name: cors
       - name: key-auth
+      - name: acl
         config:
-          hide_credentials: false
+          hide_groups_header: false
   - name: rest-v1
     _comment: "PostgREST: /rest/v1/* -> http://supabase-rest:3000/*"
     url: http://supabase-rest:3000/
@@ -52,8 +53,9 @@ services:
     plugins:
       - name: cors
       - name: key-auth
+      - name: acl
         config:
-          hide_credentials: false
+          hide_groups_header: false
   - name: graphql-v1
     _comment: "GraphQL: /graphql/v1/* -> http://supabase-rest:3000/rpc/graphql"
     url: http://supabase-rest:3000/rpc/graphql
@@ -65,8 +67,9 @@ services:
     plugins:
       - name: cors
       - name: key-auth
+      - name: acl
         config:
-          hide_credentials: false
+          hide_groups_header: false
   - name: realtime-v1
     _comment: "Realtime: /realtime/v1/* -> ws://supabase-realtime:4000/socket/*"
     url: http://supabase-realtime:4000/socket/
@@ -78,8 +81,9 @@ services:
     plugins:
       - name: cors
       - name: key-auth
+      - name: acl
         config:
-          hide_credentials: false
+          hide_groups_header: false
   - name: storage-v1
     _comment: "Storage: /storage/v1/* -> http://supabase-storage:5000/*"
     url: http://supabase-storage:5000/
@@ -100,8 +104,117 @@ services:
           - /pg/
     plugins:
       - name: key-auth
+      - name: acl
         config:
-          hide_credentials: false
+          hide_groups_header: false
+
+  # =============================================================================
+  # ARCHON API ROUTES
+  # =============================================================================
+  
+  - name: archon-server
+    _comment: "Archon Server: /archon/v1/* -> http://archon-server:8181/*"
+    url: http://archon-server:8181/
+    routes:
+      - name: archon-server-all
+        strip_path: true
+        paths:
+          - /archon/v1/
+    plugins:
+      - name: cors
+      - name: key-auth
+      - name: acl
+        config:
+          hide_groups_header: true
+          allow:
+            - admin
+            - anon
+
+  - name: archon-mcp
+    _comment: "Archon MCP: /archon-mcp/v1/* -> http://archon-mcp:8051/*"
+    url: http://archon-mcp:8051/
+    routes:
+      - name: archon-mcp-all
+        strip_path: true
+        paths:
+          - /archon-mcp/v1/
+    plugins:
+      - name: cors
+      - name: key-auth
+      - name: acl
+        config:
+          hide_groups_header: true
+          allow:
+            - admin
+            - anon
+
+  - name: archon-settings
+    _comment: "Archon Settings: /archon/settings/* -> http://archon-server:8181/settings/*"
+    url: http://archon-server:8181/
+    routes:
+      - name: archon-settings-all
+        strip_path: true
+        paths:
+          - /archon/settings/
+    plugins:
+      - name: cors
+      - name: key-auth
+      - name: acl
+        config:
+          hide_groups_header: true
+          allow:
+            - admin
+            - authenticated
+
+  # =============================================================================
+  # GLEAN API ROUTES
+  # =============================================================================
+  
+  - name: glean-backend
+    _comment: "Glean Backend: /glean/api/v1/* -> http://glean-backend:8000/*"
+    url: http://glean-backend:8000/
+    routes:
+      - name: glean-backend-all
+        strip_path: true
+        paths:
+          - /glean/api/v1/
+    plugins:
+      - name: cors
+      - name: key-auth
+      - name: acl
+        config:
+          hide_groups_header: true
+          allow:
+            - admin
+            - authenticated
+
+  - name: glean-web
+    _comment: "Glean Web: /glean/* -> http://glean-web:80/*"
+    url: http://glean-web:80/
+    routes:
+      - name: glean-web-all
+        strip_path: true
+        paths:
+          - /glean/
+    plugins:
+      - name: cors
+
+  - name: glean-admin
+    _comment: "Glean Admin: /glean-admin/* -> http://glean-admin:80/*"
+    url: http://glean-admin:80/
+    routes:
+      - name: glean-admin-all
+        strip_path: true
+        paths:
+          - /glean-admin/
+    plugins:
+      - name: cors
+      - name: key-auth
+      - name: acl
+        config:
+          hide_groups_header: true
+          allow:
+            - admin
 
 consumers:
   - username: DASHBOARD
@@ -112,38 +225,13 @@ consumers:
     keyauth_credentials:
       - key: $SUPABASE_SERVICE_KEY
 
-plugins:
-  - name: cors
-    config:
-      origins:
-        - "*"
-      methods:
-        - GET
-        - HEAD
-        - PUT
-        - PATCH
-        - POST
-        - DELETE
-        - OPTIONS
-        - TRACE
-        - CONNECT
-      headers:
-        - Accept
-        - Accept-Version
-        - Authorization
-        - Content-Length
-        - Content-MD5
-        - Content-Type
-        - Date
-        - apikey
-        - X-Client-Info
-      exposed_headers:
-        - X-Supabase-Api-Version
-      credentials: true
-      max_age: 3600
-
 acls:
   - consumer: anon
     group: anon
   - consumer: service_role
     group: admin
+
+basicauth_credentials:
+  - consumer: DASHBOARD
+    username: $DASHBOARD_USERNAME
+    password: $DASHBOARD_PASSWORD

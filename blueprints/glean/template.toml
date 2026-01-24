@@ -21,13 +21,20 @@ GLEAN_SECRET_KEY = "${glean_secret_key}"
 MILVUS_MINIO_ACCESS_KEY = "${milvus_minio_access_key}"
 MILVUS_MINIO_SECRET_KEY = "${milvus_minio_secret_key}"
 
-# Database Configuration (connect to external Supabase)
-POSTGRES_HOST = "${{project.POSTGRES_HOST}}"
-POSTGRES_DB = "${{project.POSTGRES_DB}}"
-POSTGRES_PASSWORD = "${{project.POSTGRES_PASSWORD}}"
+# Database Configuration (Glean manages its own PostgreSQL)
+DATABASE_URL = "${{project.POSTGRES_URL}}"
+
+# Supabase Configuration (for authentication integration only)
+SUPABASE_URL = "${{project.SUPABASE_URL}}"
+SUPABASE_ANON_KEY = "${{project.SUPABASE_ANON_KEY}}"
+SUPABASE_SERVICE_KEY = "${{project.SUPABASE_SERVICE_KEY}}"
+
+# Glean Supabase Integration
+GLEAN_SUPABASE_AUTH = "true"
+GLEAN_AUTH_PROVIDER = "supabase"
 
 # Redis Configuration (connect to external Redis)
-REDIS_HOST = "redis"
+REDIS_HOST = "${{project.REDIS_HOST}}"
 
 # OpenAI Configuration
 OPENAI_API_BASE = "${{project.OPENAI_API_BASE}}"

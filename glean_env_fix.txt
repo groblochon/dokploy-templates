@@ -1,0 +1,12 @@
+# Logique corrigée pour environment de Glean
+      # Database Configuration (Glean manages its own PostgreSQL)
+      DATABASE_URL: "${POSTGRES_URL}"
+      # Supabase Configuration (authentication integration only)
+      SUPABASE_URL: "${SUPABASE_URL}"
+      SUPABASE_ANON_KEY: "${SUPABASE_ANON_KEY}"
+      SUPABASE_SERVICE_KEY: "${SUPABASE_SERVICE_KEY}"
+      REDIS_URL: "${REDIS_URL}"
+      SECRET_KEY: "${GLEAN_SECRET_KEY}"
+      # Glean Supabase Integration
+      GLEAN_SUPABASE_AUTH: "true"
+      GLEAN_AUTH_PROVIDER: "supabase"

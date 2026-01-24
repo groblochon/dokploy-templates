@@ -8,10 +8,17 @@ port = 3737
 host = "archon.${main_domain}"
 
 [config.env]
-# Supabase Configuration (connect to external Supabase)
-SUPABASE_URL = "${{project.SUPABASE_URL}}"
-SUPABASE_ANON_KEY = "${{project.SUPABASE_ANON_KEY}}"
-SUPABASE_SERVICE_KEY = "${{project.SUPABASE_SERVICE_KEY}}"
+# Supabase Configuration (connect to integrated Supabase)
+SUPABASE_URL = "https://api-supabase.${main_domain}"
+SUPABASE_ANON_KEY = "${ANON_KEY}"
+SUPABASE_SERVICE_KEY = "${SERVICE_ROLE_KEY}"
+
+# Direct database connection via pooler (for performance)
+DATABASE_URL = "postgresql://supabase_archon_admin:${{project.POSTGRES_PASSWORD}}@supabase-pooler.supabase-project.svc.cluster.local:6543/postgres"
+
+# Archon Integration Variables
+ARCHON_DB_CONNECTION = "${{project.ARCHON_DB_CONNECTION}}"
+ARCHON_SECRET_KEY = "${{project.ARCHON_SECRET_KEY}}"
 
 # OpenAI Configuration
 OPENAI_API_BASE = "${{project.OPENAI_API_BASE}}"
