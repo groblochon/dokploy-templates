@@ -186,7 +186,7 @@ LOGFLARE_PUBLIC_ACCESS_TOKEN="${logflare_public_access_token}"
 LOGFLARE_PRIVATE_ACCESS_TOKEN="${logflare_private_access_token}"
 
 # Docker socket location - this value will differ depending on your OS
-DOCKER_SOCKET_LOCATION=/var/run/docker.sock
+DOCKER_SOCKET_LOCATION="/var/run/docker.sock"
 
 # Google Cloud Project details
 #GOOGLE_PROJECT_ID=GOOGLE_PROJECT_ID
@@ -204,7 +204,7 @@ ARCHON_AGENTS_PORT=8052
 ARCHON_UI_PORT=3737
 
 # Host configuration
-HOST=archon.${main_domain}
+HOST="archon.${main_domain}"
 
 # Optional: OpenAI API key for Archon AI features (can be configured via UI)
 OPENAI_API_KEY="${{project.OPENAI_API_KEY}}"
