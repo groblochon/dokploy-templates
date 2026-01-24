@@ -203,7 +203,7 @@ ARCHON_AGENTS_PORT=8052
 ARCHON_UI_PORT=3737
 
 # Host configuration
-HOST="archon."${{project.MAIN_DOMAIN}}"
+HOST="archon.${{project.MAIN_DOMAIN}}"
 
 # Optional: OpenAI API key for Archon AI features (can be configured via UI)
 #OPENAI_API_KEY="${{project.OPENAI_API_KEY}}"
