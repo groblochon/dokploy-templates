@@ -16,37 +16,143 @@ port = 80
 host = "glean-admin.${main_domain}"
 
 [config.env]
-# Secrets
-GLEAN_SECRET_KEY = "${glean_secret_key}"
-MILVUS_MINIO_ACCESS_KEY = "${milvus_minio_access_key}"
-MILVUS_MINIO_SECRET_KEY = "${milvus_minio_secret_key}"
+# Glean Environment Configuration
+# Copy this file to .env and customize for your environment
 
-# Database Configuration (Glean manages its own PostgreSQL)
-DATABASE_URL = "${{project.POSTGRES_URL}}"
+# ========================================
+# Database Configuration
+# ========================================
+POSTGRES_DB=glean
+POSTGRES_USER=glean
+POSTGRES_PASSWORD=glean
 
-# Supabase Configuration (for authentication integration only)
-SUPABASE_URL = "${{project.SUPABASE_URL}}"
-SUPABASE_ANON_KEY = "${{project.SUPABASE_ANON_KEY}}"
-SUPABASE_SERVICE_KEY = "${{project.SUPABASE_SERVICE_KEY}}"
+# ========================================
+# Backend Configuration
+# ========================================
+# JWT secret key - CHANGE THIS IN PRODUCTION!
+# Generate with: openssl rand -hex 32
+SECRET_KEY=28844c96c6267a2603ffaa70e973c1e9ad67245bb0b7a03d6d03369f23dcfece
 
-# Glean Supabase Integration
-GLEAN_SUPABASE_AUTH = "true"
-GLEAN_AUTH_PROVIDER = "supabase"
+# Enable debug mode (shows API docs at /api/docs)
+DEBUG=false
 
-# Redis Configuration (connect to external Redis)
-REDIS_HOST = "${{project.REDIS_HOST}}"
+# ========================================
+# Port Configuration
+# ========================================
+# Web interface port
+WEB_PORT=80
 
-# OpenAI Configuration
-OPENAI_API_BASE = "${{project.OPENAI_API_BASE}}"
-OPENAI_API_KEY = "${{project.OPENAI_API_KEY}}"
+# Admin dashboard port (only for full deployment)
+ADMIN_PORT=80
 
-# Admin Configuration
-ADMIN_USER = "${{project.ADMIN_USER}}"
-ADMIN_PASSWORD = "${{project.ADMIN_PASSWORD}}"
+# ========================================
+# Development Configuration (optional)
+# ========================================
+# Full database URL (auto-generated from above if not set)
+DATABASE_URL=postgresql+asyncpg://glean:glean@172.17.0.1:5432/glean
 
-# Configuration
-GLEAN_HOST = "glean.${main_domain}"
-GLEAN_ADMIN_HOST = "glean-admin.${main_domain}"
+# Redis URL
+REDIS_URL=redis://172.17.0.1:6379/0
+
+# CORS origins (JSON array)
+# CORS_ORIGINS=["http://localhost", "http://localhost:3000"]
+
+# ========================================
+# Embedding Configuration
+# ========================================
+# Embedding provider: openai, sentence-transformers, volc-engine
+EMBEDDING_PROVIDER=sentence-transformers
+
+# API key for embeddings (needed for openai and volc-engine providers)
+# OpenAI: Get from https://platform.openai.com/api-keys
+# Volcengine: Get from https://console.volcengine.com/ark/region:ark+cn-beijing/apiKey
+# EMBEDDING_API_KEY=your-api-key-here
+
+# Alternative API key for Volcengine (official SDK recommended)
+# Get from: https://console.volcengine.com/ark/region:ark+cn-beijing/apiKey
+# ARK_API_KEY=your-volcengine-api-key-here
+
+# Embedding model name
+# For sentence-transformers: all-MiniLM-L6-v2 (384d), paraphrase-multilingual-MiniLM-L12-v2 (384d)
+# For openai: text-embedding-3-small (1536d), text-embedding-3-large (3072d)
+# For volc-engine: doubao-embedding (1024d) or your model endpoint ID
+EMBEDDING_MODEL=all-MiniLM-L6-v2
+
+# Embedding dimension
+# all-MiniLM-L6-v2: 384
+# paraphrase-multilingual-MiniLM-L12-v2: 384
+# text-embedding-3-small: 1536
+# doubao-embedding: 1024
+EMBEDDING_DIMENSION=384
+
+# Batch size for embedding generation
+# Recommended: sentence-transformers (20), openai (20), volc-engine (4)
+EMBEDDING_BATCH_SIZE=20
+
+# Max retries for failed embedding requests
+EMBEDDING_MAX_RETRIES=3
+
+# Request timeout in seconds
+EMBEDDING_TIMEOUT=30
+
+# Optional: Custom API base URL
+# For local models via LiteLLM: http://localhost:8000/v1
+# For Volcengine (default): https://ark.cn-beijing.volces.com
+# EMBEDDING_BASE_URL=http://localhost:8000/v1
+
+# ========================================
+# Milvus Configuration
+# ========================================
+# Milvus host
+MILVUS_HOST=172.17.0.1
+
+# Milvus port
+MILVUS_PORT=19530
+
+# Milvus credentials (optional for dev)
+# MILVUS_USER=
+# MILVUS_PASSWORD=
+
+# Collection names
+MILVUS_ENTRIES_COLLECTION=entries
+MILVUS_PREFS_COLLECTION=user_preferences
+
+# ========================================
+# Preference Configuration
+# ========================================
+# Default score for entries without preference model
+PREFERENCE_DEFAULT_SCORE=50.0
+
+# Confidence threshold (samples needed for full confidence)
+PREFERENCE_CONFIDENCE_THRESHOLD=10
+
+# Signal weights
+PREFERENCE_LIKE_WEIGHT=1.0
+PREFERENCE_BOOKMARK_WEIGHT=0.7
+
+# Maximum affinity boosts
+PREFERENCE_SOURCE_BOOST_MAX=5.0
+PREFERENCE_AUTHOR_BOOST_MAX=3.0
+
+# ========================================
+# Score Configuration
+# ========================================
+# Threshold for "recommended" section (score >= 70)
+SCORE_RECOMMEND_THRESHOLD=70.0
+
+# Threshold for "low interest" section (score < 40)
+SCORE_LOW_INTEREST_THRESHOLD=40.0
+
+# Score cache TTL in seconds
+SCORE_CACHE_TTL=3600
+
+# ========================================
+# Docker Image Version (for testing pre-releases)
+# ========================================
+# Docker image tag to use (default: latest)
+# For stable releases, use: latest (default)
+# For testing pre-releases, use specific version tag like: v0.3.0-alpha.1, v0.3.0-beta.1, v0.3.0-rc.1
+IMAGE_TAG=latest
 
 [[config.mounts]]
 volumeName = "glean-logs"
