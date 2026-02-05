@@ -6,12 +6,12 @@ milvus_minio_secret_key = "${password:32}"
 
 [config]
 [[config.domains]]
-serviceName = "glean-web"
+serviceName = "web"
 port = 80
 host = "glean.${main_domain}"
 
 [[config.domains]]
-serviceName = "glean-admin"
+serviceName = "admin"
 port = 80
 host = "glean-admin.${main_domain}"
 
